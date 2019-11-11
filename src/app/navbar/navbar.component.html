@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="navbar-collapse collapse w-100 ">
+    <ul class="navbar-nav mr-auto">
+
+      <span style="font-size: smaller;">Shipping to: </span>
+      <select style="font-size: smaller; margin-left: 1rem;">
+        <option class="dropdown-item">United Kingdom, £ GBP</option>
+        <option class="dropdown-item">United Kingdom, £ GBP</option>
+        <option class="dropdown-item">United Kingdom, £ GBP</option>
+      </select>
+      <!-- <a class="nav-link" href="#">Shipping to: <b>United Kingdom, £ GBP</b></a> -->
+
+    </ul>
+  </div>
+  <div class="">
+    <a class="navbar-brand align-content-center" href="#">
+      <img src="../../assets/logo_1.svg" class="logoSize">
+    </a>
+    <button class="navbar-toggler pull-left" type="button" (click)="toggleNavbar()" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" *ngIf="!navbarOpen"></span>
+      <i class="material-icons" *ngIf="navbarOpen">
+        clear
+      </i>
+    </button>
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link pointer" (click)="openBasket()">
+          <i class="material-icons">
+            shopping_cart
+          </i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link pointer" (click)="openDialog()">
+          <i class="material-icons">
+            account_circle
+          </i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light text-center bottomBar">
+  <div class="collapse navbar-collapse " [ngClass]="{ 'show': navbarOpen }" id="navbarNav">
+    <ul class="navbar-nav ml-auto mx-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLink="collections" id="collectionDropdown" style="color: black">Collections</a>
+        <div class="dropdown-menu mt-0" aria-labelledby="collectionDropdown">
+          <a class="dropdown-item pointer"  *ngFor="let c of collections" (click)="goToCollection(c.id)">{{c.name}}</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLink="furniture" id="furnitureDropdown" style="color: black">Furniture
+          <div class="dropdown-menu mt-0" aria-labelledby="furnitureDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="ourvision" style="color: black">Our vision</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="artisan">Artisan </a>
+      </li>
+
+    </ul>
+  </div>
+</nav>

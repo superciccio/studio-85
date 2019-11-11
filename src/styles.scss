@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+//@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+//@import "./assets/font";
+
+body, html {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: 'Quicksand', sans-serif;
+}
+body {
+  min-height: 100vh;
+}
+body, html {
+  margin: 0 0;
+  padding: 0 0;
+}
+
+.container{
+  max-width: 100%;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+h2 {
+    font-size: 2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+h3 {
+  font-weight: 300;
+  font-style: normal;
+  font-family: 'Quicksand', sans-serif;
+}
+
+p {
+  font-weight: 400;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  color: black
+}
+
+a:hover {
+  text-decoration: none;
+  color: black
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px){
+  h2 {
+    font-size: 3rem;
+  }
+  }
+
+
+  .homepage a.cta {
+    letter-spacing:.2em
+   }
+
+
+   body header+.container {
+    transition:all 0.5s;
+    -webkit-transition:all 0.5s;
+    -moz-transition:all 0.5s;
+    margin-bottom:60px;
+    -moz-transform:translateY(60px);
+    -o-transform:translateY(60px);
+    -ms-transform:translateY(60px);
+    -webkit-transform:translateY(60px);
+    transform:translateY(60px);
+    -webkit-backface-visibility:0;
+    backface-visibility:0
+   }

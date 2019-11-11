@@ -1,0 +1,175 @@
+<div style="height: 6rem; background: url('../../assets/background_vision.webp') ">
+  <h3 class="text-center" style="padding-top: 2rem">Furniture</h3>
+</div>
+<div class="p-3"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-auto">
+
+      <div class="row justify-content-center "><h5>Furniture</h5></div>
+      <div class="bottomBorderFilter text-center" style="width: 12rem"></div>
+
+      <nav class="navbar-light">
+
+        <!-- Links -->
+        <ul class="navbar-nav text-center">
+          <li class="nav-item moreBottomPadding" *ngFor="let c of categoriesFurniture">
+            <span class="nav-link"  (click)="filterList(c)">{{c}}</span>
+          </li>
+        </ul>
+
+      </nav>
+
+    </div>
+
+<!--    <div class="col"></div>-->
+
+    <!--      <div class="col-3">-->
+
+    <div *ngFor="let f of furnitures" style="width: 360px;">
+
+      <mat-carousel
+        timings="250ms ease-in"
+        [autoplay]="false"
+        interval="5000"
+        color="primary"
+        slides="{{f.images.length}}"
+        [loop]="false"
+        [hideArrows]="true"
+        [hideIndicators]="false"
+        [useKeyboard]="true"
+        [useMouseWheel]="false"
+        orientation="ltr"
+      (click)="goToDetail(f.id)">
+
+        <mat-carousel-slide
+            #matCarouselSlide
+            *ngFor="let slide of f.images; let i = index"
+            [image]="slide"
+            [hideOverlay]="true">
+
+        </mat-carousel-slide>
+
+      </mat-carousel>
+
+          <div class="row  justify-content-center">
+            {{f.name}}
+          </div>
+          <div class="row justify-content-center">
+            <b>{{f.price}} £</b>
+          </div>
+          <div class="row justify-content-center">
+            Customizable
+<!--            <img width="24" height="24" src="../../assets/"> style="padding-left: .4rem">-->
+          </div>
+
+<!--      </div>-->
+
+    </div>
+    <!--    </div>-->
+
+
+<!--    <div class="col-3">-->
+<!--      <owl-carousel-o [options]="customOptions">-->
+<!--        <ng-container *ngFor="let slide of carouselData">-->
+<!--          <ng-template carouselSlide [id]="slide.id">-->
+<!--            <img style="text-align: center" width="24" class="pointer" routerLink="/detail"-->
+<!--                 routerLinkActive="router-link-active"-->
+<!--                 src="{{slide.im}}" height="240">-->
+<!--          </ng-template>-->
+<!--        </ng-container>-->
+<!--      </owl-carousel-o>-->
+<!--      <div class="row  justify-content-center">-->
+<!--        Table-->
+<!--      </div>-->
+<!--      <div class="row justify-content-center">-->
+<!--        <b>£ 343</b>-->
+<!--      </div>-->
+<!--      <div class="row justify-content-center">-->
+<!--        Customizable <img width="24" height="24" src="../../assets/ruller.webp" style="padding-left: .4rem">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-3">-->
+<!--      <owl-carousel-o [options]="customOptions">-->
+<!--        <ng-container *ngFor="let slide of carouselData2">-->
+<!--          <ng-template carouselSlide [id]="slide.id">-->
+<!--            <img style="text-align: center;" class="pointer" width="24" src="{{slide.im}}" height="240">-->
+<!--          </ng-template>-->
+<!--        </ng-container>-->
+<!--      </owl-carousel-o>-->
+<!--      <div class="row  justify-content-center">-->
+<!--        Table-->
+<!--      </div>-->
+<!--      <div class="row justify-content-center">-->
+<!--        <b>£ 343</b>-->
+<!--      </div>-->
+<!--      <div class="row justify-content-center">-->
+<!--        Customizable <img width="24" height="24" src="../../assets/ruller.webp" style="padding-left: .4rem">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-3">-->
+<!--      <owl-carousel-o [options]="customOptions">-->
+<!--        <ng-container *ngFor="let slide of carouselData3">-->
+<!--          <ng-template carouselSlide [id]="slide.id">-->
+<!--            <img style="text-align: center" width="24" class="pointer" src="{{slide.im}}" height="240">-->
+<!--          </ng-template>-->
+<!--        </ng-container>-->
+<!--      </owl-carousel-o>-->
+<!--      <div class="row  justify-content-center">-->
+<!--        Table-->
+<!--      </div>-->
+<!--      <div class="row justify-content-center">-->
+<!--        <b>£ 343</b>-->
+<!--      </div>-->
+<!--      <div class="row justify-content-center">-->
+<!--        Customizable <img width="24" height="24" src="../../assets/ruller.webp" style="padding-left: .4rem">-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+  </div>
+</div>
+
+<!--<div *ngFor="let f of furnitures">-->
+
+<!--  <mat-carousel-->
+<!--    timings="250ms ease-in"-->
+<!--    [autoplay]="false"-->
+<!--    interval="5000"-->
+<!--    color="primary"-->
+<!--    slides="3"-->
+<!--    [loop]="true"-->
+<!--    [hideArrows]="false"-->
+<!--    [hideIndicators]="false"-->
+<!--    [useKeyboard]="true"-->
+<!--    [useMouseWheel]="false"-->
+<!--    orientation="ltr">-->
+
+<!--    <mat-carousel-slide-->
+<!--        #matCarouselSlide-->
+<!--        *ngFor="let slide of f.images; let i = index"-->
+<!--        [image]="slide"-->
+<!--        [hideOverlay]="false">-->
+
+<!--    </mat-carousel-slide>-->
+
+<!--  </mat-carousel>-->
+
+<!--  <div class="row  justify-content-center">-->
+<!--    {{f.name}}-->
+<!--  </div>-->
+<!--  <div class="row justify-content-center">-->
+<!--    <b>{{f.price}}</b>-->
+<!--  </div>-->
+<!--  <div class="row justify-content-center">-->
+<!--    <b>{{f.description}}</b>-->
+<!--  </div>-->
+<!--  <div class="row justify-content-center">-->
+<!--    Customizable <img width="24" height="24" [src]="f.images[0]" style="padding-left: .4rem">-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash;      </div>&ndash;&gt;-->
+
+<!--</div>-->

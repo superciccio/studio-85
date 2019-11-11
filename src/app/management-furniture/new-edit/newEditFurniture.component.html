@@ -1,0 +1,69 @@
+<div class="p-3">
+  <button mat-stroked-button color="primary" (click)="back()">Back</button>
+</div>
+<div style="    margin-left: 25%;" *ngIf="!loading">
+  <form class="example-form" autocomplete="off">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Furniture Name" name="Furniture name" required [(ngModel)]="item.name">
+        </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput  placeholder="Furniture Description" name="Furniture description" required [(ngModel)]="item.description"></textarea>
+    </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Choose Collection" aria-label="Collection's name" matInput [formControl]="myControl"
+            required [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name" >
+                {{option.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" (blur)="transformAmount($event)" placeholder="Furniture Price" name="Furniture Price" required [(ngModel)]="formattedAmount">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Category Furniture</mat-label>
+      <mat-select [(value)]="item.categoryItem" [compareWith]="compareCategoryObjects">
+        <mat-option *ngFor="let c of categoriesFurniture" [value]="c" name="category item" >
+          {{c}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field >
+      <input matInput placeholder="Dimension width" name="Dimension width" required [(ngModel)]="item.dimension.width">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field >
+      <input matInput placeholder="Dimension height" name="Dimension height" required [(ngModel)]="item.dimension.height">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field >
+      <input matInput placeholder="Dimension depth" name="Dimension depth" required [(ngModel)]="item.dimension.depth">
+    </mat-form-field>
+
+    <div class="p-3"></div>
+    <input type="file" multiple required (change)="fileChange($event.target.files)">
+    <mat-progress-spinner mode="indeterminate" *ngIf="isConverting && !conversionDone"></mat-progress-spinner>
+    <div *ngIf="!isConverting && conversionDone">File converted and successfully</div>
+    <div *ngIf="item.images.length > 0" style="margin-top: 10px">
+      <img height="128" width="128" [src]="i" *ngFor="let i of item.images">
+    </div>
+
+
+  </form>
+  <div class="p-3"></div>
+  <button mat-button (click)="back()">Cancel</button>
+  <button mat-stroked-button color="primary" style="    margin-left: 30px;" (click)="save()">SAVE</button>
+</div>
+

@@ -1,0 +1,110 @@
+<div style="height: 6rem; background: url('../../assets/background_vision.webp') ">
+  <h3 class="text-center" style="padding-top: 2rem;">Our Vision</h3>
+</div>
+<div class="p-3"></div>
+
+<div class="container-fluid" *ngIf="!loading">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row justify-content-center">
+        <img [src]="item.images[0]" width="320" height="320" style="cursor: zoom-in;"
+             (click)="openModalFunc(item.images[0])">
+      </div>
+      <div style="height: 10px"></div>
+      <div class="row justify-content-center">
+        <div class="col-sm-1">
+          <img [src]="item.images[1]" width="64" height="64">
+        </div>
+        <div class="col-sm-1"></div>
+        <img [src]="item.images[2]" width="64" height="64">
+      </div>
+
+      <div class="row justify-content-center" style="padding-top: 5%;">
+        <span style="color: #736868; font-size: medium">SHARE</span>
+      </div>
+
+      <div style="padding-top: 10px;" class="row justify-content-center">
+        <div style="display: inline-flex">
+          <img src="../../assets/pinterest.webp" width="36" height="36">
+          <!--<div style="width: 24px"></div>-->
+          <img src="../../assets/instagram.webp" width="36" height="36" style="margin-left: .2rem;margin-right: .2rem;">
+          <img src="../../assets/linkedin.webp" width="36" height="36">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="row  justify-content-start" style="margin-bottom: 1rem">
+        {{item.name}}
+      </div>
+      <div class="row justify-content-start">
+        <b>£ {{item.price}}</b>
+      </div>
+
+      <div class="row mx-md-n4">
+        <div class="col px-md-4">
+          <div class="p-2">
+            <button type="button" class="btn btn-outline-secondary "
+                    style="width: 300px; border-color: black; border-radius: 0;">ADD TO BAG
+            </button>
+          </div>
+        </div>
+        <div class="col px-md-4 alignDescToImage">
+          <div class="p-2">
+            <span style="color: #8c8e98; font-size: smaller"> WISHLIST:</span>
+            <img height="18" width="18" src="../../assets/corazon.webp" style="margin-left: .2rem">
+            <br>
+            <span>request more info</span>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="row justify-content-start" style="margin-top: 2rem">-->
+      <!--<button type="button" class="btn btn-outline-secondary "-->
+      <!--style="width: 300px; border-color: black; border-radius: 0;">ADD TO BAG</button>-->
+      <!--<div class="">-->
+      <!--<span>WHISHLIST</span>-->
+      <!--</div>-->
+      <!--</div>-->
+
+      <div class="spaceBetween">
+        <div class="row justify-content-start alignDescToImage">
+          <img src="../../assets/ruller.webp" height="36" width="36">
+          <span class="spaceDescImage" style="color: #8c8e98; font-size: smaller">REQUEST CUSTOMIZATION</span>
+        </div>
+        <div class="row justify-content-start alignDescToImage spaceBetween">
+          <img src="../../assets/print.webp" height="36" width="36">
+          <span class="spaceDescImage" style="color: #8c8e98; font-size: smaller">DOWNLOAD PRODUCT TEARSHEET</span>
+        </div>
+        <div class="row justify-content-start alignDescToImage">
+          <img src="../../assets/certify.webp" height="36" width="36">
+          <span class="spaceDescImage" style="color: #8c8e98; font-size: smaller">BUYER PROTECTION</span>
+        </div>
+      </div>
+
+      <div class="spaceBetween">
+        <span class="titleBolder">Description</span>
+        <br>
+        <span>
+          {{item.description}}
+        </span>
+      </div>
+
+      <div class="spaceBetween">
+        <span class="titleBolder">Details & Dimension</span>
+        <br>
+        <span>
+          bla bla bla bla bla bla bla bla
+        </span>
+      </div>
+
+      <div class="spaceBetween">
+        <span class="titleBolder">Delivery & Return</span>
+        <br>
+        <span>
+          bla bla bla bla bla bla bla bla
+        </span>
+      </div>
+
+    </div>
+  </div>
+</div>

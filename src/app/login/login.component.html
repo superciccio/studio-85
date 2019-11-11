@@ -1,0 +1,29 @@
+<div mat-dialog-content>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email address" name="email address" autocomplete="email address"
+             [(ngModel)]="email" #ctrl="ngModel" required>
+    </mat-form-field>
+
+    <mat-form-field style="width: 50%">
+      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
+             name="password" autocomplete="current-password" [minLength]="6"
+             [(ngModel)]="password" #ctrl="ngModel" required>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button mat-button color="primary">Forgot Password?</button>
+    <button mat-button color="primary">Create account</button>
+
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-button color="primary" style="    margin-left: 30px;" (click)="login()">Login</button>
+</div>
+
+

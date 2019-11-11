@@ -1,0 +1,33 @@
+<div class="p-3">
+  <button mat-stroked-button color="primary" (click)="back()">Back</button>
+</div>
+<div>
+<div style="    margin-left: 25%;" *ngIf="!loading">
+  <form class="example-form" autocomplete="off">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Collection Name" name="Collection name" required [(ngModel)]="item.name">
+        </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput  placeholder="Collection Description" name="Collection description" required [(ngModel)]="item.description"></textarea>
+    </mat-form-field>
+
+      <mat-slide-toggle (change)="checkToggleInHomePage($event)"
+                        name="Collection in home page" [(ngModel)]="item.isInHomePage">{{descToggle}}</mat-slide-toggle>
+
+    <div class="p-3"></div>
+    <input type="file" required (change)="fileChange($event.target.files)">
+    <mat-progress-spinner mode="indeterminate" *ngIf="isConverting && !conversionDone"></mat-progress-spinner>
+    <div *ngIf="isConverting && !conversionDone">File converted successfully</div>
+
+    <div *ngIf="item.cover!=''" style="margin-top: 10px">
+      <img height="128" width="128" [src]="item.cover">
+    </div>
+
+
+  </form>
+  <div class="p-3"></div>
+  <button mat-button (click)="back()">Cancel</button>
+  <button mat-stroked-button color="primary" style="    margin-left: 30px;" (click)="save()">SAVE</button>
+</div>
+

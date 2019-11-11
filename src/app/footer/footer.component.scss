@@ -1,0 +1,53 @@
+.footer {
+  -webkit-font-smoothing: antialiased;
+  padding: 10px 20px 0;
+  text-align: center;
+  position: relative;
+  z-index: 8;
+  color: #fff;
+}
+
+.footer .col {
+  text-align: center;
+  display: none;
+}
+
+
+.footer .col.social {
+  display: block;
+  text-align: center;
+}
+
+.col a {
+  display: block;
+  font-size: .7rem;
+  letter-spacing: .1rem;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+@media screen and (min-width: 1025px) {
+  .footer {
+    padding: 40px 40px 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    padding: 20px 40px 0;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .footer .col {
+    display: block;
+    float: left;
+    width: 25%;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+}
+
+

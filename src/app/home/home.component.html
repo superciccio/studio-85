@@ -1,0 +1,62 @@
+<div class="container">
+  <section class="sub-header">
+    <div class="cta-header">
+      <div class="image-wrapper"
+           style="background: url('https://artemest-spree-production-cdn.s3.amazonaws.com/artemest_online_destination_for_handmade_decor_furniture_lighting-d1644b98-f5c2-4c68-a007-0813a73cae84.jpeg')">
+        <div class="header-sub ">
+          <div class="centered ">
+            <h5>Italian Furniture</h5>
+            <h1>Welcome to the World of Luxury Craftsmanship</h1>
+            <p>Discover unique handmade furniture &amp; décor</p>
+            <a class="cta" href="/categories/furniture">Explore Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div>
+
+  <section class="homepage">
+
+    <h2 class="text-center collectionStyleTileHP">Collections</h2>
+
+
+    <div class="container">
+
+
+    <div class="row " *ngIf="!loading">
+
+      <div class="row">
+
+         <div class="col-4" *ngFor="let c of collections" >
+
+          <img class="rounded mx-auto d-block grow pointer"
+               style="max-height: 300px;" (click)="goToCollection(c.id)"
+               [src]="c.cover" alt="Walnut Mania">
+
+          <h3 class="mt-3 titleHPBox">
+            <a >
+              {{c.name}}</a>
+          </h3>
+
+          <p class="box__content-text mobile-hidden">{{c.description}}</p>
+
+          <a class=" mt-5 cta" (click)="goToCollection(c.id)" >Shop Now</a>
+        </div>
+      </div>
+
+      </div>
+    </div>
+
+    <div class="pt-5"></div>
+
+    <div class="jumbotron" style="padding: 1rem;">
+      <div class="container text-center">
+
+        <a class="lead pointer collectionStyleTileLink" routerLink="/collections">ALL COLLECTIONS</a>
+      </div>
+    </div>
+
+  </section>
+</div>

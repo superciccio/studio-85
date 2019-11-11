@@ -1,0 +1,29 @@
+.navbar-nav li:hover .dropdown-menu {
+  display: block;
+}
+
+.bottomBar {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.logoSize {
+  height: 100px;
+  width: 232px;
+}
+
+@media screen and (max-width: 768px) {
+  .logoSize {
+    left: 50%;
+    position: absolute;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transform: translateX(30px);
+    width: 100px;
+    margin-left: -80px;
+    opacity: 1;
+    text-align: center;
+  }
+}
+
