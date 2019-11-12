@@ -21,7 +21,7 @@ export class DetailFurnitureComponent implements OnInit {
   selectedImage: string;
 
   constructor(private aRoute: ActivatedRoute, private basket: BasketService, public dialog: MatDialog,
-              private snackBar: MatSnackBar, private fService: FurnitureService) {
+              private snackBar: MatSnackBar, private fService: FurnitureService, private fCache: FurnitureCacheService) {
     this.id = this.aRoute.snapshot.params.id;
   }
 
@@ -29,8 +29,10 @@ export class DetailFurnitureComponent implements OnInit {
     this.loading = true;
     if(this.id !== undefined && this.id.length>0){
       this.loading = true;
+      if(!this.fCache.has(this.id)){
       this.fService.getFurniture(this.id).then(resp=>{
         this.item = resp.data() as Item;
+        this.fCache.addInCache(this.item.id, this.item);
         this.selectedImage = this.item.images[0];
         // let collection = this.options.find(c=> c.id === this.item.collectionId);
         // this.myControl.setValue(collection.name);
@@ -39,6 +41,11 @@ export class DetailFurnitureComponent implements OnInit {
     }
     else {
       this.loading = false;
+    }
+    }else{
+    this.item = this.fCache.get(this.id);
+    this.selectedImage = this.item.images[0];
+    this.loading = false;
     }
   }
 
