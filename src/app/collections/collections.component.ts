@@ -16,6 +16,8 @@ export class CollectionsComponent implements OnInit {
   id = '';
   collection: Collection;
   collections: Collection[] = [];
+  oddCollections: Collection[] = [];
+  evenCollections: Collection[] = [];
   single = false;
   furnitures: Item[] = [];
   displayedColumns: string[] = ['img', 'name', 'description', 'action'];
@@ -36,6 +38,7 @@ export class CollectionsComponent implements OnInit {
         }).then(r => {
             this.furnitureService.getFurnituresByCollectionId(this.collection.id).then(fResp => {
               fResp.docs.map(ds => this.furnitures.push(ds.data() as Item));
+              
             });
           }
         );
@@ -49,6 +52,13 @@ export class CollectionsComponent implements OnInit {
 
         for (const doc of resp.docs) {
           this.collections.push(doc.data() as Collection);
+        }
+        for(const c in this.collections){
+          if(c%2==0){
+            this.evenCollections.push(this.collections[c]);
+          } else{
+            this.oddCollections.push(this.collections[c]);
+          }
         }
         this.dataSource = new MatTableDataSource(this.collections);
         this.loading = false;
