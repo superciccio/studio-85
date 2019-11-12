@@ -64,88 +64,94 @@
 </div>
 
 
+
 <div *ngIf="collections.length>0 && collection == null">
 
- <div class="row" *ngFor="let c of oddCollections">
-  <div class="col-8"><img [src]="c.cover"></div>
-  <div class="col-4">
-    <div class="header-sub ">
-          <div class="centered ">
-            <h5>{{c.name}}</h5>
-            <a> shop now </a>
-            <!--<a class="cta" href="/categories/furniture">Explore Now</a>-->
+
+
+  <div class="container" *ngFor="let c of collections;let i = index">
+
+    <div class="row">
+
+      <ng-container *ngIf="i % 2 ===0">
+      <div class="col">
+        <div class="cont-img-designer">
+          <img id="imgreplacefooter" src="http://slidedesign.it/wp-content/uploads/2017/05/low-lita-collection-COVER.jpg" alt="" class="img-responsive">
+        </div>
+      </div>
+      <div class="col">
+        <div class="descrizione">
+          <h1>{{c.name}}</h1>
+
+          <!--<div class="designerby">
+              design
+              <strong>
+                                                      </strong>
+          </div>-->
+          <div class="designer_dett_prd">design <a href="http://slidedesign.it/en/designers/paola-navone/">Paola Navone</a></div>                                <div class="testodesigner"><p>Low Lita is a family with a playful and contemporary design. Thanks to its curve lines and its big chassis, this family is ideal to a funny and original ambientation. It is suitable for every environments, indoor and outdoor, private or contract world.&nbsp;The handles on the whole line allow the Low Lita to be moved easily.</p>
+        </div>
+      </div>
+    </div>
+
+      </ng-container>
+
+      <ng-container *ngIf="i % 2 !==0">
+        <div class="col">
+          <div class="descrizione">
+            <h1>{{c.name}}</h1>
+
+            <!--<div class="designerby">
+                design
+                <strong>
+                                                        </strong>
+            </div>-->
+            <div class="designer_dett_prd">design <a href="http://slidedesign.it/en/designers/paola-navone/">Paola Navone</a></div>                                <div class="testodesigner"><p>Low Lita is a family with a playful and contemporary design. Thanks to its curve lines and its big chassis, this family is ideal to a funny and original ambientation. It is suitable for every environments, indoor and outdoor, private or contract world.&nbsp;The handles on the whole line allow the Low Lita to be moved easily.</p>
+          </div>
           </div>
         </div>
 
-    </div>
-</div>
-
-    <div class="row" *ngFor="let c of evenCollections">
-       <div class="col-4">
-    <div class="header-sub ">
-          <div class="centered ">
-            <h5>{{c.name}}</h5>
-            <a> shop now </a>
-            <!--<a class="cta" href="/categories/furniture">Explore Now</a>-->
+        <div class="col">
+          <div class="cont-img-designer">
+            <img id="imgreplacefooter" src="http://slidedesign.it/wp-content/uploads/2017/05/low-lita-collection-COVER.jpg" alt="" class="img-responsive">
           </div>
         </div>
 
+      </ng-container>
+
+
     </div>
-        <div class="col-8"><img [src]="c.cover"></div>
+  </div>
+
 </div>
 
+<!--  <section class="dettaglio">-->
+
+<!--    <div class="">-->
+
+<!--      <div class="row">-->
+<!--        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nopadding">-->
+
+<!--          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 nopadding">-->
+<!--            <div class="cont-img-designer">-->
+<!--              <img id="imgreplacefooter" src="http://slidedesign.it/wp-content/uploads/2017/05/low-lita-collection-COVER.jpg" alt="" class="img-responsive">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 nopadding">-->
+<!--            <div class="descrizione">-->
+<!--              <h1>Low Lita collection</h1>-->
+
+<!--              &lt;!&ndash;<div class="designerby">-->
+<!--                  design-->
+<!--                  <strong>-->
+<!--                                                          </strong>-->
+<!--              </div>&ndash;&gt;-->
+<!--              <div class="designer_dett_prd">design <a href="http://slidedesign.it/en/designers/paola-navone/">Paola Navone</a></div>                                <div class="testodesigner"><p>Low Lita is a family with a playful and contemporary design. Thanks to its curve lines and its big chassis, this family is ideal to a funny and original ambientation. It is suitable for every environments, indoor and outdoor, private or contract world.&nbsp;The handles on the whole line allow the Low Lita to be moved easily.</p>-->
+<!--            </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
 
-<!--<div class="container">-->
-
-<!--  <div class="row">-->
-
-<!--    <div class="col-1"></div>-->
-
-<!--    <div class="col-5"-->
-<!--         style="border: 1px black solid; background-image: url('../../assets/RBTK8QHSMCI6CIBZGML2.webp'); height: 240px;">-->
-
-<!--    </div>-->
-<!--    <div class="col-5" style="border: 1px black solid; background-color: grey">-->
-<!--      <div class="mt-3"></div>-->
-<!--      <p class="text-center">-->
-<!--        <b> Marble and Brass Collection</b>-->
-<!--      </p>-->
-<!--      <div class="mt-3"></div>-->
-<!--      <p class="text-center">Altra scrita</p>-->
-<!--      <div class="mt-4"></div>-->
-<!--      <p class="text-center">-->
-<!--        <a>Link collezione</a>-->
-<!--      </p>-->
-<!--    </div>-->
-<!--    <div class="col-1"></div>-->
-<!--  </div>-->
-
-<!--  <div class="mt-3"></div>-->
-
-<!--  <div class="row">-->
-
-<!--    <div class="col-1"></div>-->
-
-
-<!--    <div class="col-5" style="border: 1px black solid; background-color: grey">-->
-<!--      <div class="mt-3"></div>-->
-<!--      <p class="text-center">-->
-<!--        <b> Marble and Brass Collection</b>-->
-<!--      </p>-->
-<!--      <div class="mt-3"></div>-->
-<!--      <p class="text-center">Altra scrita</p>-->
-<!--      <div class="mt-4"></div>-->
-<!--      <p class="text-center">-->
-<!--        <a>Link collezione</a>-->
-<!--      </p>-->
-<!--    </div>-->
-<!--    <div class="col-5"-->
-<!--         style="border: 1px black solid; background-image: url('../../assets/RBTK8QHSMCI6CIBZGML2.webp'); height: 240px;">-->
+<!--        </div>-->
+<!--      </div>-->
 
 <!--    </div>-->
-<!--    <div class="col-1"></div>-->
-<!--  </div>-->
-
-
-<!--</div>-->
