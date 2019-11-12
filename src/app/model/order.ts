@@ -5,4 +5,5 @@ export class Order {
   shipmentCost: number = 0;
   shipmentAddress: Address = {};
   billingAddress: Address = {};
+  shipmentNotes: string = "";
 }
