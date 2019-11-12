@@ -7,16 +7,13 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="row justify-content-center">
-        <img [src]="item.images[0]" width="320" height="320" style="cursor: zoom-in;"
-             (click)="openModalFunc(item.images[0])">
+        <img [src]="selectedImage" width="320" height="320" style="cursor: zoom-in;"
+             (click)="openModalFunc(selectedImage)">
       </div>
       <div style="height: 10px"></div>
       <div class="row justify-content-center">
-        <div class="col-sm-1">
-          <img [src]="item.images[1]" width="64" height="64">
-        </div>
-        <div class="col-sm-1"></div>
-        <img [src]="item.images[2]" width="64" height="64">
+        
+      <img *ngFor="let i of item.images" height="102" width="102" [src]="i" (click)="select(i)">
       </div>
 
       <div class="row justify-content-center" style="padding-top: 5%;">
@@ -92,16 +89,37 @@
       <div class="spaceBetween">
         <span class="titleBolder">Details & Dimension</span>
         <br>
-        <span>
-          bla bla bla bla bla bla bla bla
-        </span>
+        <div *ngIf="item.dimension!=null">
+        <p>
+          Height: <span style="margin-left: 5%">{{item.dimension.height}}</span> <span style="margin-left: 5%">mm</span>
+        </p>
+          <p>
+          Width: <span style="margin-left: 5%">{{item.dimension.width}}</span><span style="margin-left: 5%">mm</span>
+        </p>
+          <p>
+          Depth: <span style="margin-left: 5%">{{item.dimension.depth}}</span><span style="margin-left: 5%">mm</span>
+        </p>
+      </div>
       </div>
 
       <div class="spaceBetween">
         <span class="titleBolder">Delivery & Return</span>
         <br>
         <span>
-          bla bla bla bla bla bla bla bla
+          <ul>
+            <li>
+              Preorder
+              <li>
+                 <li>
+              Shipping to United Kingdom: £50 (Curbside)
+              <li>
+                 <li>
+                   White glove or special needs? <a > Contact Us </a>
+              <li>
+                   <li>
+                     Changed your mind? <a > Read our return policy </a>
+              <li>
+          </ul>
         </span>
       </div>
 
