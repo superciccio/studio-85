@@ -1,7 +1,7 @@
 export class Collection {
-  id: string;
-  name: string;
-  description: string;
-  cover: string;
-  isInHomePage: boolean;
+  id: string = "";
+  name: string = "";
+  description: string = "";
+  cover: string = "";
+  isInHomePage: boolean = false;
 }
