@@ -9,4 +9,5 @@ export class Item {
   collectionId: string;
   categoryItem: string;
   dimension: Dimension | null;
+  material: string;
 }
