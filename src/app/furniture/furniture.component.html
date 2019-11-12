@@ -35,9 +35,11 @@
         [autoplay]="false"
         interval="5000"
         color="primary"
+        maxWidth="auto"
+        proportion="65"
         slides="{{f.images.length}}"
         [loop]="false"
-        [hideArrows]="true"
+        [hideArrows]="false"
         [hideIndicators]="false"
         [useKeyboard]="true"
         [useMouseWheel]="false"
@@ -48,7 +50,7 @@
             #matCarouselSlide
             *ngFor="let slide of f.images; let i = index"
             [image]="slide"
-            [hideOverlay]="true">
+            [hideOverlay]="false">
 
         </mat-carousel-slide>
 
