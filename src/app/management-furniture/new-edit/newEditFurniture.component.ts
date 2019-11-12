@@ -51,6 +51,7 @@ export class NewEditFurnitureComponent implements OnInit {
       description: '',
       images: [],
       name: '',
+      material: '',
       categoryItem: '',
       dimension : {
         depth: 0,
@@ -84,6 +85,9 @@ export class NewEditFurnitureComponent implements OnInit {
             depth: 0,
             height: 0
           };
+        }
+        if (this.item.material==null) {
+            this.item.material = '';
         }
         const collection = this.options.find(c => c.id === this.item.collectionId);
         this.myControl.setValue(collection.name);
