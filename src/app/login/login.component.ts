@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   hide = true;
   userNotFound = false;
   wrongPassword = false;
-
+  errosMsg = '';
 
   constructor(private dialogRef: MatDialogRef<LoginComponent>, private router: Router, private afAuth: AngularFireAuth) {
   }
@@ -30,8 +30,11 @@ export class LoginComponent implements OnInit {
     }).catch((err) => {
       if (err.code === 'auth/user-not-found') {
       this.userNotFound = true;
+        this.errosMsg = "Email or password do not exists.";
+
       }if (err.code === 'auth/wrong-password') {
       this.wrongPassword = true;
+      this.errosMsg = 'Wrong password. \nTry again or click Forgot password to reset it.';
       }
       console.error(err);
     });

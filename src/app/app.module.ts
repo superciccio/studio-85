@@ -16,7 +16,6 @@ import {CarouselModule} from 'ngx-owl-carousel-o';
 import {DetailFurnitureComponent} from './detail-furniture/detail-furniture.component';
 import {BasketService} from './shared/basket.service';
 import {CollectionService} from './shared/collection.service';
-import {FurnitureCacheService} from './shared/furniture_cache.service';
 import {BasketComponent} from './basket/basket.component';
 import {ImageZoomContentModalComponent} from './shared/image-zoom-content-modal.component';
 import {FooterComponent} from './footer/footer.component';
@@ -52,6 +51,8 @@ import {MatSlideToggle, MatSlideToggleModule} from '@angular/material/slide-togg
 import {MatSelectModule} from '@angular/material/select';
 import {MatCarouselModule} from '@ngmodule/material-carousel';
 import {CurrencyPipe} from '@angular/common';
+import {FurnitureCacheService} from './shared/furniture_cache.service';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import {CurrencyPipe} from '@angular/common';
     MatButtonModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatGridListModule,
     MatSnackBarModule,
     MatTabsModule,

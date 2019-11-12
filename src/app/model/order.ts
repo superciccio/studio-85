@@ -1,9 +1,12 @@
+import {Item} from './Item';
+import {Address} from './address';
+
 export class Order {
-  userId: string = "";
+  userId = '';
   furnitures: Array<Item> = [];
-  total: number = 0;
-  shipmentCost: number = 0;
+  total = 0;
+  shipmentCost = 0;
   shipmentAddress: Address = {};
   billingAddress: Address = {};
-  shipmentNotes: string = "";
+  shipmentNotes = '';
 }

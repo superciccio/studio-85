@@ -65,9 +65,9 @@
 
 
 <div *ngIf="collections.length>0 && collection == null">
-  
+
  <div class="row" *ngFor="let c of oddCollections">
-  <div class="col-8"><img [src]="c.cover">/div>
+  <div class="col-8"><img [src]="c.cover"></div>
   <div class="col-4">
     <div class="header-sub ">
           <div class="centered ">
@@ -76,10 +76,10 @@
             <!--<a class="cta" href="/categories/furniture">Explore Now</a>-->
           </div>
         </div>
-    
+
     </div>
 </div>
-   
+
     <div class="row" *ngFor="let c of evenCollections">
        <div class="col-4">
     <div class="header-sub ">
@@ -89,7 +89,7 @@
             <!--<a class="cta" href="/categories/furniture">Explore Now</a>-->
           </div>
         </div>
-    
+
     </div>
         <div class="col-8"><img [src]="c.cover"></div>
 </div>

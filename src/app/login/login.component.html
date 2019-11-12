@@ -5,7 +5,7 @@
              [(ngModel)]="email" #ctrl="ngModel" required>
     </mat-form-field>
 
-    <mat-form-field style="width: 50%">
+    <mat-form-field class="example-full-width" style="padding-bottom: 0;">
       <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
              name="password" autocomplete="current-password" [minLength]="6"
              [(ngModel)]="password" #ctrl="ngModel" required>
@@ -14,16 +14,33 @@
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
+    <div *ngIf="errosMsg!==''" >
+      <small class="d-flex justify-content-center" style="color: red">{{errosMsg}}</small>
+    </div>
 
-    <button mat-button color="primary">Forgot Password?</button>
-    <button mat-button color="primary">Create account</button>
+    <div class="p-2"></div>
 
+
+    <div class="d-flex">
+      <div class="p-2">
+    <mat-checkbox>
+      <small>Remind me</small>
+    </mat-checkbox>
+      </div>
+
+      <div class="ml-auto p-2">
+      <a>  <small>Forgot Password? </small></a>
+      </div>
+
+    </div>
   </form>
 </div>
 
-<div mat-dialog-actions>
-  <button mat-button (click)="close()">Cancel</button>
-  <button mat-button color="primary" style="    margin-left: 30px;" (click)="login()">Login</button>
+<div>
+  <button mat-stroked-button style="width: 100%!important;min-width: unset!important;" (click)="login()">Login</button>
 </div>
 
+<div class="d-flex justify-content-center p-1">
+<small>Don't have an account ? Signup</small>
+</div>
 

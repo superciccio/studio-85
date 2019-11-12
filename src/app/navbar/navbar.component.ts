@@ -35,7 +35,7 @@ export class NavBarComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
-      width: '400px',
+      width: 'auto',
       data: {}
     });
 

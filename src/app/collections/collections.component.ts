@@ -38,7 +38,7 @@ export class CollectionsComponent implements OnInit {
         }).then(r => {
             this.furnitureService.getFurnituresByCollectionId(this.collection.id).then(fResp => {
               fResp.docs.map(ds => this.furnitures.push(ds.data() as Item));
-              
+
             });
           }
         );
@@ -47,19 +47,21 @@ export class CollectionsComponent implements OnInit {
         this.collections = [];
       }
     });
-    if(this.id == null){
+    if (this.id == null) {
       this.collectionService.getCollections().toPromise().then(resp => {
 
         for (const doc of resp.docs) {
           this.collections.push(doc.data() as Collection);
         }
-        for(const c in this.collections){
-          if(c%2==0){
-            this.evenCollections.push(this.collections[c]);
-          } else{
-            this.oddCollections.push(this.collections[c]);
+        this.collections.forEach(((value, index) => {
+          if (index % 2 === 0) {
+            console.log('even ' , index % 2 === 0);
+            console.log(value.name);
+            this.evenCollections.push(value);
+          } else {
+            this.oddCollections.push(value);
           }
-        }
+        }));
         this.dataSource = new MatTableDataSource(this.collections);
         this.loading = false;
       });

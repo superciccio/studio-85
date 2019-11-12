@@ -6,6 +6,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute} from '@angular/router';
 import {FurnitureService} from '../shared/furniture.service';
+import {FurnitureCacheService} from '../shared/furniture_cache.service';
 
 
 @Component({
@@ -27,23 +28,23 @@ export class DetailFurnitureComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    if(this.id !== undefined && this.id.length>0){
+    if (this.id !== undefined && this.id.length > 0) {
       this.loading = true;
-      if(!this.fCache.has(this.id)){
-      this.fService.getFurniture(this.id).then(resp=>{
+      if (!this.fCache.furnitureCache.has(this.id)) {
+      this.fService.getFurniture(this.id).then(resp => {
         this.item = resp.data() as Item;
-        this.fCache.addInCache(this.item.id, this.item);
+        this.fCache.addInCache(this.item);
+        console.log('adding in cache');
         this.selectedImage = this.item.images[0];
         // let collection = this.options.find(c=> c.id === this.item.collectionId);
         // this.myControl.setValue(collection.name);
         this.loading = false;
       });
-    }
-    else {
+    } else {
       this.loading = false;
     }
-    }else{
-    this.item = this.fCache.get(this.id);
+    } else {
+    this.item = this.fCache.furnitureCache.get(this.id);
     this.selectedImage = this.item.images[0];
     this.loading = false;
     }
@@ -55,7 +56,7 @@ export class DetailFurnitureComponent implements OnInit {
       duration: 2000,
     });
   }
-  
+
   select(image: string) {
   this.selectedImage = image;
   }
