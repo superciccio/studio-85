@@ -18,6 +18,7 @@ export class DetailFurnitureComponent implements OnInit {
   id = '';
   loading: boolean;
   item: Item;
+  selectedImage: string;
 
   constructor(private aRoute: ActivatedRoute, private basket: BasketService, public dialog: MatDialog,
               private snackBar: MatSnackBar, private fService: FurnitureService) {
@@ -30,6 +31,7 @@ export class DetailFurnitureComponent implements OnInit {
       this.loading = true;
       this.fService.getFurniture(this.id).then(resp=>{
         this.item = resp.data() as Item;
+        this.selectedImage = this.item.images[0];
         // let collection = this.options.find(c=> c.id === this.item.collectionId);
         // this.myControl.setValue(collection.name);
         this.loading = false;
@@ -45,6 +47,10 @@ export class DetailFurnitureComponent implements OnInit {
     this.snackBar.open('Item added to the basket', null, {
       duration: 2000,
     });
+  }
+  
+  select(image: string) {
+  this.selectedImage = image;
   }
 
   openModalFunc(content: string) {
