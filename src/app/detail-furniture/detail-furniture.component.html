@@ -85,6 +85,14 @@
           {{item.description}}
         </span>
       </div>
+      
+      <div class="spaceBetween" *ngIf="item.material!=null">
+        <span class="titleBolder">Material</span>
+        <br>
+        <span>
+          {{item.material}}
+        </span>
+      </div>
 
       <div class="spaceBetween">
         <span class="titleBolder">Details & Dimension</span>
