@@ -16,6 +16,10 @@ export class LoginComponent implements OnInit {
   userNotFound = false;
   wrongPassword = false;
   errosMsg = '';
+  emailCtrl = new FormControl('',[
+    Validators.required,
+    Validators.email
+  ]);
 
   constructor(private dialogRef: MatDialogRef<LoginComponent>, private router: Router, private afAuth: AngularFireAuth) {
   }
