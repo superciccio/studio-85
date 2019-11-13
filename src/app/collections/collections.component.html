@@ -64,7 +64,7 @@
 <div *ngIf="collections.length>0 && collection == null">
   <div class="container" *ngFor="let c of collections;let i = index">
     <div class="row">
-      
+
       <ng-container *ngIf="i % 2 ===0">
       <div class="col">
         <div class="cont-img-designer">
@@ -74,7 +74,7 @@
       <div class="col">
         <div class="descrizione">
           <h1>{{c.name}}</h1>
-          <div class="designer_dett_prd">design <a >Paola Navone</a></div> 
+          <div class="designer_dett_prd">design <a >Paola Navone</a></div>
             <div class="testodesigner">
               <p>{{c.description}}</p>
           </div>
@@ -83,14 +83,14 @@
     </div>
 
       </ng-container>
-      
+
       <div class="p-2" *ngIf="i % 2 >1 && i <= collections.length"></div>
 
       <ng-container *ngIf="i % 2 !==0">
         <div class="col">
           <div class="descrizione">
             <h1>{{c.name}}</h1>
-            <div class="designer_dett_prd">design <a >Paola Navone</a></div> 
+            <div class="designer_dett_prd">design <a >Paola Navone</a></div>
             <div class="testodesigner">
               <p>{{c.description}}</p>
           </div>
@@ -109,5 +109,4 @@
     </div>
   </div>
 
-</div>
 
