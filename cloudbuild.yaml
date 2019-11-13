@@ -3,11 +3,13 @@ steps:
   args: [ 'use', '$_PROJECT_NAME']
   secretEnv: ['FIREBASE_TOKEN']
 
-- name: 'gcr.io/cloud-builders/npm'
+- name: node:10.16.3
+  entrypoint: npm
   dir: 'shop'
   args: ['install']
 
-- name: 'gcr.io/cloud-builders/npm'
+- name: node:10.16.3
+  entrypoint: npm
   dir: 'shop'
   args: ['run','ng','build','--prod','--aot']
 
