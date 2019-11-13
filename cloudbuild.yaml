@@ -5,7 +5,11 @@ steps:
 
 - name: 'gcr.io/cloud-builders/npm'
   dir: 'shop'
-  args: ['install', 'run postinstall']
+  args: ['install']
+
+- name: 'gcr.io/cloud-builders/npm'
+  dir: 'shop'
+  args: ['run','ng','build','--prod','--aot']
 
 - name: 'gcr.io/$PROJECT_ID/firebase'
   args: [ 'deploy']
