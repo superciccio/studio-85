@@ -53,6 +53,7 @@ import {MatCarouselModule} from '@ngmodule/material-carousel';
 import {CurrencyPipe} from '@angular/common';
 import {FurnitureCacheService} from './shared/furniture_cache.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCheckboxModule,
     MatGridListModule,
     MatSnackBarModule,
+    MatChipsModule,
     MatTabsModule,
     MatIconModule,
     FormsModule,

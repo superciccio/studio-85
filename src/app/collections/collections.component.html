@@ -68,7 +68,7 @@
       <ng-container *ngIf="i % 2 ===0">
       <div class="col">
         <div class="cont-img-designer">
-            <img id="imgreplacefooter" [src]="c.cover" alt="Image cover collection" class="img-responsive">
+            <img id="imgreplacefooter" [src]="c.cover" alt="Image cover collection" >
         </div>
       </div>
       <div class="col">
@@ -80,14 +80,11 @@
           </div>
         </div>
       </div>
-    </div>
-
       </ng-container>
 
-      <div class="p-2" *ngIf="i % 2 >1 && i <= collections.length"></div>
 
       <ng-container *ngIf="i % 2 !==0">
-        <div class="col">
+        <div class="col p-3" >
           <div class="descrizione">
             <h1>{{c.name}}</h1>
             <div class="designer_dett_prd">design <a >Paola Navone</a></div>
@@ -105,8 +102,13 @@
 
       </ng-container>
 
-
     </div>
+
+
+    <div *ngIf="i > 0 && i < collections.length-1 " class="p-3"> </div>
+
+
+  </div>
   </div>
 
 
