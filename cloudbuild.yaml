@@ -1,0 +1,19 @@
+steps:
+- name: 'gcr.io/$PROJECT_ID/firebase'
+  args: [ 'use', '$_PROJECT_NAME']
+  secretEnv: ['FIREBASE_TOKEN']
+
+- name: 'gcr.io/cloud-builders/npm'
+  dir: 'shop'
+  args: ['run', 'postinstall']
+
+- name: 'gcr.io/$PROJECT_ID/firebase'
+  args: [ 'deploy']
+  secretEnv: ['FIREBASE_TOKEN']
+
+
+secrets:
+- kmsKeyName: 'projects/studio85/locations/global/keyRings/cloudbuilder/cryptoKeys/firebase-token'
+  secretEnv:
+    FIREBASE_TOKEN: CiQAsBi2n3yvf6sQXRsGzQYYp4Q4v0kmcl7X4JJqJFaeOTsfEsgSIQC6rlX/KMlByY72hpooSNr1r3H9mj/jWUKuUY4kGDeTBQ==
+
