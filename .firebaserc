@@ -1,6 +1,5 @@
 {
   "projects": {
-    "default": "studio85",
-    "studio85": "studio85"
+    "default": "studio85"
   }
 }
