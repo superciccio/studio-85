@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {OwlOptions} from 'ngx-owl-carousel-o';
 import {SharedVariableService} from '../shared/shared-variable.service';
 import {FurnitureService} from '../shared/furniture.service';
 import {Item} from '../model/Item';
@@ -13,33 +12,33 @@ import {Router} from '@angular/router';
 export class FurnitureComponent implements OnInit {
   private numbers: number[];
 
-  customOptions: OwlOptions = {
-    loop: false,
-    mouseDrag: false,
-    touchDrag: true,
-    pullDrag: false,
-    dots: true,
-    navSpeed: 250,
-    nav: false,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 1
-      },
-      740: {
-        items: 1
-      },
-      940: {
-        items: 1
-      },
-      1200: {
-        items: 3
-      }
-    },
-  };
+  // customOptions: OwlOptions = {
+  //   loop: false,
+  //   mouseDrag: false,
+  //   touchDrag: true,
+  //   pullDrag: false,
+  //   dots: true,
+  //   navSpeed: 250,
+  //   nav: false,
+  //   navText: ['', ''],
+  //   responsive: {
+  //     0: {
+  //       items: 1
+  //     },
+  //     400: {
+  //       items: 1
+  //     },
+  //     740: {
+  //       items: 1
+  //     },
+  //     940: {
+  //       items: 1
+  //     },
+  //     1200: {
+  //       items: 3
+  //     }
+  //   },
+  // };
 
   carouselData = [
     {id: 'slide-1', text: 'Slide 1 HM', dataMerge: 2, width: 300, dotContent: 'text1', im: '../../assets/op1.webp'},
