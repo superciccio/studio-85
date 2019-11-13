@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
   userNotFound = false;
   wrongPassword = false;
   errosMsg = '';
+  isRecoveryPassword = false;
+  isSignup = false;
+  isLogin = true;
   
   emailCtrl = new FormControl('',[
     Validators.required,
@@ -38,6 +41,24 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  
+  backToLogin(){
+    this.isLogin = true;
+    this.isSignup = false;
+    this.isRecoveryPassword = false;
+  }
+  
+  signup(){
+    this.isLogin = false;
+    this.isSignup = true;
+    this.isRecoveryPassword = false;
+  }
+  
+  recoveryPassword(){
+    this.isLogin = false;
+    this.isSignup = false;
+    this.isRecoveryPassword = true;
   }
 
   login() {
