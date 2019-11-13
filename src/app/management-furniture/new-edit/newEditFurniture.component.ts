@@ -79,6 +79,7 @@ export class NewEditFurnitureComponent implements OnInit {
       this.loading = true;
       this.fService.getFurniture(this.id).then(resp => {
         this.item = resp.data() as Item;
+        this.formattedAmount = this.item.price;
         if (this.item.dimension == null) {
           this.item.dimension = {
             width : 0,
@@ -86,7 +87,7 @@ export class NewEditFurnitureComponent implements OnInit {
             height: 0
           };
         }
-        if (this.item.material==null) {
+        if (this.item.material === null) {
             this.item.material = '';
         }
         const collection = this.options.find(c => c.id === this.item.collectionId);
@@ -146,10 +147,9 @@ export class NewEditFurnitureComponent implements OnInit {
   }
 
     save() {
-    if(this.item.images.length === 0){
+    if (this.item.images.length === 0) {
       this.snackBar.open('Furniture needs to have at least 1 image');
-    }
-    else{
+    } else {
       const collection = this.options.find(c => c.name === this.myControl.value);
       this.item.collectionId = collection.id;
       this.snackBar.open('saving, do not close the page. Please wait', '', {duration: 500});
