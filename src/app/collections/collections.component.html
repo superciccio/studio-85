@@ -59,60 +59,47 @@
     </div>
   </div>
 
-
-
 </div>
 
-
-
 <div *ngIf="collections.length>0 && collection == null">
-
-
-
   <div class="container" *ngFor="let c of collections;let i = index">
-
     <div class="row">
-
+      
       <ng-container *ngIf="i % 2 ===0">
       <div class="col">
         <div class="cont-img-designer">
-          <img id="imgreplacefooter" src="http://slidedesign.it/wp-content/uploads/2017/05/low-lita-collection-COVER.jpg" alt="" class="img-responsive">
+            <img id="imgreplacefooter" [src]="c.cover" alt="Image cover collection" class="img-responsive">
         </div>
       </div>
       <div class="col">
         <div class="descrizione">
           <h1>{{c.name}}</h1>
-
-          <!--<div class="designerby">
-              design
-              <strong>
-                                                      </strong>
-          </div>-->
-          <div class="designer_dett_prd">design <a href="http://slidedesign.it/en/designers/paola-navone/">Paola Navone</a></div>                                <div class="testodesigner"><p>Low Lita is a family with a playful and contemporary design. Thanks to its curve lines and its big chassis, this family is ideal to a funny and original ambientation. It is suitable for every environments, indoor and outdoor, private or contract world.&nbsp;The handles on the whole line allow the Low Lita to be moved easily.</p>
+          <div class="designer_dett_prd">design <a >Paola Navone</a></div> 
+            <div class="testodesigner">
+              <p>{{c.description}}</p>
+          </div>
         </div>
       </div>
     </div>
 
       </ng-container>
+      
+      <div class="p-2" *ngIf="i % 2 >1 && i <= collections.length"></div>
 
       <ng-container *ngIf="i % 2 !==0">
         <div class="col">
           <div class="descrizione">
             <h1>{{c.name}}</h1>
-
-            <!--<div class="designerby">
-                design
-                <strong>
-                                                        </strong>
-            </div>-->
-            <div class="designer_dett_prd">design <a href="http://slidedesign.it/en/designers/paola-navone/">Paola Navone</a></div>                                <div class="testodesigner"><p>Low Lita is a family with a playful and contemporary design. Thanks to its curve lines and its big chassis, this family is ideal to a funny and original ambientation. It is suitable for every environments, indoor and outdoor, private or contract world.&nbsp;The handles on the whole line allow the Low Lita to be moved easily.</p>
+            <div class="designer_dett_prd">design <a >Paola Navone</a></div> 
+            <div class="testodesigner">
+              <p>{{c.description}}</p>
           </div>
           </div>
         </div>
 
         <div class="col">
           <div class="cont-img-designer">
-            <img id="imgreplacefooter" src="http://slidedesign.it/wp-content/uploads/2017/05/low-lita-collection-COVER.jpg" alt="" class="img-responsive">
+            <img id="imgreplacefooter" [src]="c.cover" alt="Image cover collection" class="img-responsive">
           </div>
         </div>
 
@@ -124,34 +111,3 @@
 
 </div>
 
-<!--  <section class="dettaglio">-->
-
-<!--    <div class="">-->
-
-<!--      <div class="row">-->
-<!--        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nopadding">-->
-
-<!--          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 nopadding">-->
-<!--            <div class="cont-img-designer">-->
-<!--              <img id="imgreplacefooter" src="http://slidedesign.it/wp-content/uploads/2017/05/low-lita-collection-COVER.jpg" alt="" class="img-responsive">-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 nopadding">-->
-<!--            <div class="descrizione">-->
-<!--              <h1>Low Lita collection</h1>-->
-
-<!--              &lt;!&ndash;<div class="designerby">-->
-<!--                  design-->
-<!--                  <strong>-->
-<!--                                                          </strong>-->
-<!--              </div>&ndash;&gt;-->
-<!--              <div class="designer_dett_prd">design <a href="http://slidedesign.it/en/designers/paola-navone/">Paola Navone</a></div>                                <div class="testodesigner"><p>Low Lita is a family with a playful and contemporary design. Thanks to its curve lines and its big chassis, this family is ideal to a funny and original ambientation. It is suitable for every environments, indoor and outdoor, private or contract world.&nbsp;The handles on the whole line allow the Low Lita to be moved easily.</p>-->
-<!--            </div>-->
-<!--            </div>-->
-<!--          </div>-->
-
-
-<!--        </div>-->
-<!--      </div>-->
-
-<!--    </div>-->

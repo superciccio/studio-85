@@ -1,14 +1,50 @@
 <div mat-dialog-content>
-  <form class="example-form">
+  
+  <form class="example-form" *ngIf="isRecoveryPassword">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Email address" name="email address" autocomplete="email address"
-             [(ngModel)]="email" #ctrl="ngModel" required>
+      <input matInput placeholder="Email address" name="email address" [formControl]="emailCtrl" autocomplete="email address"
+             [(ngModel)]="email" required>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                    class="alert alert-danger">
+                        <div *ngIf="email.errors.required">
+                            Email is required.
+                        </div>  
+                        <div *ngIf="email.errors.email">
+                            Please enter a valid email.
+                        </div>                                               
+                    </div> 
+    </mat-form-field>
+  </form>
+  
+ <div *ngIf="isRecoveryPassword">
+  <button mat-stroked-button class="fullWidthBtn" (click)="sendRecoveryPassword()" aria-label="Recovery Password">Submit</button>
+</div>
+  
+  <form class="example-form" *ngIf="isSignup">
+    <!-- add name, surname, email  -->    
+    <mat-checkbox>Register as artisan</mat-checkbox>
+  </form>
+  
+  
+  <form class="example-form" *ngIf="isLogin">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email address" name="email address" [formControl]="emailCtrl" autocomplete="email address"
+             [(ngModel)]="email" required>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                    class="alert alert-danger">
+                        <div *ngIf="email.errors.required">
+                            Email is required.
+                        </div>  
+                        <div *ngIf="email.errors.email">
+                            Please enter a valid email.
+                        </div>                                               
+                    </div> 
     </mat-form-field>
 
     <mat-form-field class="example-full-width" style="padding-bottom: 0;">
       <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
-             name="password" autocomplete="current-password" [minLength]="6"
-             [(ngModel)]="password" #ctrl="ngModel" required>
+             [formControl]="pwdCtrl" name="password" autocomplete="current-password"
+             [(ngModel)]="password" required>
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -20,7 +56,6 @@
 
     <div class="p-2"></div>
 
-
     <div class="d-flex">
       <div class="p-2">
     <mat-checkbox>
@@ -29,7 +64,7 @@
       </div>
 
       <div class="ml-auto p-2">
-      <a>  <small>Forgot Password? </small></a>
+      <a (click)="recoveryPassword()">  <small>Forgot Password? </small></a>
       </div>
 
     </div>
@@ -37,10 +72,10 @@
 </div>
 
 <div>
-  <button mat-stroked-button style="width: 100%!important;min-width: unset!important;" (click)="login()">Login</button>
+  <button mat-stroked-button class="fullWidthBtn" (click)="login()" aria-label="Login">Login</button>
 </div>
 
 <div class="d-flex justify-content-center p-1">
-<small>Don't have an account ? Signup</small>
+  <small>Don't have an account ? <a (click)="signup()"> Signup </a> </small>
 </div>
 
