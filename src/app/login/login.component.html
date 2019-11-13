@@ -3,6 +3,15 @@
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Email address" name="email address" autocomplete="email address"
              [(ngModel)]="email" #ctrl="ngModel" required>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                    class="alert alert-danger">
+                        <div *ngIf="email.errors.required">
+                            Email is required.
+                        </div>  
+                        <div *ngIf="email.errors.email">
+                            Please enter a valid email.
+                        </div>                                               
+                    </div> 
     </mat-form-field>
 
     <mat-form-field class="example-full-width" style="padding-bottom: 0;">
