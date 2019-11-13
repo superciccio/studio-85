@@ -126,10 +126,9 @@ export class NewEditFurnitureComponent implements OnInit {
       for (let i = 0; i < files.length; i++) {
         this.files.push(files.item(i));
       }
-      this.isConverting = true;
 
       for (const f of this.files) {
-
+        this.isConverting = true;
 
         await this.fstorage.ref(`/temp${this.item.name}`).child(f.name).put(f).then((resp) => {
 
@@ -137,22 +136,28 @@ export class NewEditFurnitureComponent implements OnInit {
 
           convert({collectionName: this.item.name, filename: f.name}).then(respcallback => {
             this.item.images.push(respcallback.data);
+            this.conversionDone = true;
+            this.isConverting = false;
           });
-
         });
       }
       this.isConverting = false;
-      this.conversionDone = true;
     }
   }
 
     save() {
-    const collection = this.options.find(c => c.name === this.myControl.value);
-    this.item.collectionId = collection.id;
-    this.snackBar.open('saving, do not close the page. Please wait', '', {duration: 500});
+    if(this.item.images.length === 0){
+      this.snackBar.open('Furniture needs to have at least 1 image');
+    }
+    else{
+      const collection = this.options.find(c => c.name === this.myControl.value);
+      this.item.collectionId = collection.id;
+      this.snackBar.open('saving, do not close the page. Please wait', '', {duration: 500});
 
-    this.fService.save(this.item).then(() => {
-        this.snackBar.open('Collection saved.');
+      this.fService.save(this.item).then(() => {
+        this.snackBar.open('Furniture saved.');
       });
+    }
+
  }
 }
