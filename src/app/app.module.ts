@@ -88,7 +88,6 @@ import {MatChipsModule} from '@angular/material/chips';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    CarouselModule,
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
