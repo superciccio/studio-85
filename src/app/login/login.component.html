@@ -1,7 +1,7 @@
 <div mat-dialog-content>
   <form class="example-form">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Email address" name="email address" autocomplete="email address"
+      <input matInput placeholder="Email address" name="email address" [formControl]="emailCtrl" autocomplete="email address"
              [(ngModel)]="email" #ctrl="ngModel" required>
       <div *ngIf="email.invalid && (email.dirty || email.touched)"
                     class="alert alert-danger">
