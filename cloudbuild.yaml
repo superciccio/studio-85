@@ -11,7 +11,7 @@ steps:
 - name: node:10.16.3
   entrypoint: npm
   dir: 'shop'
-  args: ['run','ng','build','--aot', '--prod']
+  args: ['run','ng','build --prod']
 
 - name: 'gcr.io/$PROJECT_ID/firebase'
   args: [ 'deploy']
