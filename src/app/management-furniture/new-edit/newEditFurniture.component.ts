@@ -160,4 +160,8 @@ export class NewEditFurnitureComponent implements OnInit {
     }
 
  }
+
+  removeImg(i: any) {
+    this.item.images = this.item.images.filter(obj => obj !== i);
+  }
 }

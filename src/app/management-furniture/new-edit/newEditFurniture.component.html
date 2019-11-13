@@ -33,7 +33,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    
+
      <br>
 
     <mat-form-field >
@@ -66,13 +66,16 @@
     <div *ngIf="!isConverting && conversionDone">File converted and successfully</div>
     <div *ngIf="item.images.length > 0" style="margin-top: 10px">
       <mat-chip-list aria-label="List images for furniture" >
-        <mat-chip *ngFor="let i of item.images" >
-      <img height="72" width="72" [src]="i" >
-      <mat-icon matChipRemove >cancel</mat-icon>
+        <mat-chip *ngFor="let i of item.images;" >
+      <img height="102" width="102" [src]="i" >
+      <mat-icon matChipRemove (click)="removeImg(i)">cancel</mat-icon>
     </mat-chip>
-         
+
         </mat-chip-list>
-     
+
+    </div>
+    <div  *ngIf="item.images.length === 0" style="margin-top: 10px">
+      <span>0 image for this furniture</span>
     </div>
 
 
