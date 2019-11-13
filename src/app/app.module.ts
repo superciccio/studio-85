@@ -12,7 +12,6 @@ import {HomeComponent} from './home/home.component';
 import {CarouselComponent, CarouselItemElement} from './shared/carousel.component';
 import {CarouselItemDirective} from './shared/carousel-item.directive';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CarouselModule} from 'ngx-owl-carousel-o';
 import {DetailFurnitureComponent} from './detail-furniture/detail-furniture.component';
 import {BasketService} from './shared/basket.service';
 import {CollectionService} from './shared/collection.service';
