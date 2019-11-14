@@ -38,7 +38,8 @@ conversionDone  = false;
       description: '',
       name: '',
       cover: '',
-      isInHomePage: false
+      isInHomePage: false,
+      idArtisan: ''
     };
   }
 

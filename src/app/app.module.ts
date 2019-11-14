@@ -44,9 +44,7 @@ import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 import {FurnitureService} from './shared/furniture.service';
 import {NewEditCollectionComponent} from './management-collection/new-edit/newEditCollection.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatSlideToggle, MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCarouselModule} from '@ngmodule/material-carousel';
 import {CurrencyPipe} from '@angular/common';
@@ -54,6 +52,8 @@ import {FurnitureCacheService} from './shared/furniture_cache.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { RegisterComponent } from './register/register.component';
+import {ArtisanService} from './shared/artisan.service';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     ManagementCollectionComponent,
     NewEditFurnitureComponent,
     NewEditCollectionComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    RegisterComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -108,7 +109,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     MatProgressSpinnerModule,
     MatCarouselModule
   ],
-  providers: [AngularFireAuthGuard, CurrencyPipe, BasketService, CollectionService, FurnitureService, FurnitureCacheService],
+  providers: [AngularFireAuthGuard, CurrencyPipe, BasketService, CollectionService, FurnitureService, ArtisanService,
+    FurnitureCacheService],
   bootstrap: [AppComponent, NavBarComponent],
   entryComponents: [ImageZoomContentModalComponent, LoginComponent],
 })

@@ -158,53 +158,23 @@
         <img src="../../assets/instagram.webp" width="36" height="36" style="margin-left: .2rem;margin-right: .2rem;">
         <img src="../../assets/linkedin.webp" width="36" height="36">
 
-
-
       </p>
 
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" style="white-space:nowrap;
+    overflow-x:auto;" >
 
-    <button (click)="back()">
-      <
-    </button>
-
-
-    <div class="col noPaddingRight" *ngFor="let i of imgShown; let k = index" >
+    <div class="col" *ngFor="let i of images; let k = index" style="display:inline-block;width:100px;
+    height:180px;" >
 
     <img width="320" height="160"  [src]="i" >
       <div class="col-md-2"></div>
 
     </div>
 
-    <button (click)="next()">
-      >
-    </button>
-
   </div>
-
-
-
-
-<!--<div class="scrollmenu">-->
-
-<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
-<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
-<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
-<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
-<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
-<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
-<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
-<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
-<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
-<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
-
-
 
 </div>
 
-
-
-<!--    <mat-icon>chevron_right</mat-icon>-->
