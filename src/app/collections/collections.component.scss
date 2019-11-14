@@ -31,11 +31,9 @@ th, td {
   float: left;
   width: 100%;
   position: relative;
-  /* font-weight: 800; */
-  font-family: 'Aspira-Bold';
+  font-weight: 400;
   margin: 0;
-  padding: 0;
-  padding-bottom: 52px;
+  padding-bottom: 1rem;
 }
 
 .dettaglio {
@@ -70,5 +68,5 @@ img {
   position: relative;
   display: block;
   background-color: #cec8c8;
-  top: 25px;
+  top: 0.6rem;
 }

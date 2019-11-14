@@ -2,7 +2,7 @@
   style="height: 6rem; background: linear-gradient(       rgba(0, 0, 0, 0.5),       rgba(0, 0, 0, 0.5)     ),url('../../assets/background_vision.webp') ">
   <h3 class="text-center" style="padding-top: 2rem; color: white">Collections</h3>
 </div>
-<div class="p-3"></div>
+<div class="p-2"></div>
 
 <div *ngIf="collection!=null">
 
@@ -66,46 +66,41 @@
     <div class="row">
 
       <ng-container *ngIf="i % 2 ===0">
-      <div class="col">
-        <div class="cont-img-designer">
-            <img id="imgreplacefooter" [src]="c.cover" alt="Image cover collection" >
-        </div>
-      </div>
-      <div class="col">
-        <div class="descrizione">
-          <h1>{{c.name}}</h1>
-          <div class="designer_dett_prd">design <a >Paola Navone</a></div>
-            <div class="testodesigner">
-              <p>{{c.description}}</p>
-          </div>
-        </div>
-      </div>
-      </ng-container>
 
-
-      <ng-container *ngIf="i % 2 !==0">
-        <div class="col p-3" >
-          <div class="descrizione">
-            <h1>{{c.name}}</h1>
-            <div class="designer_dett_prd">design <a >Paola Navone</a></div>
-            <div class="testodesigner">
-              <p>{{c.description}}</p>
-          </div>
-          </div>
-        </div>
+       <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" class="col-6" alt="Image cover collection" >
 
         <div class="col">
-          <div class="cont-img-designer">
-            <img id="imgreplacefooter" [src]="c.cover" alt="Image cover collection" class="img-responsive">
+          <div class="descrizione">
+            <h1 class="pointer" (click)="loadCollection(c.id)">{{c.name}}</h1>
+            <div > designed by <a class="pointer">Paola Navone</a></div>
+              <div style="padding-top: .2rem">
+                <p>{{c.description}}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="i % 2 !==0">
+        <div class="w-100 p-2"></div>
+
+        <div class="col">
+
+          <div class="descrizione">
+            <h1 class="pointer" (click)="loadCollection(c.id)">{{c.name}}</h1>
+            <div > designed by <a class="pointer">Paola Navone</a></div>
+            <div style="padding-top: .2rem">
+              <p>{{c.description}}</p>
+            </div>
           </div>
         </div>
 
+        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" class="col-6" alt="Image cover collection" >
       </ng-container>
 
     </div>
 
 
-    <div *ngIf="i > 0 && i < collections.length-1 " class="p-3"> </div>
+    <div *ngIf="i > 0 && i < collections.length-1 " class="p-2"> </div>
 
 
   </div>
