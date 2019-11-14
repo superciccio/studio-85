@@ -53,6 +53,7 @@ import {CurrencyPipe} from '@angular/common';
 import {FurnitureCacheService} from './shared/furniture_cache.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import {MatChipsModule} from '@angular/material/chips';
     ManagementFurnitureComponent,
     ManagementCollectionComponent,
     NewEditFurnitureComponent,
-    NewEditCollectionComponent
+    NewEditCollectionComponent,
+    BreadcrumbComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

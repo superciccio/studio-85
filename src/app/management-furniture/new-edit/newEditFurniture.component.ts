@@ -7,12 +7,13 @@ import { Collection } from 'src/app/model/collection';
 import { CollectionService } from 'src/app/shared/collection.service';
 import { Item } from 'src/app/model/Item';
 import {FurnitureService} from '../../shared/furniture.service';
-import {MatTableDataSource} from '@angular/material/table';
-import * as firebase from 'firebase';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {SharedVariableService} from '../../shared/shared-variable.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {CurrencyPipe} from '@angular/common';
+// @ts-ignore
+import firebase from 'firebase/app';
+import 'firebase/functions';
 
 @Component({
   selector: 'app-neweditfurniture',
@@ -39,7 +40,8 @@ export class NewEditFurnitureComponent implements OnInit {
   id = '';
   formattedAmount;
 
-  constructor(private aRoute: ActivatedRoute, private router: Router, private cService: CollectionService, private fService: FurnitureService,
+  constructor(private aRoute: ActivatedRoute, private router: Router, private cService: CollectionService,
+              private fService: FurnitureService,
               private fstorage: AngularFireStorage, private service: SharedVariableService,
               private snackBar: MatSnackBar, private currencyPipe: CurrencyPipe) {
     this.categoriesFurniture = service.getCategoriesFurniture();
@@ -133,7 +135,7 @@ export class NewEditFurnitureComponent implements OnInit {
 
         await this.fstorage.ref(`/temp${this.item.name}`).child(f.name).put(f).then((resp) => {
 
-          const convert = firebase.functions().httpsCallable('pippo');
+          const convert = firebase.functions.httpsCallable('pippo');
 
           convert({collectionName: this.item.name, filename: f.name}).then(respcallback => {
             this.item.images.push(respcallback.data);

@@ -3,134 +3,197 @@
 </div>
 <div class="p-3"></div>
 
-<div class="container-fluid" *ngIf="!loading">
+<app-breadcrumb [sections]="section"></app-breadcrumb>
+
+<div class="p-3"></div>
+
+<div  *ngIf="!loading">
   <div class="row">
-    <div class="col-sm-6">
-      <div class="row justify-content-center">
-        <img [src]="selectedImage" width="320" height="320" style="cursor: zoom-in;"
-             (click)="openModalFunc(selectedImage)">
-      </div>
-      <div style="height: 10px"></div>
-      <div class="row justify-content-center">
-        
-      <img *ngFor="let i of item.images" height="102" width="102" [src]="i" (click)="select(i)">
-      </div>
+    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" class="col-6" alt="Image cover collection" >
 
-      <div class="row justify-content-center" style="padding-top: 5%;">
-        <span style="color: #736868; font-size: medium">SHARE</span>
-      </div>
+    <div class="col">
+        <div>
 
-      <div style="padding-top: 10px;" class="row justify-content-center">
-        <div style="display: inline-flex">
-          <img src="../../assets/pinterest.webp" width="36" height="36">
-          <!--<div style="width: 24px"></div>-->
-          <img src="../../assets/instagram.webp" width="36" height="36" style="margin-left: .2rem;margin-right: .2rem;">
-          <img src="../../assets/linkedin.webp" width="36" height="36">
+          <div class="row">
+            <div class="col-8 noPaddingLeft">
+              <h1 class="titleFurniture noMarginBottom">{{item.name}}</h1>
+            </div>
+            <div class="row ml-auto align-items-end" style="margin-bottom: .3rem" >
+                 <span class="titleFurniture">WHILST</span>
+                  <img height="24" width="24" src="../../assets/corazon.webp" style="margin-left: .5rem" alt="Favourite icon">
+                  <mat-icon style="margin-left: .5rem;" [ngStyle]="{'color':'grey'}">folder</mat-icon>
+            </div>
+
+          </div>
+          <div class="separator"></div>
+
+          <div>nome designer</div>
+          <div class="p-1">£ {{item.price}}</div>
+          <div class="p-3"></div>
+          <div style="position: relative">
+          <button type="button" class="col-6 btn btn-secondary removeBorderFromBtn" style="position: relative;top: 20px;"
+          (click)="addItem(item)">{{descButton}}</button>
+          <div style="background-color: whitesmoke; height: 200px">
+            <div class="p-3"></div>
+              <div class="float-right" style="margin-right: 1rem">
+                REQUEST MORE INFO
+              </div>
+
+            <div class="p-3">
+
+              <div class="row">
+                <div class="col-auto" style="padding-left: 0!important;">
+                  <img src="../../assets/ruller.webp" height="24" width="24">
+                </div>
+                <div >
+                  <span> REQUEST CUSTOMIZATION </span>
+                </div>
+              </div>
+
+             <div class="row p-1">
+               <div class="col-auto" style="padding-left: 0!important;">
+               <mat-icon>
+                 cloud_download
+               </mat-icon>
+               </div>
+               <div >
+               <span> DOWNLOAND PRODUCT TEARSHEET </span>
+               </div>
+             </div>
+
+              <div class="row">
+                <div class="col-auto" style="padding-left: 0!important;">
+                  <img src="../../assets/flag_it.png" height="24" width="24">
+                </div>
+                <div >
+                  <span>  MADE IN ITALY </span>
+                </div>
+              </div>
+
+            </div>
+          </div></div>
+          <div>
+            <cite>
+              {{item.description}}
+            </cite>
+          </div>
+          <div class="p-1" style="width: 100%"></div>
+          <div>
+            <div *ngIf="item.dimension!=null">
+              <p>Dimension</p>
+              <p>
+                          Height: <span style="margin-left: 5%">{{item.dimension.height}}</span> <span style="margin-left: 5%">mm</span>
+                        </p>
+                          <p>
+                          Width: <span style="margin-left: 5%">{{item.dimension.width}}</span><span style="margin-left: 5%">mm</span>
+                        </p>
+                          <p>
+                          Depth: <span style="margin-left: 5%">{{item.dimension.depth}}</span><span style="margin-left: 5%">mm</span>
+                        </p>
+            </div>
+          </div>
+
+          <div>
+            <div *ngIf="item.material!==''">
+              <p>Material</p>
+              <span>{{item.material}}</span>
+            </div>
+          </div>
+
+          <div class="p-1" style="width: 100%"></div>
+
+                <div >
+                  <span class="titleBolder">Delivery & Return</span>
+                  <br>
+                  <span>
+                    <ul>
+                      <li>
+                        Preorder
+                      </li>
+                           <li>
+                        Shipping to United Kingdom: £50 (Curbside)
+                        </li>
+                           <li>
+                             White glove or special needs? <a > Contact Us </a>
+                        </li>
+                             <li>
+                               Changed your mind? <a > Read our return policy </a>
+                        </li>
+                    </ul>
+                  </span>
+                </div>
+
+
         </div>
-      </div>
     </div>
-    <div class="col-sm-6">
-      <div class="row  justify-content-start" style="margin-bottom: 1rem">
-        {{item.name}}
-      </div>
-      <div class="row justify-content-start">
-        <b>£ {{item.price}}</b>
-      </div>
+  </div>
 
-      <div class="row mx-md-n4">
-        <div class="col px-md-4">
-          <div class="p-2">
-            <button type="button" class="btn btn-outline-secondary "
-                    style="width: 300px; border-color: black; border-radius: 0;">ADD TO BAG
-            </button>
-          </div>
-        </div>
-        <div class="col px-md-4 alignDescToImage">
-          <div class="p-2">
-            <span style="color: #8c8e98; font-size: smaller"> WISHLIST:</span>
-            <img height="18" width="18" src="../../assets/corazon.webp" style="margin-left: .2rem">
-            <br>
-            <span>request more info</span>
-          </div>
-        </div>
-      </div>
+  <div class="row justify-content-md-center " style="width: 50%; margin-top: 1rem">
 
-      <!--<div class="row justify-content-start" style="margin-top: 2rem">-->
-      <!--<button type="button" class="btn btn-outline-secondary "-->
-      <!--style="width: 300px; border-color: black; border-radius: 0;">ADD TO BAG</button>-->
-      <!--<div class="">-->
-      <!--<span>WHISHLIST</span>-->
-      <!--</div>-->
-      <!--</div>-->
+    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" height="96" width="96"  alt="Image cover collection" >
+    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" style="    margin-left: .5rem;
+    margin-right: .5rem;" height="96" width="96"  alt="Image cover collection" >
+    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" height="96" width="96" alt="Image cover collection" >
 
-      <div class="spaceBetween">
-        <div class="row justify-content-start alignDescToImage">
-          <img src="../../assets/ruller.webp" height="36" width="36">
-          <span class="spaceDescImage" style="color: #8c8e98; font-size: smaller">REQUEST CUSTOMIZATION</span>
-        </div>
-        <div class="row justify-content-start alignDescToImage spaceBetween">
-          <img src="../../assets/print.webp" height="36" width="36">
-          <span class="spaceDescImage" style="color: #8c8e98; font-size: smaller">DOWNLOAD PRODUCT TEARSHEET</span>
-        </div>
-        <div class="row justify-content-start alignDescToImage">
-          <img src="../../assets/certify.webp" height="36" width="36">
-          <span class="spaceDescImage" style="color: #8c8e98; font-size: smaller">BUYER PROTECTION</span>
-        </div>
-      </div>
+  </div>
 
-      <div class="spaceBetween">
-        <span class="titleBolder">Description</span>
-        <br>
-        <span>
-          {{item.description}}
-        </span>
-      </div>
-      
-      <div class="spaceBetween" *ngIf="item.material!=null">
-        <span class="titleBolder">Material</span>
-        <br>
-        <span>
-          {{item.material}}
-        </span>
-      </div>
+  <div class="p-2">
+    <div class="row justify-content-md-center" style="width: 50%; ">
+    <span>SHARE</span>
+      <div class="p-1" style="width: 100%"></div>
+      <p>
+        <img src="../../assets/pinterest.webp" width="36" height="36">
 
-      <div class="spaceBetween">
-        <span class="titleBolder">Details & Dimension</span>
-        <br>
-        <div *ngIf="item.dimension!=null">
-        <p>
-          Height: <span style="margin-left: 5%">{{item.dimension.height}}</span> <span style="margin-left: 5%">mm</span>
-        </p>
-          <p>
-          Width: <span style="margin-left: 5%">{{item.dimension.width}}</span><span style="margin-left: 5%">mm</span>
-        </p>
-          <p>
-          Depth: <span style="margin-left: 5%">{{item.dimension.depth}}</span><span style="margin-left: 5%">mm</span>
-        </p>
-      </div>
-      </div>
+        <img src="../../assets/instagram.webp" width="36" height="36" style="margin-left: .2rem;margin-right: .2rem;">
+        <img src="../../assets/linkedin.webp" width="36" height="36">
 
-      <div class="spaceBetween">
-        <span class="titleBolder">Delivery & Return</span>
-        <br>
-        <span>
-          <ul>
-            <li>
-              Preorder
-              <li>
-                 <li>
-              Shipping to United Kingdom: £50 (Curbside)
-              <li>
-                 <li>
-                   White glove or special needs? <a > Contact Us </a>
-              <li>
-                   <li>
-                     Changed your mind? <a > Read our return policy </a>
-              <li>
-          </ul>
-        </span>
-      </div>
+
+
+      </p>
 
     </div>
   </div>
+
+  <div class="row">
+
+    <button (click)="back()">
+      <
+    </button>
+
+
+    <div class="col noPaddingRight" *ngFor="let i of imgShown; let k = index">
+
+    <img width="320" height="160"  [src]="i" >
+      <div class="col-md-2"></div>
+
+    </div>
+
+    <button (click)="next()">
+      >
+    </button>
+
+  </div>
+
+
+
+
+<!--<div class="scrollmenu">-->
+
+<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
+<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
+<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
+<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
+<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
+<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
+<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
+<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
+<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
+<!--  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" width="64" height="64" alt="Image cover collection" >-->
+
+
+
 </div>
+
+
+
+<!--    <mat-icon>chevron_right</mat-icon>-->

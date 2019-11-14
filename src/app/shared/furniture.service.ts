@@ -1,11 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {Collection} from '../model/collection';
 import {Observable} from 'rxjs';
 import { Item } from '../model/Item';
-import { environment } from 'src/environments/environment';
-import {AngularFirestore} from '@angular/fire/firestore';
-import * as firebase from 'firebase';
+import {AngularFirestore, DocumentSnapshot, QuerySnapshot} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +12,16 @@ export class FurnitureService {
   constructor(private db: AngularFirestore) {
   }
 
-  getFurnitures(): Observable<firebase.firestore.QuerySnapshot> {
+  getFurnitures(): Observable<QuerySnapshot<any>> {
     return this.db.collection<Item>('furnitures').get();
   }
 
-  getFurnituresByCollectionId(idCollection: string): Promise<firebase.firestore.QuerySnapshot> {
+  getFurnituresByCollectionId(idCollection: string): Promise<QuerySnapshot<any>> {
     return this.db.collection<Collection>('furnitures').ref.where('collectionId', '==', idCollection).get();
   }
 
-  getFurniture(idFurniture: string): Promise<firebase.firestore.DocumentSnapshot> {
+  // @ts-ignore
+  getFurniture(idFurniture: string): Promise<DocumentSnapshot> {
     return this.db.collection<Item>('furnitures').ref.doc(idFurniture).get();
   }
   save(item: Item) {

@@ -20,6 +20,25 @@ export class DetailFurnitureComponent implements OnInit {
   loading: boolean;
   item: Item;
   selectedImage: string;
+  section = [];
+  descButton = 'add to cart'.toLocaleUpperCase();
+
+  images = [
+    'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80',
+    'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80 ',
+    'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+    'https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+    'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80',
+    'https://images.unsplash.com/photo-1541123603104-512919d6a96c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+    'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80',
+    'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80',
+    'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80',
+    'https://images.unsplash.com/photo-1519643381401-22c77e60520e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1506&q=80',
+  ]
+
+  imgShown = []
+
+  indexLastImg = 0
 
   constructor(private aRoute: ActivatedRoute, private basket: BasketService, public dialog: MatDialog,
               private snackBar: MatSnackBar, private fService: FurnitureService, private fCache: FurnitureCacheService) {
@@ -48,13 +67,21 @@ export class DetailFurnitureComponent implements OnInit {
     this.selectedImage = this.item.images[0];
     this.loading = false;
     }
+    this.imgShown = this.images.slice(0,4);
+    this.indexLastImg = 4;
+
   }
 
   addItem(furniture: Item) {
-    this.basket.Items.push(furniture);
-    this.snackBar.open('Item added to the basket', null, {
-      duration: 2000,
-    });
+    const find = this.basket.order.furnitures.find(i => i.id === furniture.id);
+    if (find !== undefined) {
+      this.descButton = 'add to cart'.toLocaleUpperCase();
+      this.basket.order.furnitures =  this.basket.order.furnitures.filter(i => i.id === furniture.id);
+
+    } else {
+      this.basket.order.furnitures.push(furniture);
+      this.descButton = 'remove from basket'.toLocaleUpperCase();
+    }
   }
 
   select(image: string) {
@@ -68,5 +95,27 @@ export class DetailFurnitureComponent implements OnInit {
     });
   }
 
+  back() {
+    if(this.indexLastImg - 4 <= 4){
+      this.imgShown = this.images.slice(0,4);
+    } else{
+      this.imgShown = this.images.slice(this.indexLastImg-4, this.indexLastImg);
+    }
+    console.log(this.indexLastImg);
+  }
+
+  next() {
+
+    if(this.indexLastImg + 4 >= this.images.length){
+      this.indexLastImg = this.images.length;
+      this.imgShown = this.images.slice(this.indexLastImg, this.indexLastImg);
+
+    }
+    else {
+      this.imgShown = this.images.slice(this.indexLastImg, this.indexLastImg+4);
+    }
+    this.indexLastImg = this.imgShown.length;
+    console.log(this.indexLastImg);
+  }
 }
 

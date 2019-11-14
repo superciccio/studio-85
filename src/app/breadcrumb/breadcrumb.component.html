@@ -1,0 +1,4 @@
+<div *ngFor="let s of sections; let i=index">
+  <span>{{s}}</span>
+  <span *ngIf="i<sections.length">,</span>
+</div>

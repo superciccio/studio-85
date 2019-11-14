@@ -24,6 +24,7 @@ export class CollectionsComponent implements OnInit {
   dataSource = new MatTableDataSource();
   loading = false;
 
+
   constructor(private aRoute: ActivatedRoute, private router: Router, private collectionService: CollectionService,
               private furnitureService: FurnitureService) {
   }
@@ -66,7 +67,6 @@ export class CollectionsComponent implements OnInit {
         this.loading = false;
       });
     }
-
   }
 
   loadCollection(idCollection: string) {

@@ -62,6 +62,19 @@ a:hover {
   color: black
 }
 
+.noPaddingLeft {
+  padding-left: unset;
+}
+
+.noPaddingRight {
+  padding-right: unset;
+}
+
+
+.noMarginBottom {
+  margin-bottom: 0;
+}
+
 .example-form {
   min-width: 150px;
   max-width: 500px;
@@ -70,6 +83,10 @@ a:hover {
 
 .example-full-width {
   width: 100%;
+}
+
+.removeBorderFromBtn{
+  border-radius: unset;
 }
 
 @media screen and (min-width: 768px){

@@ -1,11 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {Collection} from '../model/collection';
 import {Observable} from 'rxjs';
-import { Item } from '../model/Item';
-import { environment } from 'src/environments/environment';
-import {AngularFirestore} from '@angular/fire/firestore';
-import * as firebase from 'firebase';
+import {AngularFirestore, DocumentSnapshot, QuerySnapshot} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +11,16 @@ export class CollectionService {
   constructor(private db: AngularFirestore) {
   }
 
-  getCollections(): Observable<firebase.firestore.QuerySnapshot> {
+  getCollections(): Observable<QuerySnapshot<any>> {
     return this.db.collection<Collection>('collections').get();
   }
 
-  getHomeCollections(): Promise<firebase.firestore.QuerySnapshot> {
+  getHomeCollections(): Promise<QuerySnapshot<any>> {
     return this.db.collection<Collection>('collections').ref.where('isInHomePage', '==', true).get();
   }
 
-  getCollectionById(idCollection: string): Observable<firebase.firestore.DocumentSnapshot> {
+  // @ts-ignore
+  getCollectionById(idCollection: string): Observable<DocumentSnapshot> {
     return this.db.collection('collections').doc(idCollection).get();
   }
 

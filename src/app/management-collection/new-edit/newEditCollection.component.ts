@@ -1,16 +1,15 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {finalize, map, startWith} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Collection } from 'src/app/model/collection';
 import { CollectionService } from 'src/app/shared/collection.service';
-import {AngularFireStorage, AngularFireUploadTask} from '@angular/fire/storage';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {HttpClient} from '@angular/common/http';
 import {MatSlideToggleChange} from '@angular/material/slide-toggle';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import * as firebase from 'firebase';
-import {FirebaseStorage} from '@angular/fire';
+// @ts-ignore
+import firebase from 'firebase/app';
+import 'firebase/functions';
 
 @Component({
   selector: 'app-neweditcollection',
