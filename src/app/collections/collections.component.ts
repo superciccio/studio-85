@@ -56,8 +56,6 @@ export class CollectionsComponent implements OnInit {
         }
         this.collections.forEach(((value, index) => {
           if (index % 2 === 0) {
-            console.log('even ' , index % 2 === 0);
-            console.log(value.name);
             this.evenCollections.push(value);
           } else {
             this.oddCollections.push(value);
