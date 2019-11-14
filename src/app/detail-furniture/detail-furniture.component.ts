@@ -53,6 +53,12 @@ export class DetailFurnitureComponent implements OnInit {
       this.fService.getFurniture(this.id).then(resp => {
         this.item = resp.data() as Item;
         this.fCache.addInCache(this.item);
+        if(this.item.dimension === undefined){
+          this.item.dimension = null;
+        }
+        if(this.item.material === undefined){
+          this.item.material = '';
+        }
         console.log('adding in cache');
         this.selectedImage = this.item.images[0];
         // let collection = this.options.find(c=> c.id === this.item.collectionId);

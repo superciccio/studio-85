@@ -9,7 +9,11 @@
 
 <div  *ngIf="!loading">
   <div class="row">
-    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" class="col-6" alt="Image cover collection" >
+    <img
+      src="https://lh3.googleusercontent.com/-cD5SrUCrQ40/Xc2BNG71PbI/AAAAAAAA3lo/_sWYKE-ZiIgE4h5qUNpA2giJWHb-bGgVACK8BGAsYHg/s512/2019-11-14.jpg"
+      class="col-6"
+      style="max-height: 650px"
+      alt="Image cover collection" >
 
     <div class="col">
         <div>
@@ -31,7 +35,7 @@
           <div class="p-1">£ {{item.price}}</div>
           <div class="p-3"></div>
           <div style="position: relative">
-          <button type="button" class="col-6 btn btn-secondary removeBorderFromBtn" style="position: relative;top: 20px;"
+          <button type="button" class="btn btn-secondary removeBorderFromBtn col-6 " style="position: relative;top: 20px;"
           (click)="addItem(item)">{{descButton}}</button>
           <div style="background-color: whitesmoke; height: 200px">
             <div class="p-3"></div>
@@ -39,7 +43,7 @@
                 REQUEST MORE INFO
               </div>
 
-            <div class="p-3">
+            <div class="p-3 noPaddingLeft">
 
               <div class="row">
                 <div class="col-auto" style="padding-left: 0!important;">
@@ -50,7 +54,7 @@
                 </div>
               </div>
 
-             <div class="row p-1">
+             <div class="row p-3" style="padding-left: 0!important;">
                <div class="col-auto" style="padding-left: 0!important;">
                <mat-icon>
                  cloud_download
@@ -79,9 +83,12 @@
           </div>
           <div class="p-1" style="width: 100%"></div>
           <div>
-            <div *ngIf="item.dimension!=null">
+            <div>
               <p>Dimension</p>
-              <p>
+              <p *ngIf="item.dimension===null">              Not specified. Please ask for info
+              </p>
+              <div *ngIf="item.dimension!=null">
+              <p >
                           Height: <span style="margin-left: 5%">{{item.dimension.height}}</span> <span style="margin-left: 5%">mm</span>
                         </p>
                           <p>
@@ -90,13 +97,17 @@
                           <p>
                           Depth: <span style="margin-left: 5%">{{item.dimension.depth}}</span><span style="margin-left: 5%">mm</span>
                         </p>
+
+              </div>
             </div>
+
           </div>
 
           <div>
-            <div *ngIf="item.material!==''">
+            <div >
               <p>Material</p>
-              <span>{{item.material}}</span>
+              <span *ngIf="item.material !== ''">{{item.material}}</span>
+              <span *ngIf="item.material === ''">    Not specified. Please ask for info</span>
             </div>
           </div>
 
@@ -161,7 +172,7 @@
     </button>
 
 
-    <div class="col noPaddingRight" *ngFor="let i of imgShown; let k = index">
+    <div class="col noPaddingRight" *ngFor="let i of imgShown; let k = index" >
 
     <img width="320" height="160"  [src]="i" >
       <div class="col-md-2"></div>
