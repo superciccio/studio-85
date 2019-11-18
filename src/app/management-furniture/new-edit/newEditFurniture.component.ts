@@ -59,7 +59,7 @@ export class NewEditFurnitureComponent implements OnInit {
         depth: 0,
         width: 0,
         height: 0
-      }
+      },
     };
   }
 

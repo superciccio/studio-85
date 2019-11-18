@@ -12,6 +12,7 @@ import {AngularFireAuthGuard, canActivate, customClaims, hasCustomClaim, redirec
 import {map} from 'rxjs/operators';
 import {pipe} from 'rxjs';
 import {NewEditCollectionComponent} from './management-collection/new-edit/newEditCollection.component';
+import {BasketComponent} from './basket/basket.component';
 
 const adminOnly = () => pipe(customClaims, map(claims => {
   // return claims.admin === true ? claims.admin : ['/'];
@@ -28,18 +29,21 @@ const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['login']);
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
 
-  {path: 'collections', component: CollectionsComponent},
-  {path: 'collections/:id', component: CollectionsComponent},
   {path: 'ourvision', component: OurvisionComponent},
   {path: 'furniture', component: FurnitureComponent},
+
   {path: 'neweditfurniture', component: NewEditFurnitureComponent},
   {path: 'neweditfurniture/:id', component: NewEditFurnitureComponent},
+
+  {path: 'collections', component: CollectionsComponent},
+  {path: 'collections/:id', component: CollectionsComponent},
   {path: 'neweditcollection', component: NewEditCollectionComponent},
   {path: 'neweditcollection/:id', component: NewEditCollectionComponent},
 
   {path: 'detailfurniture/:id', component: DetailFurnitureComponent},
   {path: 'detail', component: DetailFurnitureComponent},
   {path: 'artisan', component: ArtisanComponent},
+  {path: 'basket', component: BasketComponent},
   //{path: 'me', component: ManagementComponent, canActivate: [AngularFireAuthGuard], data : {authGuardPipe : onlyAllowSelf}},
   {path: 'management', component: ManagementComponent, canActivate: [AngularFireAuthGuard], data : {authGuardPipe : adminOnly}},
   {path: '', redirectTo: 'home', pathMatch: 'full'},

@@ -79,6 +79,8 @@ export class FurnitureComponent implements OnInit {
    orginalList: Item[] = [];
    filteredFurnitures: Item[] = [];
 
+  over:boolean[];
+
 
 
   constructor(private router: Router, private service: SharedVariableService, private fService: FurnitureService) {
@@ -91,7 +93,8 @@ export class FurnitureComponent implements OnInit {
       resp.docs.map(qs => {
         this.furnitures.push(qs.data() as Item);
         this.orginalList.push(qs.data() as Item);
-
+        this.over = new Array(2);
+        this.over.fill(false);
       } );
     });
   }

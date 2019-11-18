@@ -1,16 +1,10 @@
-<p>basket works!</p>
-<div class="container">
-  <div class="row" *ngFor="let item of items">
-    <div class="col"><img height="256" width="256"></div>
-    <div class="col"> nome articolo</div>
-    <div class="col">
-      <select>
-        <option>Select quantity</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-      </select>
-    </div>
-    <div class="col"> £ 125.30</div>
+<div *ngIf="empty">
+  <div class="row shadow0sn p-3 bg-white rounded" *ngFor="let item of order.furnitures.values()">
+    <div ><img height="256" width="256" [src]="item.images[0]"></div>
+    <div class="col align-self-center">{{item.name}}</div>
+    <div class="col align-self-center">£ {{item.price}}</div>
   </div>
+</div>
+<div *ngIf="!empty">
+  Nothing in the basket
 </div>

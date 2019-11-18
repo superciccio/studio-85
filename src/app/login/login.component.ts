@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
 
   password = '';
   email = '';
+  name = '';
+
   hide = true;
   userNotFound = false;
   wrongPassword = false;
@@ -37,6 +39,13 @@ export class LoginComponent implements OnInit {
     Validators.required,
     Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
   ]);
+  nameCtrl = new FormControl('', [
+    Validators.required
+  ]);
+  surnameCtrl = new FormControl('', [
+    Validators.required
+  ]);
+  surname = '';
 
   constructor(private dialogRef: MatDialogRef<LoginComponent>, private router: Router, private afAuth: AngularFireAuth) {
   }

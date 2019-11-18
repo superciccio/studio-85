@@ -1,5 +1,5 @@
 <div style="height: 6rem; background: url('../../assets/background_vision.webp') ">
-  <h3 class="text-center" style="padding-top: 2rem">Furniture</h3>
+  <h3 class="text-center" style="padding-top: 2rem; color: white">Furniture</h3>
 </div>
 <div class="p-3"></div>
 
@@ -24,37 +24,16 @@
 
     </div>
 
-<!--    <div class="col"></div>-->
 
-    <!--      <div class="col-3">-->
+    <div  *ngFor="let f of furnitures;  let k = index" >
 
-    <div *ngFor="let f of furnitures" style="width: 360px;">
 
-      <mat-carousel
-        timings="250ms ease-in"
-        [autoplay]="false"
-        interval="5000"
-        color="primary"
-        maxWidth="auto"
-        proportion="65"
-        slides="{{f.images.length}}"
-        [loop]="false"
-        [hideArrows]="false"
-        [hideIndicators]="false"
-        [useKeyboard]="true"
-        [useMouseWheel]="false"
-        orientation="ltr"
-      (click)="goToDetail(f.id)">
+    <div class="pointer col-lg-auto col-md-6" (click)="goToDetail(f.id)">
 
-        <mat-carousel-slide
-            #matCarouselSlide
-            *ngFor="let slide of f.images; let i = index"
-            [image]="slide"
-            [hideOverlay]="false">
+      <img class="slideImg" [src]="over[k] ? f.images[0] : f.images[1] " (mouseover)="over[k] = true"
+           (mouseleave)="over[k] = false" height="320" width="260">
+    </div>
 
-        </mat-carousel-slide>
-
-      </mat-carousel>
 
           <div class="row  justify-content-center">
             {{f.name}}

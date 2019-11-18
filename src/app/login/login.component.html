@@ -21,7 +21,43 @@
 </div>
 
   <form class="example-form" *ngIf="isSignup">
-    <!-- add name, surname, email  -->
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Name" name="name" [formControl]="nameCtrl" autocomplete="name"
+             [(ngModel)]="name" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Surname" name="surname" [formControl]="surnameCtrl" autocomplete="surname"
+             [(ngModel)]="surname" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" style="padding-bottom: 0;">
+      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
+             [formControl]="pwdCtrl" name="password" autocomplete="current-password"
+             [(ngModel)]="password" required>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <div *ngIf="errosMsg!==''" >
+      <small class="d-flex justify-content-center" style="color: red">{{errosMsg}}</small>
+    </div>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email address" name="email address" [formControl]="emailCtrl" autocomplete="email address"
+             [(ngModel)]="email" required>
+      <!--      <div *ngIf="emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched)">-->
+      <!--                        <div *ngIf="emailCtrl.errors.required">-->
+      <!--                            Email is required.-->
+      <!--                        </div>-->
+      <!--                        <div *ngIf="emailCtrl.errors.email">-->
+      <!--                            Please enter a valid email.-->
+      <!--                        </div>-->
+      <!--                    </div>-->
+    </mat-form-field>
+
     <mat-checkbox>Register as artisan</mat-checkbox>
   </form>
 
@@ -70,11 +106,15 @@
   </form>
 </div>
 
-<div>
+<div *ngIf="isLogin">
   <button mat-stroked-button class="fullWidthBtn" (click)="login()" aria-label="Login">Login</button>
 </div>
 
-<div class="d-flex justify-content-center p-1">
+<div class="d-flex justify-content-center p-1" *ngIf="isLogin">
   <small>Don't have an account ? <a class="pointer" (click)="signup()"> Signup </a> </small>
+</div>
+
+<div *ngIf="isSignup">
+  <button mat-stroked-button class="fullWidthBtn" (click)="login()" aria-label="Register">Register</button>
 </div>
 

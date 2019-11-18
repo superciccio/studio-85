@@ -163,18 +163,16 @@
     </div>
   </div>
 
-  <div class="row" style="white-space:nowrap;
-    overflow-x:auto;" >
+  <div>
 
-    <div class="col" *ngFor="let i of images; let k = index" style="display:inline-block;width:100px;
-    height:180px;" >
 
-    <img width="320" height="160"  [src]="i" >
-      <div class="col-md-2"></div>
+
+    <div class="scrollbar" id="style-1">
+      <div class="force-overflow">
+         <img width="320"  [src]="i" *ngFor="let i of images;let k = index">
 
     </div>
 
-  </div>
+    </div>
 
 </div>
-

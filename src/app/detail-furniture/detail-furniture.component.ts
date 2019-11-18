@@ -7,12 +7,15 @@ import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute} from '@angular/router';
 import {FurnitureService} from '../shared/furniture.service';
 import {FurnitureCacheService} from '../shared/furniture_cache.service';
+import {ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core';
 
 
 @Component({
   selector: 'app-detail-furniture',
   templateUrl: './detail-furniture.component.html',
-  styleUrls: ['./detail-furniture.component.scss']
+  styleUrls: ['./detail-furniture.component.scss'],
+  // encapsulation: ViewEncapsulation.None,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailFurnitureComponent implements OnInit {
 
@@ -32,13 +35,12 @@ export class DetailFurnitureComponent implements OnInit {
     'https://images.unsplash.com/photo-1541123603104-512919d6a96c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
     'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80',
     'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80',
-    'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80',
-    'https://images.unsplash.com/photo-1519643381401-22c77e60520e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1506&q=80',
-  ]
 
-  imgShown = []
+  ];
 
-  indexLastImg = 0
+  imgShown = [];
+
+  indexLastImg = 0;
 
   constructor(private aRoute: ActivatedRoute, private basket: BasketService, public dialog: MatDialog,
               private snackBar: MatSnackBar, private fService: FurnitureService, private fCache: FurnitureCacheService) {
@@ -53,13 +55,12 @@ export class DetailFurnitureComponent implements OnInit {
       this.fService.getFurniture(this.id).then(resp => {
         this.item = resp.data() as Item;
         this.fCache.addInCache(this.item);
-        if(this.item.dimension === undefined){
+        if (this.item.dimension === undefined) {
           this.item.dimension = null;
         }
-        if(this.item.material === undefined){
+        if (this.item.material === undefined) {
           this.item.material = '';
         }
-        console.log('adding in cache');
         this.selectedImage = this.item.images[0];
         // let collection = this.options.find(c=> c.id === this.item.collectionId);
         // this.myControl.setValue(collection.name);
@@ -73,21 +74,32 @@ export class DetailFurnitureComponent implements OnInit {
     this.selectedImage = this.item.images[0];
     this.loading = false;
     }
-    this.imgShown = this.images.slice(0,4);
+    this.imgShown = this.images.slice(0, 4);
     this.indexLastImg = 4;
 
   }
 
   addItem(furniture: Item) {
-    const find = this.basket.order.furnitures.find(i => i.id === furniture.id);
-    if (find !== undefined) {
-      this.descButton = 'add to cart'.toLocaleUpperCase();
-      this.basket.order.furnitures =  this.basket.order.furnitures.filter(i => i.id === furniture.id);
 
+    const has = this.basket.order.furnitures.has(furniture.id);
+
+    if (has) {
+      this.descButton = 'add to cart'.toLocaleUpperCase();
+      this.basket.order.furnitures.delete(furniture.id);
     } else {
-      this.basket.order.furnitures.push(furniture);
       this.descButton = 'remove from basket'.toLocaleUpperCase();
+      this.basket.order.furnitures.set(furniture.id, furniture);
     }
+
+    // const find = this.basket.order.furnitures.find(i => i.id === furniture.id);
+    // if (find !== undefined) {
+    //   this.descButton = 'add to cart'.toLocaleUpperCase();
+    //   this.basket.order.furnitures =  this.basket.order.furnitures.filter(i => i.id === furniture.id);
+    //
+    // } else {
+    //   this.basket.order.furnitures.push(furniture);
+    //   this.descButton = 'remove from basket'.toLocaleUpperCase();
+    // }
   }
 
   select(image: string) {
@@ -101,27 +113,13 @@ export class DetailFurnitureComponent implements OnInit {
     });
   }
 
-  back() {
-    if(this.indexLastImg - 4 <= 4){
-      this.imgShown = this.images.slice(0,4);
-    } else{
-      this.imgShown = this.images.slice(this.indexLastImg-4, this.indexLastImg);
-    }
-    console.log(this.indexLastImg);
+  openDetailFurniture() {
+    alert('not yet implemented');
   }
 
-  next() {
+  moveBar(event: Event) {
+    console.log((event.target as HTMLElement).scrollLeft);
 
-    if(this.indexLastImg + 4 >= this.images.length){
-      this.indexLastImg = this.images.length;
-      this.imgShown = this.images.slice(this.indexLastImg, this.indexLastImg);
-
-    }
-    else {
-      this.imgShown = this.images.slice(this.indexLastImg, this.indexLastImg+4);
-    }
-    this.indexLastImg = this.imgShown.length;
-    console.log(this.indexLastImg);
   }
 }
 

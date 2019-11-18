@@ -15,7 +15,7 @@ export class BasketService {
       // fill fields
     this.order = {
       billingAddress: null,
-      furnitures: [],
+      furnitures: new Map<string, Item>(),
       shipmentAddress: null,
       shipmentCost: 0,
       shipmentNotes: '',
@@ -28,7 +28,7 @@ export class BasketService {
   calculateTotal(): number {
     let total = 0;
     for (const f of this.order.furnitures) {
-  total += f.price;
+  // total += f.price;
   }
     return total;
   }

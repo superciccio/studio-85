@@ -3,7 +3,7 @@ import {Address} from './address';
 
 export class Order {
   userId = '';
-  furnitures: Array<Item> = [];
+  furnitures: Map<string, Item> = new Map<string, Item>();
   total = 0;
   shipmentCost = 0;
   shipmentAddress: Address = {};
