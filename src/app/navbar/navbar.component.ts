@@ -46,9 +46,7 @@ export class NavBarComponent implements OnInit {
 
 
   openBasket() {
-    if (this.basket.Items.length === 0) {
-      alert('No items in the basket');
-    }
+    this.router.navigate(['/basket/']);
   }
 
   goToCollection(idCollection: string) {

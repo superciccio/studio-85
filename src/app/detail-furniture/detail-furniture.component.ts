@@ -22,7 +22,7 @@ export class DetailFurnitureComponent implements OnInit {
   id = '';
   loading: boolean;
   item: Item;
-  selectedImage: string;
+  selectedImage ='https://lh3.googleusercontent.com/-cD5SrUCrQ40/Xc2BNG71PbI/AAAAAAAA3lo/_sWYKE-ZiIgE4h5qUNpA2giJWHb-bGgVACK8BGAsYHg/s512/2019-11-14.jpg';
   section = [];
   descButton = 'add to cart'.toLocaleUpperCase();
 
@@ -41,6 +41,7 @@ export class DetailFurnitureComponent implements OnInit {
   imgShown = [];
 
   indexLastImg = 0;
+
 
   constructor(private aRoute: ActivatedRoute, private basket: BasketService, public dialog: MatDialog,
               private snackBar: MatSnackBar, private fService: FurnitureService, private fCache: FurnitureCacheService) {
@@ -61,7 +62,7 @@ export class DetailFurnitureComponent implements OnInit {
         if (this.item.material === undefined) {
           this.item.material = '';
         }
-        this.selectedImage = this.item.images[0];
+        // this.selectedImage = this.item.images[0];
         // let collection = this.options.find(c=> c.id === this.item.collectionId);
         // this.myControl.setValue(collection.name);
         this.loading = false;
@@ -71,7 +72,7 @@ export class DetailFurnitureComponent implements OnInit {
     }
     } else {
     this.item = this.fCache.furnitureCache.get(this.id);
-    this.selectedImage = this.item.images[0];
+    // this.selectedImage = this.item.images[0];
     this.loading = false;
     }
     this.imgShown = this.images.slice(0, 4);
@@ -115,11 +116,6 @@ export class DetailFurnitureComponent implements OnInit {
 
   openDetailFurniture() {
     alert('not yet implemented');
-  }
-
-  moveBar(event: Event) {
-    console.log((event.target as HTMLElement).scrollLeft);
-
   }
 }
 

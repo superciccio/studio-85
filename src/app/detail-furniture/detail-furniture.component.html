@@ -1,7 +1,7 @@
-<div style="height: 6rem; background: url('../../assets/background_vision.webp') ">
-  <h3 class="text-center" style="padding-top: 2rem;">Our Vision</h3>
-</div>
-<div class="p-3"></div>
+<!--<div style="height: 6rem; background: url('../../assets/background_vision.webp') ">-->
+<!--  <h3 class="text-center" style="padding-top: 2rem;">Our Vision</h3>-->
+<!--</div>-->
+<!--<div class="p-3"></div>-->
 
 <app-breadcrumb [sections]="section"></app-breadcrumb>
 
@@ -9,18 +9,48 @@
 
 <div  *ngIf="!loading">
   <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6">
     <img
-      src="https://lh3.googleusercontent.com/-cD5SrUCrQ40/Xc2BNG71PbI/AAAAAAAA3lo/_sWYKE-ZiIgE4h5qUNpA2giJWHb-bGgVACK8BGAsYHg/s512/2019-11-14.jpg"
-      class="col-6"
-      style="max-height: 650px"
+      src="{{selectedImage}}"
+      style="max-height: 650px;  width: 46vw;"
       alt="Image cover collection" >
 
-    <div class="col">
+      <div class="bottomdiv">
+
+        <img class="pointer" (click)="selectedImage = 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80'"
+             src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" height="96" width="96"  alt="Image cover collection" >
+
+        <img class="pointer" (click)="selectedImage = 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80'"
+             src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" style="    margin-left: .5rem;
+    margin-right: .5rem;" height="96" width="96"  alt="Image cover collection" >
+
+        <img class="pointer" (click)="selectedImage = 'https://images.unsplash.com/photo-1519643381401-22c77e60520e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1506&q=80'"
+             src="https://images.unsplash.com/photo-1519643381401-22c77e60520e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1506&q=80" height="96" width="96" alt="Image cover collection" >
+
+      </div>
+
+      <div class="p-2">
+        <div class="row justify-content-md-center" style="width: 50%; ">
+          <span>SHARE</span>
+          <div class="p-1" style="width: 100%"></div>
+          <p>
+            <img src="../../assets/pinterest.webp" width="36" height="36">
+
+            <img src="../../assets/instagram.webp" width="36" height="36" style="margin-left: .2rem;margin-right: .2rem;">
+            <img src="../../assets/linkedin.webp" width="36" height="36">
+
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6">
         <div>
 
           <div class="row">
             <div class="col-8 noPaddingLeft">
-              <h1 class="titleFurniture noMarginBottom">{{item.name}}</h1>
+              <h1 class="titleFurniture noMarginBottom">NEXTING TABLES</h1>
             </div>
             <div class="row ml-auto align-items-end" style="margin-bottom: .3rem" >
                  <span class="titleFurniture">WHILST</span>
@@ -31,46 +61,51 @@
           </div>
           <div class="separator"></div>
 
-          <div>nome designer</div>
-          <div class="p-1">£ {{item.price}}</div>
-          <div class="p-3"></div>
-          <div style="position: relative">
-          <button type="button" class="btn btn-secondary removeBorderFromBtn col-6 " style="position: relative;top: 20px;"
+          <div style="margin-left: 12px">
+            <div>nome designer</div>
+            <div class="p-1">£ {{item.price}}</div>
+
+            <span class="dotRed"></span>
+            <span class="dotBrown" style="margin-left: .6rem"></span>
+          </div>
+
+          <div class="p-2">
+          <button type="button" class="btn btn-secondary removeBorderFromBtn col-xl-6 col-lg-6 col-md-6 " style="position: relative;top: 20px;"
           (click)="addItem(item)">{{descButton}}</button>
           <div style="background-color: whitesmoke; height: 200px">
-            <div class="p-3"></div>
               <div class="float-right" style="margin-right: 1rem">
                 REQUEST MORE INFO
               </div>
 
-            <div class="p-3 noPaddingLeft">
+            <div class="" style="    top: 70px;position: relative;">
 
-              <div class="row">
+              <div class="row" style="margin-left: 24px">
                 <div class="col-auto" style="padding-left: 0!important;">
                   <img src="../../assets/ruller.webp" height="24" width="24">
-                </div>
-                <div >
-                  <span> REQUEST CUSTOMIZATION </span>
+                  <small style="    margin-left: 12px;"> REQUEST CUSTOMIZATION </small>
                 </div>
               </div>
 
              <div class="row p-3" style="padding-left: 0!important;">
-               <div class="col-auto" style="padding-left: 0!important;">
+               <div class="col-auto" style="margin-left: 10px;">
                <mat-icon>
                  cloud_download
                </mat-icon>
                </div>
                <div >
-               <span> DOWNLOAND PRODUCT TEARSHEET </span>
+                 <a style="font-size: 14px; color: #212529;"
+                   href="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/DOWNLOAD%20PRODUCT%20TEARSHEET_draft%20(1).pdf?alt=media&token=107a969a-6689-4eed-859e-70653096c3a3 ">
+                   DOWNLOAND PRODUCT TEARSHEET
+                 </a>
                </div>
              </div>
 
               <div class="row">
-                <div class="col-auto" style="padding-left: 0!important;">
+                <div class="col-auto" style="margin-left: 10px;">
                   <img src="../../assets/flag_it.png" height="24" width="24">
                 </div>
                 <div >
-                  <span>  MADE IN ITALY </span>
+                  <small>  MADE IN ITALY </small>
                 </div>
               </div>
 
@@ -82,56 +117,40 @@
             </cite>
           </div>
           <div class="p-1" style="width: 100%"></div>
+
           <div>
             <div>
-              <p>Dimension</p>
-              <p *ngIf="item.dimension===null">              Not specified. Please ask for info
-              </p>
-              <div *ngIf="item.dimension!=null">
-              <p >
-                          Height: <span style="margin-left: 5%">{{item.dimension.height}}</span> <span style="margin-left: 5%">mm</span>
-                        </p>
-                          <p>
-                          Width: <span style="margin-left: 5%">{{item.dimension.width}}</span><span style="margin-left: 5%">mm</span>
-                        </p>
-                          <p>
-                          Depth: <span style="margin-left: 5%">{{item.dimension.depth}}</span><span style="margin-left: 5%">mm</span>
-                        </p>
-
-              </div>
+              DIMENSIONS
+              <br>
+              W 13.78 x D 59.06 x H 33.46 in
+              <br>
+              W 35 x D 150 x H 85 cm
             </div>
 
           </div>
+          <div class="p-1" style="width: 100%"></div>
 
           <div>
             <div >
-              <p>Material</p>
-              <span *ngIf="item.material !== ''">{{item.material}}</span>
-              <span *ngIf="item.material === ''">    Not specified. Please ask for info</span>
+              MATERIALS
+              <br>
+              • Water painted wood top tray, lacquered Mdf case covered inside with
+              customizable wallpaper texture, laquered metal pipe structure.
             </div>
           </div>
 
           <div class="p-1" style="width: 100%"></div>
 
                 <div >
-                  <span class="titleBolder">Delivery & Return</span>
+                  DELIVERY & RETURNS
                   <br>
-                  <span>
-                    <ul>
-                      <li>
-                        Preorder
-                      </li>
-                           <li>
-                        Shipping to United Kingdom: £50 (Curbside)
-                        </li>
-                           <li>
-                             White glove or special needs? <a > Contact Us </a>
-                        </li>
-                             <li>
-                               Changed your mind? <a > Read our return policy </a>
-                        </li>
-                    </ul>
-                  </span>
+                  • Handcrafted for you, ships in 8-9 weeks
+                  <br>
+                  • Shipping to United Kingdom: FREE
+                  <br>
+                  • White glove or special needs? Contact Us
+                  <br>
+                  • Changed your mind? Read our return policy
                 </div>
 
 
@@ -139,33 +158,8 @@
     </div>
   </div>
 
-  <div class="row justify-content-md-center " style="width: 50%; margin-top: 1rem">
 
-    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" height="96" width="96"  alt="Image cover collection" >
-    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" style="    margin-left: .5rem;
-    margin-right: .5rem;" height="96" width="96"  alt="Image cover collection" >
-    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" height="96" width="96" alt="Image cover collection" >
-
-  </div>
-
-  <div class="p-2">
-    <div class="row justify-content-md-center" style="width: 50%; ">
-    <span>SHARE</span>
-      <div class="p-1" style="width: 100%"></div>
-      <p>
-        <img src="../../assets/pinterest.webp" width="36" height="36">
-
-        <img src="../../assets/instagram.webp" width="36" height="36" style="margin-left: .2rem;margin-right: .2rem;">
-        <img src="../../assets/linkedin.webp" width="36" height="36">
-
-      </p>
-
-    </div>
-  </div>
-
-  <div>
-
-
+  <div style="margin-top: 80px">
 
     <div class="scrollbar" id="style-1">
       <div class="force-overflow">
@@ -173,6 +167,9 @@
 
     </div>
 
-    </div>
+</div>
+
+
+
 
 </div>

@@ -55,6 +55,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { RegisterComponent } from './register/register.component';
 import {ArtisanService} from './shared/artisan.service';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatCarouselModule,
-    ScrollingModule
+    ScrollingModule,
+    MatListModule
   ],
   providers: [AngularFireAuthGuard, CurrencyPipe, BasketService, CollectionService, FurnitureService, ArtisanService,
     FurnitureCacheService],

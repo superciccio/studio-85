@@ -72,3 +72,35 @@
 .force-overflow > img {
   margin-right: 4px;
 }
+
+
+.bottomdiv {
+  margin-top: 20px;
+  width: 100%;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  padding-left: 15px;
+}
+
+.dotRed {
+  height: 25px;
+  width: 25px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dotBrown {
+  height: 25px;
+  width: 25px;
+  background-color: saddlebrown;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+@media screen and (max-width: 880px){
+  img {
+    max-width: 240px;
+  }
+}

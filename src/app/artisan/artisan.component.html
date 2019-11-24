@@ -1,29 +1,26 @@
-<div class="container-fluid">
-  <div class="row ">
 
-    <ng-container >
+<div  *ngIf="!loading">
 
-      <img
-        src="https://assets.weforum.org/article/image/large_vTsFSnB4TSdaFUh7Vlxep_4PX5TOdTSEHHo8vjB27e0.jpg" class="col-6" alt="Image cover collection" >
+  <div *ngIf="showList" style="margin-top: 20px">
+     <div  class="row " *ngFor="let a of artisans">
 
-      <div class="col-sm-auto col-lg">
-        <div >
+       <img [src]="a.pic" width="240px" class="rounded float-left" alt="Profile image">
 
 
-          <div style="padding-top: .2rem">
-            <p>
+       <p>
+       <span>{{a.name}} {{a.surname}}</span>
 
-            bla bla bla
-            </p>
-          </div>
-        </div>
-      </div>
-    </ng-container>
+         <span class="p-2">
+           <br>
+           {{a.description}}</span>
+       </p>
 
-
+     </div>
   </div>
 
 
+  <div *ngIf="showSingle">
 
+  </div>
 
-</div>
+  </div>

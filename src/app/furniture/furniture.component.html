@@ -1,49 +1,107 @@
-<div style="height: 6rem; background: url('../../assets/background_vision.webp') ">
-  <h3 class="text-center" style="padding-top: 2rem; color: white">Furniture</h3>
-</div>
-<div class="p-3"></div>
+<!--<div style="height: 6rem; background: url('../../assets/background_vision.webp') ">-->
+<!--  <h3 class="text-center" style="padding-top: 2rem; color: white">Furniture</h3>-->
+<!--</div>-->
+<!--<div class="p-3"></div>-->
 
 
-<div class="container">
+<div class="row"  style="display: inline" >
+
+
+
   <div class="row">
-    <div class="col-md-auto">
 
-      <div class="row justify-content-center "><h5>Furniture</h5></div>
-      <div class="bottomBorderFilter text-center" style="width: 12rem"></div>
+    <i class="material-icons" style="position: relative; top: 106px;">
+      chevron_left
+    </i>
 
-      <nav class="navbar-light">
+    <div >
 
-        <!-- Links -->
-        <ul class="navbar-nav text-center">
-          <li class="nav-item moreBottomPadding" *ngFor="let c of categoriesFurniture">
-            <span class="nav-link"  (click)="filterList(c)">{{c}}</span>
-          </li>
-        </ul>
+      <figure>
+        <img style="width: 340px; height: 242px"
+             src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5">
 
-      </nav>
+        <figcaption style="text-align: center;">
+          AAAAAAAAA
+          <br>
+          ADFSFDAFAD
+        </figcaption>
+      </figure>
+
+
+    </div>
+    <div >
+
+      <img style="width: 340px; height: 242px"
+            src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5">
+
+    </div>
+    <div >
+
+      <img style="width: 340px; height: 242px"
+            src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5">
+
+    </div>
+    <div >
+
+      <img  style="width: 340px; height: 242px"
+            src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5">
 
     </div>
 
-
-    <div  *ngFor="let f of furnitures;  let k = index" >
-
-
-    <div class="pointer col-lg-auto col-md-6" (click)="goToDetail(f.id)">
-
-      <img class="slideImg" [src]="over[k] ? f.images[0] : f.images[1] " (mouseover)="over[k] = true"
-           (mouseleave)="over[k] = false" height="320" width="260">
-    </div>
-
-
-          <div class="row  justify-content-center">
-            {{f.name}}
-          </div>
-          <div class="row justify-content-center">
-            <b>{{f.price}} £</b>
-          </div>
-
-    </div>
+    <i class="material-icons" style="position: relative; top: 106px;">
+      chevron_right
+    </i>
 
   </div>
+
+
+
 </div>
+
+
+
+
+
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col-md-auto">-->
+
+<!--      <div class="row justify-content-center "><h5>Furniture</h5></div>-->
+<!--      <div class="bottomBorderFilter text-center" style="width: 12rem"></div>-->
+
+<!--      <nav class="navbar-light">-->
+
+<!--        &lt;!&ndash; Links &ndash;&gt;-->
+<!--        <ul class="navbar-nav text-center">-->
+<!--          <li class="nav-item moreBottomPadding" *ngFor="let c of categoriesFurniture">-->
+<!--            <span class="nav-link"  (click)="filterList(c)">{{c}}</span>-->
+<!--          </li>-->
+<!--        </ul>-->
+
+<!--      </nav>-->
+
+<!--    </div>-->
+
+
+<!--    <div  *ngFor="let f of furnitures;  let k = index" >-->
+
+
+<!--    <div class="pointer col-lg-auto col-md-6" (click)="goToDetail(f.id)">-->
+
+<!--      <img class="slideImg" [src]="over[k] ? f.images[0] : f.images[1] " (mouseover)="over[k] = true"-->
+<!--           (mouseleave)="over[k] = false" height="320" width="260">-->
+<!--    </div>-->
+
+
+<!--          <div class="row  justify-content-center">-->
+<!--            {{f.name}}-->
+<!--          </div>-->
+<!--          <div class="row justify-content-center">-->
+<!--            <b>{{f.price}} £</b>-->
+<!--          </div>-->
+
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</div>-->
 
