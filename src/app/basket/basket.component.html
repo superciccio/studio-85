@@ -3,8 +3,18 @@
     <div ><img height="256" width="256" [src]="item.images[0]"></div>
     <div class="col align-self-center">{{item.name}}</div>
     <div class="col align-self-center">£ {{item.price}}</div>
+    <div class="col align-self-center">REMOVE</div>
+  </div>
+  <div>
+    <h3>Total: £ 124.34</h3>
+  </div>
+  <div>
+      <button mat-stroked-button>CHECKOUT</button>
   </div>
 </div>
 <div *ngIf="!empty">
   Nothing in the basket
+  <a> See collections </a>
+  <a> See furnitures </a>
+  
 </div>
