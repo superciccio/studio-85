@@ -8,6 +8,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./management.component.scss']
 })
 export class ManagementComponent {
+  
+  tab = 0;
 
 
   constructor(private service: SharedVariableService, private router: Router) {
