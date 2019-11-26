@@ -12,10 +12,13 @@ export class BasketComponent implements OnInit {
 
  order: Order;
  empty = true;
+  total = 0;
 
   constructor(private basket: BasketService) {
     this.order = this.basket.order;
     this.empty = this.order.furnitures.size > 0;
+    
+    this.order.furnitures.map(f=> total += f.price);
   }
 
   ngOnInit() {
