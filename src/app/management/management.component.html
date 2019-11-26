@@ -1,18 +1,51 @@
-<div class="p-3">
+<mat-toolbar class="example-header">
   <button mat-stroked-button color="primary" (click)="logout()">Log out</button>
-</div>
+</mat-toolbar>
 
-<mat-tab-group>
-  <mat-tab label="Collection">
-    <app-management-collection></app-management-collection>
-  </mat-tab>
-  <mat-tab label="Furniture">
-    <app-management-furniture></app-management-furniture>
-  </mat-tab>
-  <mat-tab label="Material">
-  Creazione materiali che possono essere usati nei mobili
-  </mat-tab>
-  <mat-tab label="History Orders">
-  Storico ordini
-  </mat-tab>
-</mat-tab-group>
+
+<mat-drawer-container style="position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;">
+  <mat-drawer mode="side" opened>
+   <mat-nav-list (click)="tab=0">
+     Collection
+     </mat-nav-list>
+     <mat-nav-list (click)="tab=1">
+     Furniture
+     </mat-nav-list>
+      <mat-nav-list (click)="tab=2">
+     Materials
+     </mat-nav-list>
+        <mat-nav-list (click)="tab=3">
+     Colours
+     </mat-nav-list>
+    <mat-nav-list (click)="tab=4">
+     History Orders
+     </mat-nav-list>
+      <mat-nav-list (click)="tab=5">
+     Costs
+     </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+ <div *ngIf="tab==0">
+   <app-management-collection></app-management-collection>
+    </div>
+     <div *ngIf="tab==1">
+   <app-management-furniture></app-management-furniture>
+    </div>
+     <div *ngIf="tab==2">
+   Creazione colori che possono essere usati nei mobili
+    </div>
+    <div *ngIf="tab==3">
+   Creazione materiali che possono essere usati nei mobili
+    </div>
+     <div *ngIf="tab==4">
+   Storico ordini
+    </div>
+      <div *ngIf="tab==5">
+   Gestione costi
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+
