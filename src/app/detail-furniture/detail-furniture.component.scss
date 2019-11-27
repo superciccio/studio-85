@@ -104,3 +104,34 @@
     max-width: 240px;
   }
 }
+
+.wrapper {
+  position: relative;
+}
+
+/*
+*  The .navi properties are for styling only
+*  These properties can be changed or removed
+*/
+.navi {
+  background-color: #eeeeee;
+  height: 150px;
+}
+
+
+/*
+*  Position the #infoi element in the top-right
+*  of the .wrapper element
+*/
+#infoi {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  /*
+  *  Styling only, the below can be changed or removed
+  *  depending on your use case
+  */
+  height: 20px;
+  padding: 10px 10px;
+}

@@ -95,6 +95,47 @@ a:hover {
   }
   }
 
+.sizeContainer{
+
+  @media screen and (min-width: 1024px){
+    max-width: 23%;
+    padding: 4px;
+  }
+  @media screen and (min-width: 768px){
+    max-width: 23%;
+    padding: 4px;
+  }
+}
+
+.backgroundSlider{
+  background-color: #ececec;
+  @media screen and (max-width: 1920px){
+    height: 100px;
+  }
+  @media screen and (max-width: 1024px){
+    height: 70px;
+  }
+  @media screen and (max-width: 768px){
+    height: 55px;
+  }
+}
+
+.heightIcon{
+  @media screen and (max-width: 1920px){
+    position: relative;
+  }
+  @media screen and (max-width: 1024px){
+    top: 70px;
+    position: relative;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 768px){
+    top: 55px;
+    position: relative;
+    font-size: 14px;
+
+  }
+}
 
   .homepage a.cta {
     letter-spacing:.2em

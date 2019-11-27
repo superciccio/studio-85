@@ -56,6 +56,8 @@ import { RegisterComponent } from './register/register.component';
 import {ArtisanService} from './shared/artisan.service';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -110,6 +112,8 @@ import {MatListModule} from '@angular/material/list';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatCarouselModule,
+    MatSidenavModule,
+    MatToolbarModule,
     ScrollingModule,
     MatListModule
   ],
