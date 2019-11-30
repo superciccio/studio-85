@@ -22,13 +22,18 @@
   letter-spacing: .1rem;
 }
 
+.lighterText {
+  font-weight: 100;
+  color: grey;
+}
+
 .separator {
   width: 100%;
   height: 1px;
   content: "";
   position: relative;
   display: block;
-  background-color: whitesmoke;
+  background-color: #212529;
 }
 
 .scrollbar
@@ -134,4 +139,31 @@
   */
   height: 20px;
   padding: 10px 10px;
+}
+
+.images {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  vertical-align:middle;
+  width:340px;
+}
+#con {
+  position: relative;
+  height: auto;
+  max-width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+  word-wrap: normal;
+  white-space: nowrap;
+}
+
+.customColumn {
+  flex: 0 0 23.7%;
+  max-width: 23.7%;
+}
+
+.spaceBetweenColumn{
+  flex: 0 0 0.6%;
+  max-width: 0.6%; background-color: transparent
 }

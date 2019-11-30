@@ -58,17 +58,24 @@
 }
 
 
-figure.item {
-  /* To correctly align image, regardless of content height: */
-  vertical-align: top;
-  display: inline-block;
-  /* To horizontally center images and caption */
-  text-align: center;
-  /* The width of the container also implies margin around the images. */
-  width: 320px;
+
+
+#con {
+  position: relative;
+  height: auto;
+  max-width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+  word-wrap: normal;
+  white-space: nowrap;
 }
 
-.caption {
-  /* Make the caption a block so it occupies its own line. */
-  display: block;
+.customColumn {
+  flex: 0 0 23.7%;
+  max-width: 23.7%;
+}
+
+.spaceBetweenColumn{
+  flex: 0 0 0.6%;
+  max-width: 0.6%; background-color: transparent
 }

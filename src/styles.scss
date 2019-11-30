@@ -4,8 +4,8 @@
 //@import "./assets/font";
 
 body, html {
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 300;
   font-family: 'Quicksand', sans-serif;
 }
 body {
@@ -70,9 +70,21 @@ a:hover {
   padding-right: unset;
 }
 
+.noPaddingBottom {
+  padding-bottom: 0;
+}
+
+.noPaddingTop {
+  padding-top: 0;
+}
 
 .noMarginBottom {
   margin-bottom: 0;
+}
+
+
+.noMarginTop {
+  margin-top: 0;
 }
 
 .example-form {
