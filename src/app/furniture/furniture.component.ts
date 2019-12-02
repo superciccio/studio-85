@@ -87,7 +87,7 @@ export class FurnitureComponent implements OnInit {
    filteredFurnitures: Item[] = [];
 
   over:boolean[];
-
+  loading = false;
 
 
   constructor(private router: Router, private service: SharedVariableService, private fService: FurnitureService) {
