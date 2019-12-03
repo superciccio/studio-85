@@ -2,50 +2,46 @@
   <button mat-stroked-button color="primary" (click)="logout()">Log out</button>
 </mat-toolbar>
 
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" opened class="example-sidenav" >
+    <mat-nav-list (click)="tab=0" style="margin-top: 50px" class="pointer">
+      Collection
+    </mat-nav-list>
+    <mat-nav-list (click)="tab=1"  class="pointer">
+      Furniture
+    </mat-nav-list>
+<!--    <mat-nav-list (click)="tab=2" class="pointer">-->
+<!--      Materials-->
+<!--    </mat-nav-list>-->
+<!--    <mat-nav-list (click)="tab=3" class="pointer">-->
+<!--      Colours-->
+<!--    </mat-nav-list>-->
+<!--    <mat-nav-list (click)="tab=4" class="pointer">-->
+<!--      History Orders-->
+<!--    </mat-nav-list>-->
+<!--    <mat-nav-list (click)="tab=5" class="pointer">-->
+<!--      Costs-->
+<!--    </mat-nav-list>-->
+  </mat-sidenav>
 
-<mat-drawer-container style="position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;">
-  <mat-drawer mode="side" opened>
-   <mat-nav-list (click)="tab=0">
-     Collection
-     </mat-nav-list>
-     <mat-nav-list (click)="tab=1">
-     Furniture
-     </mat-nav-list>
-      <mat-nav-list (click)="tab=2">
-     Materials
-     </mat-nav-list>
-        <mat-nav-list (click)="tab=3">
-     Colours
-     </mat-nav-list>
-    <mat-nav-list (click)="tab=4">
-     History Orders
-     </mat-nav-list>
-      <mat-nav-list (click)="tab=5">
-     Costs
-     </mat-nav-list>
-  </mat-drawer>
-  <mat-drawer-content>
- <div *ngIf="tab==0">
-   <app-management-collection></app-management-collection>
+  <mat-sidenav-content >
+    <div *ngIf="tab==0">
+      <app-management-collection></app-management-collection>
     </div>
-     <div *ngIf="tab==1">
-   <app-management-furniture></app-management-furniture>
+    <div *ngIf="tab==1">
+      <app-management-furniture></app-management-furniture>
     </div>
-     <div *ngIf="tab==2">
-   Creazione colori che possono essere usati nei mobili
+    <div *ngIf="tab==2">
+      Creazione colori che possono essere usati nei mobili
     </div>
     <div *ngIf="tab==3">
-   Creazione materiali che possono essere usati nei mobili
+      Creazione materiali che possono essere usati nei mobili
     </div>
-     <div *ngIf="tab==4">
-   Storico ordini
+    <div *ngIf="tab==4">
+      Storico ordini
     </div>
-      <div *ngIf="tab==5">
-   Gestione costi
+    <div *ngIf="tab==5">
+      Gestione costi
     </div>
-  </mat-drawer-content>
-</mat-drawer-container>
-
+  </mat-sidenav-content>
+</mat-sidenav-container>

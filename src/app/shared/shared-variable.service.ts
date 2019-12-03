@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import { Filter } from '../model/filter';
+import {AngularFirestore, QuerySnapshot} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'

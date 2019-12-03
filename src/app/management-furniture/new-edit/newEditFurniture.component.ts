@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {map, startWith} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
-import { FormControl } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Collection } from 'src/app/model/collection';
 import { CollectionService } from 'src/app/shared/collection.service';
@@ -14,6 +14,7 @@ import {CurrencyPipe} from '@angular/common';
 // @ts-ignore
 import firebase from 'firebase/app';
 import 'firebase/functions';
+import {Filter} from '../../model/filter';
 
 @Component({
   selector: 'app-neweditfurniture',
@@ -35,16 +36,32 @@ export class NewEditFurnitureComponent implements OnInit {
   fd = new FormData();
   files: Array<File> = [];
   conversionDone = false;
-  categoriesFurniture: string[] = [];
   formCategoryItem = '';
   id = '';
   formattedAmount;
+  materialFilters: Filter[] = [];
+  colourFilters: Filter[] = [];
+  styleFilters: Filter[] = [];
+  furnitureFilters: Filter[] = [];
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   constructor(private aRoute: ActivatedRoute, private router: Router, private cService: CollectionService,
               private fService: FurnitureService,
               private fstorage: AngularFireStorage, private service: SharedVariableService,
-              private snackBar: MatSnackBar, private currencyPipe: CurrencyPipe) {
-    this.categoriesFurniture = service.getCategoriesFurniture();
+              private snackBar: MatSnackBar, private currencyPipe: CurrencyPipe,
+              private formBuilder: FormBuilder) {
+    // TODO to fix
+    // this.categoriesFurniture = service.getCategoriesFurniture();
+    this.firstFormGroup = this.formBuilder.group({
+      nameCtrl: ['', Validators.required],
+      descCtrl: ['', Validators.required],
+      collCtrl: ['', Validators.required],
+      priceCtrl: ['', Validators.required],
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
     this.id = this.aRoute.snapshot.params.id;
     this.item = {
       id: '',
@@ -53,8 +70,9 @@ export class NewEditFurnitureComponent implements OnInit {
       description: '',
       images: [],
       name: '',
-      material: '',
+      materialId: '',
       categoryItem: '',
+      combinations: [],
       dimension : {
         depth: 0,
         width: 0,
@@ -66,6 +84,31 @@ export class NewEditFurnitureComponent implements OnInit {
   ngOnInit() {
     this.collections = [];
     this.loading = true;
+    this.service.getFilters().toPromise().then(resp => {
+      for (const doc of resp.docs) {
+        const element = doc.data() as Filter;
+
+        if (element.type === 'MATERIALS') {
+          this.materialFilters.push(element);
+        }
+
+        if (element.type === 'COLOURS') {
+          this.colourFilters.push(element);
+        }
+
+        if (element.type === 'STYLES') {
+          this.styleFilters.push(element);
+        }
+
+        if (element.type === 'FURNITURES') {
+          this.furnitureFilters.push(element);
+        }
+      }
+      this.materialFilters.sort((a, b) => a.value.localeCompare(b.value));
+      this.colourFilters.sort((a, b) => a.value.localeCompare(b.value));
+      this.styleFilters.sort((a, b) => a.value.localeCompare(b.value));
+      this.furnitureFilters.sort((a, b) => a.value.localeCompare(b.value));
+    });
     this.cService.getCollections().toPromise().then(resp => {
       for (const doc of resp.docs) {
         this.options.push(doc.data() as Collection);
@@ -89,9 +132,9 @@ export class NewEditFurnitureComponent implements OnInit {
             height: 0
           };
         }
-        if (this.item.material === null) {
-            this.item.material = '';
-        }
+        this.firstFormGroup.controls.nameCtrl.setValue(this.item.name);
+        this.firstFormGroup.controls.descCtrl.setValue(this.item.description);
+        this.firstFormGroup.controls.price.setValue(this.formattedAmount);
         const collection = this.options.find(c => c.id === this.item.collectionId);
         this.myControl.setValue(collection.name);
         this.loading = false;
@@ -106,6 +149,11 @@ export class NewEditFurnitureComponent implements OnInit {
   }
 
   compareCategoryObjects(object1: string, object2: string) {
+
+    return object1 === object2;
+  }
+
+  compareMaterialObjects(object1: string, object2: string) {
 
     return object1 === object2;
   }

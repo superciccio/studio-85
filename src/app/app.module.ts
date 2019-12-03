@@ -58,6 +58,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatSidenavModule,
     MatToolbarModule,
     ScrollingModule,
-    MatListModule
+    MatListModule,
+    MatStepperModule
   ],
   providers: [AngularFireAuthGuard, CurrencyPipe, BasketService, CollectionService, FurnitureService, ArtisanService,
     FurnitureCacheService],

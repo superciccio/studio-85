@@ -59,9 +59,9 @@ export class DetailFurnitureComponent implements OnInit {
         if (this.item.dimension === undefined) {
           this.item.dimension = null;
         }
-        if (this.item.material === undefined) {
-          this.item.material = '';
-        }
+        // if (this.item.material === undefined) {
+        //   this.item.material = '';
+        // }
         // this.selectedImage = this.item.images[0];
         // let collection = this.options.find(c=> c.id === this.item.collectionId);
         // this.myControl.setValue(collection.name);

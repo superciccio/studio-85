@@ -12,9 +12,9 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./furniture.component.scss']
 })
 export class FurnitureComponent implements OnInit {
-  
-  loading: boolean = false;
-  listFurnitures: Item[] = [];  
+
+  loading = false;
+  listFurnitures: Item[] = [];
   materialFilters: Filter[] = [];
   colourFilters: Filter[] = [];
   styleFilters: Filter[] = [];
@@ -26,38 +26,43 @@ export class FurnitureComponent implements OnInit {
   materialFilterCtrl = new FormControl();
 
   constructor(private router: Router, private service: SharedVariableService, private fService: FurnitureService) {
-    
+
   }
 
   ngOnInit() {
     this.loading = true;
     this.service.getFilters().toPromise().then(resp => {
-        
-        for(const doc of resp.docs){
+
+        for (const doc of resp.docs) {
           const element = doc.data() as Filter;
-        
-          if(element.type == "MATERIALS"){
+
+          if (element.type === 'MATERIALS') {
           this.materialFilters.push(element);
           }
-          
-          if(element.type == "COLOURS"){
+
+          if (element.type === 'COLOURS') {
           this.colourFilters.push(element);
           }
-          
-          if(element.type == "STYLES"){
+
+          if (element.type === 'STYLES') {
           this.styleFilters.push(element);
           }
-        
-          if(element.type == "FURNITURES"){
+
+          if (element.type === 'FURNITURES') {
           this.furnitureFilters.push(element);
           }
           this.loading = false;
-        
+
         }
-        
+
+        this.materialFilters.sort((a, b) => a.value.localeCompare(b.value));
+        this.furnitureFilters.sort((a, b) => a.value.localeCompare(b.value));
+        this.colourFilters.sort((a, b) => a.value.localeCompare(b.value));
+        this.styleFilters.sort((a, b) => a.value.localeCompare(b.value));
+
     });
-   
-   this.fService.getFurnitures().toPromise().then(resp => {
+
+    this.fService.getFurnitures().toPromise().then(resp => {
        resp.docs.map(qs => this.listFurnitures.push(qs.data() as Item));
    });
   }

@@ -1,7 +1,5 @@
 import {Dimension} from './dimension';
 
-git push gooimport {Dimension} from './dimension';
-
 export class Item {
     id = '';
     price = 0;
@@ -9,16 +7,17 @@ export class Item {
     description = '';
     images: Array<any> = []; // link images
     collectionId = '';
-    dimension:  Dimension | {height: 0, depth: 0, width: 0};
+    categoryItem: string;
+    materialId: string | Material;
+    dimension: Dimension | {height: 0, depth: 0, width: 0};
     combinations: Array<Combination> = [];
 }
 
 export class Combination {
     id: string;
-    colour: string | HexColor;
-    style: Style;
-    material: Material;
-    categoryItem: string;
+    colour: string | HexColor | null;
+    style: Style | null;
+    material: Material | null;
 }
 
 export class HexColor {
@@ -35,5 +34,3 @@ export class Material {
     id: string;
     name: string;
 }
-
-gle master

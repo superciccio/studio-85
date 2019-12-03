@@ -1,46 +1,102 @@
 <div class="p-3">
   <button mat-stroked-button color="primary" (click)="back()">Back</button>
 </div>
-<div style="    margin-left: 25%;" *ngIf="!loading">
-  <form class="example-form" autocomplete="off">
-      <mat-form-field class="example-full-width">
-          <input matInput placeholder="Furniture Name" name="Furniture name" required [(ngModel)]="item.name">
+<div *ngIf="!loading">
+
+  <mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out, required fields</ng-template>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Name" formControlName="nameCtrl" required >
         </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <textarea matInput  placeholder="Furniture Description" name="Furniture description" required [(ngModel)]="item.description"></textarea>
-    </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput  placeholder="Description" formControlName="descCtrl" required ></textarea>
+        </mat-form-field>
 
         <mat-form-field class="example-full-width">
-            <input type="text" placeholder="Choose Collection" aria-label="Collection's name" matInput [formControl]="myControl"
-            required [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name" >
-                {{option.name}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
+          <input type="text" placeholder="Choose Collection" aria-label="Collection's name" matInput formControlName="collCtrl"
+                 required [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name" >
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <input matInput type="text" (blur)="transformAmount($event)" placeholder="Furniture Price" name="Furniture Price" required [(ngModel)]="formattedAmount">
-    </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" (blur)="transformAmount($event)" placeholder="Price" formControlName="priceCtrl" [(ngModel)]="formattedAmount">
+        </mat-form-field>
+
+
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out, combinations of the furniture</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="secondCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Review</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+
+
+
+  <form class="example-form" autocomplete="off">
+
+
+
+
+
 
     <mat-form-field>
       <mat-label>Category Furniture</mat-label>
-      <mat-select [(value)]="item.categoryItem" [compareWith]="compareCategoryObjects">
-        <mat-option *ngFor="let c of categoriesFurniture" [value]="c" name="category item" >
-          {{c}}
+      <mat-select [(value)]="item.categoryItem" [compareWith]="compareCategoryObjects" required >
+        <mat-option *ngFor="let c of furnitureFilters" [value]="c" >
+          {{c.value}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
      <br>
 
-    <mat-form-field >
-      <input matInput placeholder="Furniture material" name="Furniture material" required [(ngModel)]="item.material">
+    <mat-form-field>
+      <mat-label>Material Furniture</mat-label>
+      <mat-select [(value)]="item.materialId" [compareWith]="compareMaterialObjects" required >
+        <mat-option *ngFor="let m of materialFilters" [value]="m" >
+          {{m.value}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <br>
+
+<!--    <mat-form-field>-->
+<!--      <mat-label>Category Furniture</mat-label>-->
+<!--      <mat-select [(value)]="item.materialId" [compareWith]="compareMaterialObjects" required >-->
+<!--        <mat-option *ngFor="let m of materialFilters" [value]="m" >-->
+<!--          {{m.value}}-->
+<!--        </mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
 
     <br>
 
