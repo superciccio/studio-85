@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SharedVariableService} from '../shared/shared-variable.service';
 import {FurnitureService} from '../shared/furniture.service';
-import {Item} from '../model/Item';
+import {Filter} from '../model/filter';
 import {Router} from '@angular/router';
 
 @Component({
