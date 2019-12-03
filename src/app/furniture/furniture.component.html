@@ -4,345 +4,64 @@
 <!--<div class="p-3"></div>-->
 
 <div style="border-bottom: 1px solid back;">
-  <mat-form-field>
-  <mat-label>Type of furrniture</mat-label>
-  <mat-select [formControl]="furnituresFilterCtrl" multiple>
-    <mat-option *ngFor="let f of furnituresFilter" [value]="f">{{f.value}}</mat-option>
-  </mat-select>
-</mat-form-field>
-  
-    <mat-form-field>
-  <mat-label>Material</mat-label>
-  <mat-select [formControl]="materialsFilterCtrl" multiple>
-    <mat-option *ngFor="let m of materialsFilter" [value]="m">{{m.value}}</mat-option>
-  </mat-select>
-</mat-form-field>
-  
-      <mat-form-field>
-  <mat-label>Colour</mat-label>
-  <mat-select [formControl]="coloursFilterCtrl" multiple>
-    <mat-option *ngFor="let c of coloursFilter" [value]="c">{{c.value}}</mat-option>
-  </mat-select>
-</mat-form-field>
-  <div>
-
-<div *ngIf="loading">
-  <div class="lds-ripple"><div></div><div></div></div>
-</div>
-
-<div *ngIf="!loading">
-
-<h3 mat-subheader>TABLES</h3>
-
-<div class="row">
-
-
-  <i class="material-icons" style="    top: 120px;
-    float: left;
-    position: relative;">
-    arrow_back_ios
-  </i>
-
-  <div class="customColumn">
-
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-
-    </figure>
-  </div>
-
-  <div class="spaceBetweenColumn"></div>
-
-  <div class="customColumn">
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-    </figure>
-  </div>
-
-  <div class="spaceBetweenColumn"></div>
-
-
-  <div class="customColumn">
-
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-
-    </figure>
-  </div>
-
-  <div class="spaceBetweenColumn"></div>
-
-  <div class="customColumn">
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-
-    </figure>
-
-
-  </div>
-
-  <i class="material-icons" style="    top: 120px;
-            float: right; left: 10px;
-            position: relative;">
-    arrow_forward_ios
-  </i>
-</div>
-
-
-<h3 mat-subheader class="p-2">SOFA</h3>
-
-<div class="row">
-
-
-  <i class="material-icons" style="    top: 120px;
-    float: left;
-    position: relative;">
-    arrow_back_ios
-  </i>
-
-  <div class="customColumn">
-
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-
-    </figure>
-  </div>
-
-  <div class="spaceBetweenColumn"></div>
-
-  <div class="customColumn">
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-    </figure>
-  </div>
-
-  <div class="spaceBetweenColumn"></div>
-
-
-  <div class="customColumn">
-
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-
-    </figure>
-  </div>
-
-  <div class="spaceBetweenColumn"></div>
-
-  <div class="customColumn">
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-
-    </figure>
-
-
-  </div>
-
-  <i class="material-icons" style="    top: 120px;
-            float: right; left: 10px;
-            position: relative;">
-    arrow_forward_ios
-  </i>
-</div>
-
-<h3 mat-subheader class="p-2">CABINET</h3>
-
-<div class="row">
-
-
-  <i class="material-icons" style="    top: 120px;
-    float: left;
-    position: relative;">
-    arrow_back_ios
-  </i>
-
-  <div class="customColumn">
-
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-
-    </figure>
-  </div>
-
-  <div class="spaceBetweenColumn"></div>
-
-  <div class="customColumn">
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-    </figure>
-  </div>
-
-  <div class="spaceBetweenColumn"></div>
-
-
-  <div class="customColumn">
-
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-
-    </figure>
-  </div>
-
-  <div class="spaceBetweenColumn"></div>
-
-  <div class="customColumn">
-
-    <figure>
-
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-      <figcaption style="text-align: left;">
-        <span style="font-weight: bold">NEXTING TABLES</span>
-        <br>
-        <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-        <br>
-        <span style="font-weight: lighter">£ 2500</span>
-      </figcaption>
-
-
-    </figure>
-
-
-  </div>
-
-  <i class="material-icons" style="    top: 120px;
-            float: right; left: 10px;
-            position: relative;">
-    arrow_forward_ios
-  </i>
-</div>
-
-  </div>
+	<mat-form-field>
+		<mat-label>Type of furrniture</mat-label>
+		<mat-select [formControl]="furnitureFilterCtrl" multiple>
+			<mat-option *ngFor="let f of furnitureFilters" [value]="f">{{f.value}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field class="px-2">
+		<mat-label>Material</mat-label>
+		<mat-select [formControl]="materialFilterCtrl" multiple>
+			<mat-option *ngFor="let m of materialFilters" [value]="m">{{m.value}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Colour</mat-label>
+		<mat-select [formControl]="coloursFilterCtrl" multiple>
+			<mat-option *ngFor="let c of colourFilter" [value]="c">{{c.value}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field class="px-2">
+		<mat-label>Style</mat-label>
+		<mat-select [formControl]="styleFilterCtrl" multiple>
+			<mat-option *ngFor="let s of styleFilter" [value]="s">{{s.value}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+    <br>
+
+    <button mat-stroked-button>Clear Filters</button>
+	<div>
+
+		<div *ngIf="loading">
+			<div class="lds-ripple">
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+
+		<div *ngIf="!loading">
+
+			<div class="row" *ngFor="const f of listFurnitures">
+
+				<div class="col-xl-3">
+					<figure>
+						<img [src]="f.images[0]" class="img-fluid" />
+
+						<figcaption style="text-align: left;">
+							<span style="font-weight: bold">NEXTING TABLES</span>
+							<br>
+							<span style="font-weight: bold">{{f.name}}</span>
+							<br>
+							<span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
+							<br>
+							<span style="font-weight: lighter">£ {{f.price}}</span>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		</div>
