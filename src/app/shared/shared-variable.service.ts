@@ -22,7 +22,7 @@ export class SharedVariableService {
     this.isLogged.next(logged);
   }
 
-  getCategoriesFurniture(): Observable<QuerySnapshot<any>> {
+  getFilters(): Observable<QuerySnapshot<any>> {
     return this.db.collection<Filter>('filters').get();
   }
 }
