@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
+import { Filter } from '../model/filter';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class SharedVariableService {
 
   private CATEGORY_FURNITURES = ['Cabinet', 'Table', 'Bar station', 'Sideboard', 'Bedside table'];
 
-  constructor() {
+  constructor(private db: AngularFirestore) {
   }
 
   getLogged(): Observable<boolean> {
@@ -21,7 +22,7 @@ export class SharedVariableService {
     this.isLogged.next(logged);
   }
 
-  getCategoriesFurniture() {
-    return this.CATEGORY_FURNITURES;
+  getCategoriesFurniture(): Observable<QuerySnapshot<any>> {
+    return this.db.collection<Filter>('filters').get();
   }
 }
