@@ -40,6 +40,10 @@ export class ManagementFurnitureComponent implements OnInit {
   newFurniture() {
     this.router.navigate(['/neweditfurniture']);
   }
+  
+  deleteFurniture(idFurniture: string){
+  alert('no yet implemented');
+  }
 
 }
 
