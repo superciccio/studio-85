@@ -17,7 +17,11 @@ export class FurnitureService {
   }
 
   getFurnituresByCollectionId(idCollection: string): Promise<QuerySnapshot<any>> {
-    return this.db.collection<Collection>('furnitures').ref.where('collectionId', '==', idCollection).get();
+    return this.db.collection<Item>('furnitures').ref.where('collectionId', '==', idCollection).get();
+  }
+  
+    getFurnituresBySameCategory(categoryItem: string): Promise<QuerySnapshot<any>> {
+    return this.db.collection<Item>('furnitures').ref.where('categoryItem', '==', categoryItem).get();
   }
 
   // @ts-ignore
