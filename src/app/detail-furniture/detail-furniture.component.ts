@@ -126,6 +126,13 @@ export class DetailFurnitureComponent implements OnInit {
       data: {img: content}
     });
   }
+  
+  sliceList(start: number, end:number, input: Item[]){
+  }
+  
+  backArrow(){}
+  
+  forwardArrow(){}
 
   openDetailFurniture() {
     alert('not yet implemented');
