@@ -55,14 +55,14 @@
       <div class="row" >
 			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-3" *ngFor="let f of listFurnitures">
 					<figure>
-						<img [src]="f.images[0]" class="img-fluid" />
+						<img [src]="f.images[0]" class="img-fluid pointer" (click)="goToDetail(f.id)" />
 
 						<figcaption style="text-align: left;">
 							<span style="font-weight: bold">NEXTING TABLES</span>
 							<br>
 							<span style="font-weight: bold">{{f.name}}</span>
 							<br>
-							<span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
+							<span style="font-weight: lighter" (click)="openDesignerDetail(f.id)">DESIGNER MATTEO MUGNAI</span>
 							<br>
 							<span style="font-weight: lighter">£ {{f.price}}</span>
 						</figcaption>

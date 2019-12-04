@@ -5,7 +5,7 @@ export class Item {
     price = 0;
     name = '';
     description = '';
-    images: Array<any> = []; // link images
+    images: Array<string> = []; // link images
     collectionId = '';
     categoryItem: string;
     materialId: string | Material;

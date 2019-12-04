@@ -4,25 +4,22 @@ import {Item} from '../model/Item';
 import {ImageZoomContentModalComponent} from '../shared/image-zoom-content-modal.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FurnitureService} from '../shared/furniture.service';
 import {FurnitureCacheService} from '../shared/furniture_cache.service';
-import {ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core';
 
 
 @Component({
   selector: 'app-detail-furniture',
   templateUrl: './detail-furniture.component.html',
   styleUrls: ['./detail-furniture.component.scss'],
-  // encapsulation: ViewEncapsulation.None,
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailFurnitureComponent implements OnInit {
 
   id = '';
   loading: boolean;
   item: Item;
-  selectedImage ='https://lh3.googleusercontent.com/-cD5SrUCrQ40/Xc2BNG71PbI/AAAAAAAA3lo/_sWYKE-ZiIgE4h5qUNpA2giJWHb-bGgVACK8BGAsYHg/s512/2019-11-14.jpg';
+  selectedImage = 'https://lh3.googleusercontent.com/-cD5SrUCrQ40/Xc2BNG71PbI/AAAAAAAA3lo/_sWYKE-ZiIgE4h5qUNpA2giJWHb-bGgVACK8BGAsYHg/s512/2019-11-14.jpg';
   section = [];
   descButton = 'add to cart'.toLocaleUpperCase();
 
@@ -48,7 +45,7 @@ export class DetailFurnitureComponent implements OnInit {
   indexStart = 0;
   indexEnd = 4;
 
-  constructor(private aRoute: ActivatedRoute, private basket: BasketService, public dialog: MatDialog,
+  constructor(private aRoute: ActivatedRoute, private router: Router, private basket: BasketService, public dialog: MatDialog,
               private snackBar: MatSnackBar, private fService: FurnitureService, private fCache: FurnitureCacheService) {
     this.id = this.aRoute.snapshot.params.id;
   }
@@ -61,55 +58,62 @@ export class DetailFurnitureComponent implements OnInit {
     if (this.id !== undefined && this.id.length > 0) {
       this.loading = true;
       if (!this.fCache.furnitureCache.has(this.id)) {
-      this.fService.getFurniture(this.id).then(resp => {
-        this.item = resp.data() as Item;
-        this.fCache.addInCache(this.item);
-        if (this.item.dimension === undefined) {
-          this.item.dimension = null;
-        }
-        this.item.images.map(s=> if(s.contains('_sm'){this.smallImages.push(s)});
-        this.setTitleBottomList();
-        this.sliceList(this.indexStart,this.indexEnd);
-        this.loading = false;
-      }).then(anotherCall => {
-        if(this.item.collectionId!==''){
-          // load from same collection
-          console.debug('fetching from same collection');_
-          this.bottomList = [];
-        this.fService.getFurnituresByCollectionId(this.item.collectionId).then(fC=>{
-        fC.map(doc=>{
-        this.bottomListUnfiltered.push( doc.data() as Item);
-         this.sliceList(this.indexStart,this.indexEnd);
-        this.fCache.addInCache(this.item);
-        } );
+        this.fService.getFurniture(this.id).then(resp => {
+          this.item = resp.data() as Item;
+          this.fCache.addInCache(this.item);
+          if (this.item.dimension === undefined) {
+            this.item.dimension = null;
+          }
+          this.item.images.map(s => {
+            if (s.includes('_sm')) {
+              this.smallImages.push(s);
+            }
+          });
+          this.setTitleBottomList();
+          this.sliceList(this.indexStart, this.indexEnd);
+          this.loading = false;
+        }).then(anotherCall => {
+          if (this.item.collectionId !== '') {
+            // load from same collection
+            console.log('fetching from same collection');
+            this.bottomList = [];
+            this.fService.getFurnituresByCollectionId(this.item.collectionId).then(fC => {
+              fC.docs.map(doc => {
+                this.bottomListUnfiltered.push(doc.data() as Item);
+                this.sliceList(this.indexStart, this.indexEnd);
+                this.fCache.addInCache(this.item);
+              });
+            });
+          } else {
+            // load similar items
+            console.log('fetching from similar furnitures');
+            this.fService.getFurnituresBySameCategory(this.item.categoryItem).then(fC => {
+              fC.docs.map(doc => {
+                this.bottomListUnfiltered.push(doc.data() as Item);
+                this.fCache.addInCache(this.item);
+              });
+            });
+          }
         });
-        } 
-        else{
-           // load similar items
-          console.debug('fetching from similar furnitures');_
-         this.fService.getFurnituresBySameCategory(this.item.categoryItem).then(fC=>{
-            fC.map(doc=>{
-        this.bottomListUnfiltered.push( doc.data() as Item);
-        this.fCache.addInCache(this.item);
-        } );
-         });
+      } else {
+        this.loading = false;
+      }
+    } else {
+      this.item = this.fCache.furnitureCache.get(this.id);
+      this.setTitleBottomList();
+      this.item.images.map(s => {
+        if (s.contains('_sm')) {
+          this.smallImages.push(s);
         }
       });
-    } else {
+      // this.selectedImage = this.item.images[0];
       this.loading = false;
-    }
-    } else {
-    this.item = this.fCache.furnitureCache.get(this.id);
-    this.setTitleBottomList();
-    this.item.images.map(s=> if(s.contains('_sm'){this.smallImages.push(s)});
-    // this.selectedImage = this.item.images[0];
-    this.loading = false;
     }
     this.imgShown = this.images.slice(0, 4);
     this.indexLastImg = 4;
 
   }
-  
+
   setTitleBottomList() {
     this.titleBottomList = this.item.collectionId === '' ? 'Similar to this' : 'More from this collection';
   }
@@ -126,7 +130,7 @@ export class DetailFurnitureComponent implements OnInit {
   }
 
   select(image: string) {
-  this.selectedImage = image;
+    this.selectedImage = image;
   }
 
   openModalFunc(content: string) {
@@ -135,31 +139,31 @@ export class DetailFurnitureComponent implements OnInit {
       data: {img: content}
     });
   }
-  
-  sliceList(start: number, end:number){
-    if(start < 0){
+
+  sliceList(start: number, end: number) {
+    if (start < 0) {
       this.indexStart = start;
     }
-    if(end > this.bottomListUnfiltered.length){
+    if (end > this.bottomListUnfiltered.length) {
       this.indexStart = this.bottomListUnfiltered.length;
     }
     this.bottomList = [];
     this.bottomList = this.bottomListUnfiltered.slice(this.indexStart, this.indexEnd);
   }
-  
-  backArrow(){
-  this.indexStart -= 4;
-  this.indexEnd -= 4;
-  this.sliceList(this.indexStart, this.indexEnd)
-  }
-  
-  forwardArrow(){
-  this.indexStart += 4;
-  this.indexEnd += 4;
-  this.sliceList(this.indexStart, this.indexEnd);
+
+  backArrow() {
+    this.indexStart -= 4;
+    this.indexEnd -= 4;
+    this.sliceList(this.indexStart, this.indexEnd);
   }
 
-  openDetailFurniture() {
+  forwardArrow() {
+    this.indexStart += 4;
+    this.indexEnd += 4;
+    this.sliceList(this.indexStart, this.indexEnd);
+  }
+
+  openDetailFurniture(id: string) {
     this.router.navigate(['/detailfurniture/' + id]);
   }
 }
