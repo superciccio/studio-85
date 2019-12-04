@@ -3,7 +3,7 @@
 <!--</div>-->
 <!--<div class="p-3"></div>-->
 
-<app-breadcrumb [sections]="section"></app-breadcrumb>
+<app-breadcrumb [furniture]="item" *ngIf="!loading"></app-breadcrumb>
 
 <div class="p-3"></div>
 
@@ -179,111 +179,13 @@
     </div>
   </div>
 
-<!--  <div style="height: 200px; width: 100%"></div>-->
-
-<!--  <div class="wrapper">-->
-<!--    <div class="navi"></div>-->
-<!--    <div class="row" style="    bottom: 310px;-->
-<!--    position: relative;">-->
-
-
-<!--      <i class="material-icons heightIcon">-->
-<!--        arrow_back_ios-->
-<!--      </i>-->
-
-
-<!--    <div style="max-width: calc(98%)">-->
-
-<!--    <div class="sizeContainer">-->
-
-<!--      <figure>-->
-<!--        <img  class="img-fluid"-->
-<!--              src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5">-->
-
-<!--        <figcaption style="text-align: center;">-->
-<!--          AAAAAAAAA-->
-<!--          <br>-->
-<!--          ADFSFDAFAD-->
-<!--          <br>-->
-<!--          ADFSFDAFAD-->
-<!--        </figcaption>-->
-<!--      </figure>-->
-
-
-<!--    </div>-->
-
-<!--    <div class="sizeContainer">-->
-
-<!--      <figure>-->
-<!--        <img  class="img-fluid"-->
-<!--              src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5">-->
-
-<!--        <figcaption style="text-align: center;">-->
-<!--          AAAAAAAAA-->
-<!--          <br>-->
-<!--          ADFSFDAFAD-->
-<!--          <br>-->
-<!--          ADFSFDAFAD-->
-<!--        </figcaption>-->
-<!--      </figure>-->
-
-
-<!--    </div>-->
-
-<!--    <div class="sizeContainer">-->
-
-<!--      <figure>-->
-<!--        <img  class="img-fluid"-->
-<!--              src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5">-->
-
-<!--        <figcaption style="text-align: center;">-->
-<!--          AAAAAAAAA-->
-<!--          <br>-->
-<!--          ADFSFDAFAD-->
-<!--          <br>-->
-<!--          ADFSFDAFAD-->
-<!--        </figcaption>-->
-<!--      </figure>-->
-
-
-<!--    </div>-->
-<!--    <div class="sizeContainer">-->
-
-<!--      <figure>-->
-<!--        <img  class="img-fluid"-->
-<!--              src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5">-->
-
-<!--        <figcaption style="text-align: center;">-->
-<!--          AAAAAAAAA-->
-<!--          <br>-->
-<!--          ADFSFDAFAD-->
-<!--          <br>-->
-<!--          ADFSFDAFAD-->
-<!--        </figcaption>-->
-<!--      </figure>-->
-
-
-<!--    </div>-->
-
-<!--    </div>-->
-
-<!--      <i class="material-icons heightIcon">-->
-<!--        arrow_forward_ios-->
-<!--      </i>-->
-
-
-<!--    </div>-->
-
-<!--    </div>-->
-
   <div style="height: 20px; width: 100%"></div>
+    
 
-  <h5 mat-subheader>More from this collection</h5>
+  <h5 mat-subheader>{{titleBottomList}}</h5>
 
 
   <div>
-
-
 
     <div class="row">
 
