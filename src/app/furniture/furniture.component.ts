@@ -70,4 +70,16 @@ export class FurnitureComponent implements OnInit {
   goToDetail(id: string) {
     this.router.navigate(['/detailfurniture/' + id]);
   }
+  
+  applyFurnitureFilter(value: string) {
+    console.debug('filter by furniture: $value ');
+  }
+  
+  applyMaterialFilter(value: string) {
+    console.debug('filter by material: $value ');
+  }
+  
+  applyColourFilter(value: string) {
+    console.debug('filter by colour: $value ');
+  }
 }
