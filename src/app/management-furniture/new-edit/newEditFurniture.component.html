@@ -17,7 +17,7 @@
 
         <mat-form-field class="example-full-width">
           <input type="text" placeholder="Choose Collection" aria-label="Collection's name" matInput formControlName="collCtrl"
-                 required [matAutocomplete]="auto">
+                 [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name" >
               {{option.name}}
@@ -28,6 +28,41 @@
         <mat-form-field class="example-full-width">
           <input matInput type="text" (blur)="transformAmount($event)" placeholder="Price" formControlName="priceCtrl" [(ngModel)]="formattedAmount">
         </mat-form-field>
+        
+         <mat-form-field style="width: 50%">
+      <mat-label>Category Furniture</mat-label>
+      <mat-select [(value)]="item.categoryItem" [compareWith]="compareCategoryObjects" required >
+        <mat-option *ngFor="let c of furnitureFilters" [value]="c" >
+          {{c.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field style="width: 50%">
+      <mat-label>Material Furniture</mat-label>
+      <mat-select [(value)]="item.materialId" [compareWith]="compareMaterialObjects" required >
+        <mat-option *ngFor="let m of materialFilters" [value]="m" >
+          {{m.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+        
+         <mat-form-field style="width: 33%">
+      <input matInput placeholder="Dimension width" name="Dimension width" required [(ngModel)]="item.dimension.width">
+    </mat-form-field>
+        
+         <mat-form-field style="width: 33%">
+      <input matInput placeholder="Dimension width" name="Dimension width" required [(ngModel)]="item.dimension.width">
+    </mat-form-field>
+
+    <mat-form-field style="width: 33%">
+      <input matInput placeholder="Dimension height" name="Dimension height" required [(ngModel)]="item.dimension.height">
+    </mat-form-field>
+
+    <mat-form-field style="width: 33%">
+      <input matInput placeholder="Dimension depth" name="Dimension depth" required [(ngModel)]="item.dimension.depth">
+    </mat-form-field>
 
 
         <div>
@@ -67,25 +102,7 @@
 
 
 
-    <mat-form-field>
-      <mat-label>Category Furniture</mat-label>
-      <mat-select [(value)]="item.categoryItem" [compareWith]="compareCategoryObjects" required >
-        <mat-option *ngFor="let c of furnitureFilters" [value]="c" >
-          {{c.value}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-     <br>
-
-    <mat-form-field>
-      <mat-label>Material Furniture</mat-label>
-      <mat-select [(value)]="item.materialId" [compareWith]="compareMaterialObjects" required >
-        <mat-option *ngFor="let m of materialFilters" [value]="m" >
-          {{m.value}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+   
 
     <br>
 
@@ -100,21 +117,7 @@
 
     <br>
 
-    <mat-form-field >
-      <input matInput placeholder="Dimension width" name="Dimension width" required [(ngModel)]="item.dimension.width">
-    </mat-form-field>
-
-    <br>
-
-    <mat-form-field >
-      <input matInput placeholder="Dimension height" name="Dimension height" required [(ngModel)]="item.dimension.height">
-    </mat-form-field>
-
-    <br>
-
-    <mat-form-field >
-      <input matInput placeholder="Dimension depth" name="Dimension depth" required [(ngModel)]="item.dimension.depth">
-    </mat-form-field>
+   
 
     <div class="p-3"></div>
     <input type="file" multiple required (change)="fileChange($event.target.files)">
