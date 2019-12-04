@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class BreadcrumbComponent implements OnInit {
 
   @Input()
-  sections: string[];
+  furniture: Item;
 
   constructor() { }
 
