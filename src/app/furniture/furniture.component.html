@@ -3,7 +3,7 @@
 <!--</div>-->
 <!--<div class="p-3"></div>-->
 
-<div style="border-bottom: 1px solid black;">
+<div style="border-bottom: 1px solid #212529; margin-left: 40px">
 	<mat-form-field>
 		<mat-label>Type of furrniture</mat-label>
 		<mat-select [formControl]="furnitureFilterCtrl" multiple (selectionChange)="applyFurnitureFilter($event.value)">
@@ -53,7 +53,7 @@
       <div class="p-2" style="width: 100%"></div>
 
       <div class="row" >
-			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-3" *ngFor="let f of listFurnitures">
+			<div class="col-xl-4 col-lg-3 col-md-4 col-sm-3" *ngFor="let f of listFurnitures">
 					<figure>
 						<img [src]="f.images[0]" class="img-fluid pointer" (click)="goToDetail(f.id)" />
 

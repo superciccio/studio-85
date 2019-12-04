@@ -5,7 +5,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Collection } from 'src/app/model/collection';
 import { CollectionService } from 'src/app/shared/collection.service';
-import { Item } from 'src/app/model/Item';
+import {Combination, Item} from 'src/app/model/Item';
 import {FurnitureService} from '../../shared/furniture.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {SharedVariableService} from '../../shared/shared-variable.service';
@@ -45,6 +45,7 @@ export class NewEditFurnitureComponent implements OnInit {
   furnitureFilters: Filter[] = [];
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  combinations: Combination[] = [];
 
   constructor(private aRoute: ActivatedRoute, private router: Router, private cService: CollectionService,
               private fService: FurnitureService,
@@ -56,7 +57,7 @@ export class NewEditFurnitureComponent implements OnInit {
     this.firstFormGroup = this.formBuilder.group({
       nameCtrl: ['', Validators.required],
       descCtrl: ['', Validators.required],
-      collCtrl: ['', Validators.required],
+      collCtrl: [''],
       priceCtrl: ['', Validators.required],
     });
     this.secondFormGroup = this.formBuilder.group({
@@ -197,21 +198,30 @@ export class NewEditFurnitureComponent implements OnInit {
   }
 
     save() {
-    if (this.item.images.length === 0) {
-      this.snackBar.open('Furniture needs to have at least 1 image');
-    } else {
-      const collection = this.options.find(c => c.name === this.myControl.value);
-      this.item.collectionId = collection.id;
-      this.snackBar.open('saving, do not close the page. Please wait', '', {duration: 500});
-
-      this.fService.save(this.item).then(() => {
-        this.snackBar.open('Furniture saved.');
-      });
+    alert();
+    // if (this.item.images.length === 0) {
+    //   this.snackBar.open('Furniture needs to have at least 1 image');
+    // } else {
+    //   const collection = this.options.find(c => c.name === this.myControl.value);
+    //   this.item.collectionId = collection.id;
+    //   this.snackBar.open('saving, do not close the page. Please wait', '', {duration: 500});
+    //
+    //   this.fService.save(this.item).then(() => {
+    //     this.snackBar.open('Furniture saved.');
+    //   });
     }
 
- }
 
   removeImg(i: any) {
     this.item.images = this.item.images.filter(obj => obj !== i);
+  }
+
+  addCombination() {
+    const combination = new Combination();
+    combination.colour = '';
+    combination.images = [];
+    combination.material = null;
+    combination.style = null;
+    this.combinations.push(combination);
   }
 }

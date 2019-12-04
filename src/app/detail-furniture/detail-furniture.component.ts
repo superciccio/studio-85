@@ -19,7 +19,7 @@ export class DetailFurnitureComponent implements OnInit {
   id = '';
   loading: boolean;
   item: Item;
-  selectedImage = 'https://lh3.googleusercontent.com/-cD5SrUCrQ40/Xc2BNG71PbI/AAAAAAAA3lo/_sWYKE-ZiIgE4h5qUNpA2giJWHb-bGgVACK8BGAsYHg/s512/2019-11-14.jpg';
+  selectedImage = '';
   section = [];
   descButton = 'add to cart'.toLocaleUpperCase();
 
@@ -60,12 +60,13 @@ export class DetailFurnitureComponent implements OnInit {
       if (!this.fCache.furnitureCache.has(this.id)) {
         this.fService.getFurniture(this.id).then(resp => {
           this.item = resp.data() as Item;
+          this.selectedImage = this.item.images[0];
           this.fCache.addInCache(this.item);
           if (this.item.dimension === undefined) {
             this.item.dimension = null;
           }
           this.item.images.map(s => {
-            if (s.includes('_sm')) {
+            if (s.includes('sm')) {
               this.smallImages.push(s);
             }
           });
@@ -100,9 +101,10 @@ export class DetailFurnitureComponent implements OnInit {
       }
     } else {
       this.item = this.fCache.furnitureCache.get(this.id);
+      this.selectedImage = this.item.images[0];
       this.setTitleBottomList();
       this.item.images.map(s => {
-        if (s.contains('_sm')) {
+        if (s.includes('_sm')) {
           this.smallImages.push(s);
         }
       });

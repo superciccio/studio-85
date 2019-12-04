@@ -64,6 +64,7 @@ export class FurnitureComponent implements OnInit {
 
     this.fService.getFurnitures().toPromise().then(resp => {
        resp.docs.map(qs => this.listFurnitures.push(qs.data() as Item));
+       this.listFurnitures.push(this.listFurnitures[0]);
    });
   }
 

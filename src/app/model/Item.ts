@@ -18,6 +18,7 @@ export class Combination {
     colour: string | HexColor | null;
     style: Style | null;
     material: Material | null;
+    images: Array<string> = []; // link images
 }
 
 export class HexColor {
