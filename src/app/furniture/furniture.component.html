@@ -6,21 +6,21 @@
 <div style="border-bottom: 1px solid black;">
 	<mat-form-field>
 		<mat-label>Type of furrniture</mat-label>
-		<mat-select [formControl]="furnitureFilterCtrl" multiple>
+		<mat-select [formControl]="furnitureFilterCtrl" multiple (selectionChange)="applyFurnitureFilter($event.value)">
 			<mat-option *ngFor="let f of furnitureFilters" [value]="f">{{f.value}}</mat-option>
 		</mat-select>
 	</mat-form-field>
 
 	<mat-form-field class="px-2">
 		<mat-label>Material</mat-label>
-		<mat-select [formControl]="materialFilterCtrl" multiple>
+		<mat-select [formControl]="materialFilterCtrl" multiple (selectionChange)="applyMaterialFilter($event.value)">
 			<mat-option *ngFor="let m of materialFilters" [value]="m">{{m.value}}</mat-option>
 		</mat-select>
 	</mat-form-field>
 
 	<mat-form-field>
 		<mat-label>Colour</mat-label>
-		<mat-select [formControl]="colourFilterCtrl" multiple>
+		<mat-select [formControl]="colourFilterCtrl" multiple (selectionChange)="applyColourFilter($event.value)">
 			<mat-option *ngFor="let c of colourFilters" [value]="c">{{c.value}}</mat-option>
 		</mat-select>
 	</mat-form-field>
