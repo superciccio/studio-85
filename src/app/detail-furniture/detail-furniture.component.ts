@@ -41,6 +41,8 @@ export class DetailFurnitureComponent implements OnInit {
   imgShown = [];
 
   indexLastImg = 0;
+  titleBottomList = '';
+  bottomList: Item[] = [];
 
 
   constructor(private aRoute: ActivatedRoute, private basket: BasketService, public dialog: MatDialog,
@@ -59,19 +61,38 @@ export class DetailFurnitureComponent implements OnInit {
         if (this.item.dimension === undefined) {
           this.item.dimension = null;
         }
-        // if (this.item.material === undefined) {
-        //   this.item.material = '';
-        // }
-        // this.selectedImage = this.item.images[0];
-        // let collection = this.options.find(c=> c.id === this.item.collectionId);
-        // this.myControl.setValue(collection.name);
+        this.setTitleBottomList();        
         this.loading = false;
+      }).then(anotherCall => {
+        if(this.item.collectionId!==''){
+          // load from same collection
+          console.debug('fetching from same collection');_
+          this.bottomList = [];
+        this.fService.getFurnituresByCollectionId(this.item.collectionId).then(fC=>{
+        fC.map(doc=>{
+        this.bottomList.push( doc.data() as Item);
+        this.fCache.addInCache(this.item);
+        } );
+        });
+        } 
+        else{
+           // load similar items
+          console.debug('fetching from similar furnitures');_
+         this.fService.getFurnituresBySameCategory(this.item.categoryItem).then(fC=>{
+            fC.map(doc=>{
+        this.bottomList.push( doc.data() as Item);
+        this.fCache.addInCache(this.item);
+        } );
+         });
+        }
       });
     } else {
       this.loading = false;
     }
     } else {
     this.item = this.fCache.furnitureCache.get(this.id);
+    this.setTitleBottomList();
+
     // this.selectedImage = this.item.images[0];
     this.loading = false;
     }
@@ -79,11 +100,13 @@ export class DetailFurnitureComponent implements OnInit {
     this.indexLastImg = 4;
 
   }
+  
+  setTitleBottomList() {
+    this.titleBottomList = this.item.collectionId === '' ? 'Similar to this' : 'More from this collection';
+  }
 
   addItem(furniture: Item) {
-
     const has = this.basket.order.furnitures.has(furniture.id);
-
     if (has) {
       this.descButton = 'add to cart'.toLocaleUpperCase();
       this.basket.order.furnitures.delete(furniture.id);
@@ -91,16 +114,6 @@ export class DetailFurnitureComponent implements OnInit {
       this.descButton = 'remove from basket'.toLocaleUpperCase();
       this.basket.order.furnitures.set(furniture.id, furniture);
     }
-
-    // const find = this.basket.order.furnitures.find(i => i.id === furniture.id);
-    // if (find !== undefined) {
-    //   this.descButton = 'add to cart'.toLocaleUpperCase();
-    //   this.basket.order.furnitures =  this.basket.order.furnitures.filter(i => i.id === furniture.id);
-    //
-    // } else {
-    //   this.basket.order.furnitures.push(furniture);
-    //   this.descButton = 'remove from basket'.toLocaleUpperCase();
-    // }
   }
 
   select(image: string) {
