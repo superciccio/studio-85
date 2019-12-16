@@ -16,9 +16,10 @@ export class Item {
 export class Combination {
     id: string;
     colour: string | HexColor | null;
-    style: Style | null;
-    material: Material | null;
+    style: Style | null | string;
+    material: Material | null | string;
     images: Array<string> = []; // link images
+    dimension: Dimension | string;
 }
 
 export class HexColor {

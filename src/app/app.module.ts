@@ -59,6 +59,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -117,7 +119,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatToolbarModule,
     ScrollingModule,
     MatListModule,
-    MatStepperModule
+    MatStepperModule,
+    MatCardModule,
+    MatExpansionModule
   ],
   providers: [AngularFireAuthGuard, CurrencyPipe, BasketService, CollectionService, FurnitureService, ArtisanService,
     FurnitureCacheService],

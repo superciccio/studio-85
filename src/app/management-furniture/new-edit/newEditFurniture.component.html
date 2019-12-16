@@ -8,11 +8,11 @@
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Fill out, required fields</ng-template>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Name" formControlName="nameCtrl" required >
+          <input matInput placeholder="Name" formControlName="nameCtrl"  >
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <textarea matInput  placeholder="Description" formControlName="descCtrl" required ></textarea>
+          <textarea matInput  placeholder="Description" formControlName="descCtrl"  ></textarea>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
@@ -26,43 +26,20 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput type="text" (blur)="transformAmount($event)" placeholder="Price" formControlName="priceCtrl" required>
+          <input matInput type="text" (blur)="transformAmount($event)" placeholder="Price" formControlName="priceCtrl" >
         </mat-form-field>
 
         <br>
 
         <mat-form-field style="width: 200px">
           <mat-label>Category Furniture</mat-label>
-          <mat-select [(value)]="item.categoryItem" [compareWith]="compareCategoryObjects" required >
+          <mat-select [compareWith]="compareCategoryObjects"  formControlName="catCtrl">
             <mat-option *ngFor="let c of furnitureFilters" [value]="c" >
               {{c.value}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-        <br>
-
-        <span>Dimension (cm)</span>
-
-        <br>
-
-    <mat-form-field style="width: 120px">
-      <input matInput placeholder="Width" name="Dimension width" required >
-    </mat-form-field>
-
-
-    <mat-form-field style="width: 120px; margin-left: 10px; margin-right: 10px">
-      <input matInput placeholder="Height" name="Dimension height" required >
-    </mat-form-field>
-
-    <mat-form-field style="width: 120px">
-      <input matInput placeholder="Depth" name="Dimension depth" required >
-    </mat-form-field>
-
-
-        <div style="margin-top: 20px">
-          <button mat-raised-button matStepperNext>Next</button>
-        </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
@@ -72,20 +49,21 @@
         <div style="top: 40px"></div>
         <cite>
           Even if you have no combination (eg. only one colors, one material etc). You need to create one
-          It will be used as the default one
+          It will be used as default
         </cite>
 
         <br>
 
-        <button mat-raised-button color="primary" style="margin-top: 20px" (click)="addCombination()" > create combination</button>
+        <button mat-raised-button color="primary" style="margin-top: 20px; margin-bottom: 20px" (click)="addCombination()" > create combination</button>
 
 
-        <div *ngFor="let comb of combinations">
+        <div *ngFor="let comb of combinations; let i=index;">
 
+          <mat-card>
 
           <mat-form-field style="width: 200px; margin-left: 40px">
             <mat-label>Material Furniture</mat-label>
-            <mat-select [(value)]="item.materialId" [compareWith]="compareMaterialObjects" required >
+            <mat-select  [(ngModel)]="comb.material" [compareWith]="compareMaterialObjects" required [ngModelOptions]="{standalone: true}">
               <mat-option *ngFor="let m of materialFilters" [value]="m" >
                 {{m.value}}
               </mat-option>
@@ -94,7 +72,7 @@
 
           <mat-form-field style="width: 200px; margin-left: 40px">
             <mat-label>Style Furniture</mat-label>
-            <mat-select [(value)]="item.materialId"  required >
+            <mat-select  [(ngModel)]="comb.style"  required [ngModelOptions]="{standalone: true}">
               <mat-option *ngFor="let s of styleFilters" [value]="s" >
                 {{s.value}}
               </mat-option>
@@ -103,7 +81,7 @@
 
           <mat-form-field style="width: 200px; margin-left: 40px">
             <mat-label>Colour Furniture</mat-label>
-            <mat-select [(value)]="item.materialId"  required >
+            <mat-select  [(ngModel)]="comb.colour"  required [ngModelOptions]="{standalone: true}">
               <mat-option *ngFor="let c of colourFilters" [value]="c" >
                 {{c.value}}
               </mat-option>
@@ -111,38 +89,64 @@
           </mat-form-field>
 
 
+          <mat-form-field style="width: 120px;  margin-left: 40px;">
+            <input matInput type="number" placeholder="Width" name="Dimension width"  [(ngModel)]="comb.dimension.width" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+
+
+          <mat-form-field style="width: 120px; margin-left: 10px; margin-right: 10px">
+            <input matInput type="number" placeholder="Height" name="Dimension height"  [(ngModel)]="comb.dimension.height" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+
+          <mat-form-field style="width: 120px">
+            <input matInput type="number"  placeholder="Depth" name="Dimension depth"  [(ngModel)]="comb.dimension.depth" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+
+            <br> <br>
+          <small>Please upload as first image the bigger one</small>
+          <input type="file" multiple  (change)="fileChange($event.target.files, i)" style="margin-left: 40px">
+          <mat-progress-spinner mode="indeterminate" *ngIf="isConverting && !conversionDone"></mat-progress-spinner>
+          <div *ngIf="!isConverting && conversionDone">File converted and successfully</div>
+          <div *ngIf="item.images.length > 0" style="margin-top: 10px">
+            <mat-chip-list aria-label="List images for furniture" >
+              <mat-chip *ngFor="let i of comb.images;" >
+                <img height="102" width="102" [src]="i" >
+                <mat-icon matChipRemove (click)="removeImg(i)">cancel</mat-icon>
+              </mat-chip>
+
+            </mat-chip-list>
+          </div>
+
+            <mat-card-footer>
+
+            <mat-action-row>
+              <button mat-stroked-button color="primary" style="margin-bottom: 20px; margin-top: 20px; margin-left: 40px" (click)="removeCombination(i)" > remove combination</button>
+            </mat-action-row>
+
+            </mat-card-footer>
+          </mat-card>
+
         </div>
 
-<!--        <div class="p-3"></div>-->
-<!--        <input type="file" multiple required (change)="fileChange($event.target.files)">-->
-<!--        <mat-progress-spinner mode="indeterminate" *ngIf="isConverting && !conversionDone"></mat-progress-spinner>-->
-<!--        <div *ngIf="!isConverting && conversionDone">File converted and successfully</div>-->
-<!--        <div *ngIf="item.images.length > 0" style="margin-top: 10px">-->
-<!--          <mat-chip-list aria-label="List images for furniture" >-->
-<!--            <mat-chip *ngFor="let i of item.images;" >-->
-<!--              <img height="102" width="102" [src]="i" >-->
-<!--              <mat-icon matChipRemove (click)="removeImg(i)">cancel</mat-icon>-->
-<!--            </mat-chip>-->
-
-<!--          </mat-chip-list>-->
-
-<!--        </div>-->
-<!--        <div  *ngIf="item.images.length === 0" style="margin-top: 10px">-->
-<!--          <span>0 image for this furniture</span>-->
-<!--        </div>-->
-
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Review</ng-template>
-      You are now done.
+      <ng-template matStepLabel>Review, before save.</ng-template>
+
+      <span>{{firstFormGroup.controls.nameCtrl.value}}</span>
+      <span>{{firstFormGroup.controls.descCtrl.value}}</span>
+      <span>{{firstFormGroup.controls.collCtrl.value}}</span>
+      <span>{{firstFormGroup.controls.priceCtrl.value}}</span>
+      <span>{{firstFormGroup.controls.catCtrl.value}}</span>
+
+      <p>
+        Number of combinations: {{combinations.length}}
+      </p>
+
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="save()">Save</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
