@@ -20,6 +20,10 @@
 .titleFurniture{
   font-weight: 400;
   letter-spacing: .1rem;
+  
+  @media screen and (max-width: 1024px){
+    letter-spacing: unset;
+  }
 }
 
 .lighterText {
