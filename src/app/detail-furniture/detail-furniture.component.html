@@ -25,7 +25,7 @@
 
       <div class="bottomdiv">
 
-        <img class="pointer" (click)="selectedImage = i" height="96" width="96" [src]="i" *ngFor="let i of smallImages; let indexImg = index">
+        <img class="pointer" (click)="setImage(i)" height="96" width="96" [src]="i" *ngFor="let i of item.smallImages; let indexImg = index">
 
 <!--         <img class="pointer" (click)="selectedImage = 'https://img-fluid.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80'"
              src="https://img-fluid.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" height="96" width="96"  alt="Image cover collection" >

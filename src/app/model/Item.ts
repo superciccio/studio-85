@@ -1,13 +1,15 @@
 import {Dimension} from './dimension';
+import {Filter} from './filter';
 
 export class Item {
     id = '';
-    price = 0;
+    price: number | string;
     name = '';
     description = '';
     images: Array<string> = []; // link images
+    smallImages: Array<string> = []; // link images
     collectionId = '';
-    categoryItem: string;
+    categoryItem: Filter;
     materialId: string | Material;
     dimension: Dimension | {height: 0, depth: 0, width: 0};
     combinations: Array<Combination> = [];

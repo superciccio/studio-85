@@ -15,6 +15,7 @@ export class FurnitureComponent implements OnInit {
 
   loading = false;
   listFurnitures: Item[] = [];
+  originalListFurnitures: Item[] = [];
   materialFilters: Filter[] = [];
   colourFilters: Filter[] = [];
   styleFilters: Filter[] = [];
@@ -24,6 +25,8 @@ export class FurnitureComponent implements OnInit {
   colourFilterCtrl = new FormControl();
   styleFilterCtrl = new FormControl();
   materialFilterCtrl = new FormControl();
+
+  filterToApply: Filter[] = [];
 
   constructor(private router: Router, private service: SharedVariableService, private fService: FurnitureService) {
 
@@ -63,25 +66,63 @@ export class FurnitureComponent implements OnInit {
     });
 
     this.fService.getFurnitures().toPromise().then(resp => {
-       resp.docs.map(qs => this.listFurnitures.push(qs.data() as Item));
-       this.listFurnitures.push(this.listFurnitures[0]);
-   });
+       resp.docs.map(qs => {
+         const item =  qs.data() as Item;
+         item.price = item.price.toString().substring(1);
+         this.listFurnitures.push(item);
+         this.originalListFurnitures.push(item);
+       });
+   }).then(() => {
+     this.listFurnitures.sort((a, b) => a.name.localeCompare(b.name));
+     this.originalListFurnitures.sort((a, b) => a.name.localeCompare(b.name));
+    });
   }
 
   goToDetail(id: string) {
     this.router.navigate(['/detailfurniture/' + id]);
   }
 
-  applyFurnitureFilter(value: string) {
-    console.log('filter by furniture: $value ');
+  applyFurnitureFilter(values: Filter[]) {
+    if (values.length === 0) {
+      this.listFurnitures = this.originalListFurnitures;
+    } else {
+      this.filterToApply.push(...values.values());
+    }
+    this.applyAllFilters();
+
   }
 
-  applyMaterialFilter(value: string) {
-    console.log('filter by material: $value ');
+  applyAllFilters() {
+    this.listFurnitures = [];
+    for (const x of this.originalListFurnitures) {
+      for (const lol of this.filterToApply) {
+        if (x.categoryItem. value === lol.value) {
+          this.listFurnitures.push(x);
+        }
+      }
+    }
   }
 
-  applyColourFilter(value: string) {
-    console.log('filter by colour: $value ');
+  applyMaterialFilter(values: Filter[]) {
+
+    if (values.length === 0) {
+      this.listFurnitures = this.originalListFurnitures;
+    } else {
+      this.filterToApply.push(...values.values());
+    }
+    this.applyAllFilters();
+
+  }
+
+  applyColourFilter(values: Filter[]) {
+
+    if (values.length === 0) {
+      this.listFurnitures = this.originalListFurnitures;
+    } else {
+      this.filterToApply.push(...values.values());
+    }
+    this.applyAllFilters();
+
   }
 
   openDesignerDetail(id: string) {

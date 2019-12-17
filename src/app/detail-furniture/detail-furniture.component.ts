@@ -22,7 +22,6 @@ export class DetailFurnitureComponent implements OnInit {
   selectedImage = '';
   section = [];
   descButton = 'add to cart'.toLocaleUpperCase();
-
   images = [
     'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80',
     'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80 ',
@@ -60,6 +59,7 @@ export class DetailFurnitureComponent implements OnInit {
       if (!this.fCache.furnitureCache.has(this.id)) {
         this.fService.getFurniture(this.id).then(resp => {
           this.item = resp.data() as Item;
+          this.item.price = this.item.price.toString().substring(1);
           this.selectedImage = this.item.images[0];
           this.fCache.addInCache(this.item);
           if (this.item.dimension === undefined) {
@@ -167,6 +167,14 @@ export class DetailFurnitureComponent implements OnInit {
 
   openDetailFurniture(id: string) {
     this.router.navigate(['/detailfurniture/' + id]);
+  }
+
+  setImage(i: string) {
+    for (const image of this.item.images) {
+       if (image.includes(i)) {
+         this.selectedImage = image;
+      }
+    }
   }
 }
 

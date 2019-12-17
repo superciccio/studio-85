@@ -124,7 +124,8 @@ export class NewEditFurnitureComponent implements OnInit {
         this.item = resp.data() as Item;
         this.formattedAmount = this.item.price;
         (resp.data().combinations).map((obj: Combination) => {
-         this.combinations.push(obj);
+          console.log('loading: ', obj);
+          this.combinations.push(obj);
          return Object.assign([], obj);
         });
         this.item.combinations = this.combinations;
@@ -180,23 +181,24 @@ export class NewEditFurnitureComponent implements OnInit {
       alert('Please specify a name first');
 
     } else {
+
       for (let i = 0; i < files.length; i++) {
-        this.files.push(files.item(i));
-      }
-
-      for (const f of this.files) {
-        this.isConverting = true;
-
-        await this.fstorage.ref(`/temp${this.item.name}`).child(f.name).put(f).then((resp) => {
-
-          const convert = functions().httpsCallable('pippo');
-
-          convert({collectionName: this.item.name, filename: f.name}).then(respcallback => {
-            this.combinations[indexList].images.push(respcallback.data);
-            this.isConverting = false;
+        const f = files.item(i);
+        this.isConverting  = true;
+        await this.fstorage.ref(`/${this.firstFormGroup.controls.nameCtrl.value}/${f.name}`).put(f).then((resp) => {
+          resp.ref.getDownloadURL().then(dwn => {
+            if(dwn.toString().includes('s.')) {
+              this.item.smallImages.push(dwn);
+            } else{
+              this.item.images.push(dwn);
+            }
+            this.combinations[indexList].images.push(dwn);
           });
+          this.isConverting = false;
         });
+
       }
+
       this.isConverting = false;
     }
   }
@@ -208,18 +210,16 @@ export class NewEditFurnitureComponent implements OnInit {
     this.item.price = this.firstFormGroup.controls.priceCtrl.value;
     this.item.categoryItem = this.firstFormGroup.controls.catCtrl.value;
     this.item.combinations = this.combinations;
-    this.item.images = [];
     this.item.combinations = this.combinations.map((obj) => {
-      this.item.images.push(...obj.images);
       obj.dimension =   Object.assign({}, obj.dimension);
       return Object.assign({}, obj);
       });
 
-    // this.snackBar.open('saving, do not close the page. Please wait', '', {duration: 500});
-    //
-    // this.fService.save(this.item).then(() => {
-    //     this.snackBar.open('Furniture saved.');
-    //   });
+    this.snackBar.open('saving, do not close the page. Please wait', '', {duration: 250});
+
+    this.fService.save(this.item).then(() => {
+        this.snackBar.open('Furniture saved.');
+      });
     }
 
 
