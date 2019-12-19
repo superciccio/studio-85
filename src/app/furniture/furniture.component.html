@@ -1,8 +1,3 @@
-<!--<div style="height: 6rem; background: url('../../assets/background_vision.webp') ">-->
-<!--  <h3 class="text-center" style="padding-top: 2rem; color: white">Furniture</h3>-->
-<!--</div>-->
-<!--<div class="p-3"></div>-->
-
 <div style="border-bottom: 1px solid #212529; margin-left: 40px">
 	<mat-form-field>
 		<mat-label>Type of furrniture</mat-label>
@@ -64,7 +59,7 @@
 							<span style="font-weight: bold">{{f.name}}</span>
 							<br>
 							<span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId !== ''">DESIGNER MATTEO MUGNAI</span>
-							<span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId == ''"></span>
+							<span style="font-weight: lighter" *ngIf="f.collectionId == ''"></span>
 							<br>
 							<span style="font-weight: lighter">£ {{f.price}}</span>
 						</figcaption>
