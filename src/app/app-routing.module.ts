@@ -31,6 +31,7 @@ const routes: Routes = [
 
   {path: 'ourvision', component: OurvisionComponent},
   {path: 'furniture', component: FurnitureComponent},
+  {path: 'furniture/:filter', component: FurnitureComponent},
 
   {path: 'neweditfurniture', component: NewEditFurnitureComponent},
   {path: 'neweditfurniture/:id', component: NewEditFurnitureComponent},
