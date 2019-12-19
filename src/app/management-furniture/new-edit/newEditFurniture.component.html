@@ -108,7 +108,7 @@
           <mat-progress-spinner mode="indeterminate" *ngIf="isConverting && !conversionDone"></mat-progress-spinner>
           <div *ngIf="!isConverting && conversionDone">File converted and successfully</div>
           <div *ngIf="comb.images.length > 0" style="margin-top: 10px" >
-            <div *ngFor="let i of comb.images">
+            <div *ngFor="let i of comb.images" style="margin-bottom: 10px">
               <img height="102" width="102" [src]="i" >
               <button mat-stroked-button (click)="removeImg(i)">REMOVE</button>
             </div>
