@@ -43,6 +43,7 @@ export class DetailFurnitureComponent implements OnInit {
   smallImages: string[] = [];
   indexStart = 0;
   indexEnd = 4;
+  listAvailableColor = []
 
   constructor(private aRoute: ActivatedRoute, private router: Router, private basket: BasketService, public dialog: MatDialog,
               private snackBar: MatSnackBar, private fService: FurnitureService, private fCache: FurnitureCacheService) {
@@ -60,13 +61,16 @@ export class DetailFurnitureComponent implements OnInit {
         this.fService.getFurniture(this.id).then(resp => {
           this.item = resp.data() as Item;
           this.item.price = this.item.price.toString().substring(1);
+          this.item.combination.map(comb => {
+            this.listAvailableColor.push(comb.colour);
+          });
           this.selectedImage = this.item.images[0];
           this.fCache.addInCache(this.item);
           if (this.item.dimension === undefined) {
             this.item.dimension = null;
           }
           this.item.images.map(s => {
-            if (s.includes('sm')) {
+            if (s.includes('s.')) {
               this.smallImages.push(s);
             }
           });
@@ -102,9 +106,13 @@ export class DetailFurnitureComponent implements OnInit {
     } else {
       this.item = this.fCache.furnitureCache.get(this.id);
       this.selectedImage = this.item.images[0];
+      this.item.price = this.item.price.toString().substring(1);
+          this.item.combination.map(comb => {
+            this.listAvailableColor.push(comb.colour);
+          });
       this.setTitleBottomList();
       this.item.images.map(s => {
-        if (s.includes('_sm')) {
+        if (s.includes('s.')) {
           this.smallImages.push(s);
         }
       });
