@@ -15,5 +15,9 @@ export class BreadcrumbComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  goToSearchWithFilter(filter:string) {
+    console.log(filter);
+  }
 
 }
