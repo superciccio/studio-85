@@ -108,7 +108,7 @@
           <mat-progress-spinner mode="indeterminate" *ngIf="isConverting && !conversionDone"></mat-progress-spinner>
           <div *ngIf="!isConverting && conversionDone">File converted and successfully</div>
           <div *ngIf="comb.images.length > 0" style="margin-top: 10px" >
-            <div *ngFor="let i of comb.images">
+            <div *ngFor="let i of comb.images" style="margin-bottom: 10px">
               <img height="102" width="102" [src]="i" >
               <button mat-stroked-button (click)="removeImg(i)">REMOVE</button>
             </div>
@@ -127,20 +127,7 @@
         </div>
 
       </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Review, before save.</ng-template>
-
-      <span>{{firstFormGroup.controls.nameCtrl.value}}</span>
-      <span>{{firstFormGroup.controls.descCtrl.value}}</span>
-      <span>{{firstFormGroup.controls.collCtrl.value}}</span>
-      <span>{{firstFormGroup.controls.priceCtrl.value}}</span>
-      <span>{{firstFormGroup.controls.catCtrl.value}}</span>
-
-      <p>
-        Number of combinations: {{combinations.length}}
-      </p>
-
+      
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
@@ -148,9 +135,5 @@
       </div>
     </mat-step>
   </mat-horizontal-stepper>
-
-<!--  <div class="p-3"></div>-->
-<!--  <button mat-button (click)="back()">Cancel</button>-->
-<!--  <button mat-stroked-button color="primary" style="    margin-left: 30px;" (click)="save()">SAVE</button>-->
 </div>
 
