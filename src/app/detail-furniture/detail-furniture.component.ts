@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FurnitureService} from '../shared/furniture.service';
 import {FurnitureCacheService} from '../shared/furniture_cache.service';
+import {Title} from '@angular/platform-browser';
 
 
 @Component({
@@ -43,15 +44,17 @@ export class DetailFurnitureComponent implements OnInit {
   smallImages: string[] = [];
   indexStart = 0;
   indexEnd = 4;
-  listAvailableColor = []
+  listAvailableColor = [];
 
   constructor(private aRoute: ActivatedRoute, private router: Router, private basket: BasketService, public dialog: MatDialog,
-              private snackBar: MatSnackBar, private fService: FurnitureService, private fCache: FurnitureCacheService) {
+              private snackBar: MatSnackBar, private fService: FurnitureService, private fCache: FurnitureCacheService,
+              private titleService: Title ) {
     this.id = this.aRoute.snapshot.params.id;
   }
 
   ngOnInit() {
     this.loading = true;
+    this.smallImages = [];
     this.aRoute.params.subscribe(params => {
       this.id = this.aRoute.snapshot.params.id;
     });
@@ -61,7 +64,7 @@ export class DetailFurnitureComponent implements OnInit {
         this.fService.getFurniture(this.id).then(resp => {
           this.item = resp.data() as Item;
           this.item.price = this.item.price.toString().substring(1);
-          this.item.combination.map(comb => {
+          this.item.combinations.map(comb => {
             this.listAvailableColor.push(comb.colour);
           });
           this.selectedImage = this.item.images[0];
@@ -70,7 +73,8 @@ export class DetailFurnitureComponent implements OnInit {
             this.item.dimension = null;
           }
           this.item.images.map(s => {
-            if (s.includes('s.')) {
+            if (s.includes('s.jpg')) {
+              console.log(s);
               this.smallImages.push(s);
             }
           });
@@ -107,12 +111,13 @@ export class DetailFurnitureComponent implements OnInit {
       this.item = this.fCache.furnitureCache.get(this.id);
       this.selectedImage = this.item.images[0];
       this.item.price = this.item.price.toString().substring(1);
-          this.item.combination.map(comb => {
+      this.item.combinations.map(comb => {
             this.listAvailableColor.push(comb.colour);
           });
       this.setTitleBottomList();
       this.item.images.map(s => {
-        if (s.includes('s.')) {
+        if (s.includes('s.jpg')) {
+          console.log(s);
           this.smallImages.push(s);
         }
       });
@@ -126,6 +131,7 @@ export class DetailFurnitureComponent implements OnInit {
 
   setTitleBottomList() {
     this.titleBottomList = this.item.collectionId === '' ? 'Similar to this' : 'More from this collection';
+    this.titleService.setTitle(`Studio 85 - ${this.item.name}`);
   }
 
   addItem(furniture: Item) {
@@ -178,8 +184,9 @@ export class DetailFurnitureComponent implements OnInit {
   }
 
   setImage(i: string) {
+    const foBeFounfd = i.replace('s.jpg', '.jpg');
     for (const image of this.item.images) {
-       if (image.includes(i)) {
+       if (image.includes(foBeFounfd)) {
          this.selectedImage = image;
       }
     }
