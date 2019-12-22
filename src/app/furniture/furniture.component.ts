@@ -28,6 +28,8 @@ export class FurnitureComponent implements OnInit {
 
   filterToApply: Filter[] = [];
 
+  show = 5;
+
   constructor(private router: Router, private service: SharedVariableService, private fService: FurnitureService) {
 
   }
@@ -127,5 +129,13 @@ export class FurnitureComponent implements OnInit {
 
   openDesignerDetail(id: string) {
     alert('no yet implemented');
+  }
+
+  orderByPriceHighToLow() {
+    this.listFurnitures.sort((a, b) => (b.price as number) - (a.price as number));
+  }
+
+  orderByPriceLowToHigh() {
+    this.listFurnitures.sort((a, b) => (a.price as number) - (b.price as number));
   }
 }

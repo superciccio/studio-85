@@ -93,7 +93,6 @@
               "src/styles.scss"
             ],
             "scripts": []
-
           }
         },
         "lint": {
@@ -124,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "studio85"
+  "defaultProject": "studio85",
+  "cli": {
+    "analytics": "c3563b78-4255-495e-a4e3-cbdcd0d54dd0"
+  }
 }

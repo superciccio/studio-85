@@ -20,7 +20,9 @@ export class BasketComponent implements OnInit {
 
     const items = this.order.furnitures.values();
     for (const i of items) {
-      this.total += i.price;
+      if (typeof i.price === 'string') {
+        this.total += Number.parseInt(i.price, 0);
+      }
     }
   }
 

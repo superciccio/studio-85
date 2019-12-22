@@ -45,7 +45,7 @@ export class CarouselItemElement {
 export class CarouselComponent implements AfterViewInit {
   @ContentChildren(CarouselItemDirective) items: QueryList<CarouselItemDirective>;
   @ViewChildren(CarouselItemElement, {read: ElementRef}) private itemsElements: QueryList<ElementRef>;
-  @ViewChild('carousel', {static: false}) private carousel: ElementRef;
+  @ViewChild('carousel') private carousel: ElementRef;
   @Input() timing = '250ms ease-in';
   @Input() showControls = true;
   private player: AnimationPlayer;

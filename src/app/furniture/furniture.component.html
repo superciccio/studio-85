@@ -1,75 +1,130 @@
-<!--<div style="height: 6rem; background: url('../../assets/background_vision.webp') ">-->
-<!--  <h3 class="text-center" style="padding-top: 2rem; color: white">Furniture</h3>-->
-<!--</div>-->
-<!--<div class="p-3"></div>-->
 
-<div style="border-bottom: 1px solid #212529; margin-left: 40px">
-	<mat-form-field>
-		<mat-label>Type of furrniture</mat-label>
-		<mat-select [formControl]="furnitureFilterCtrl" multiple (selectionChange)="applyFurnitureFilter($event.value)">
-			<mat-option *ngFor="let f of furnitureFilters" [value]="f">{{f.value}}</mat-option>
-		</mat-select>
-	</mat-form-field>
+<mat-sidenav-container>
 
-	<mat-form-field class="px-2">
-		<mat-label>Material</mat-label>
-		<mat-select [formControl]="materialFilterCtrl" multiple (selectionChange)="applyMaterialFilter($event.value)">
-			<mat-option *ngFor="let m of materialFilters" [value]="m">{{m.value}}</mat-option>
-		</mat-select>
-	</mat-form-field>
+  <mat-sidenav #sidenav mode="side" opened class="example-sidenav">
 
-	<mat-form-field>
-		<mat-label>Colour</mat-label>
-		<mat-select [formControl]="colourFilterCtrl" multiple (selectionChange)="applyColourFilter($event.value)">
-			<mat-option *ngFor="let c of colourFilters" [value]="c">{{c.value}}</mat-option>
-		</mat-select>
-	</mat-form-field>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Furniture
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul class="listStyle">
+          <li *ngFor="let f of furnitureFilters;">
+            <mat-checkbox >{{f.value}}</mat-checkbox>
+          </li>
+        </ul>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-	<mat-form-field class="px-2">
-		<mat-label>Style</mat-label>
-		<mat-select [formControl]="styleFilterCtrl" multiple>
-			<mat-option *ngFor="let s of styleFilters" [value]="s">{{s.value}}</mat-option>
-		</mat-select>
-	</mat-form-field>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Material
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul class="listStyle">
+          <li *ngFor="let m of materialFilters">
+            <mat-checkbox >{{m.value}}</mat-checkbox>
+          </li>
+        </ul>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-    <br>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Colour
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul class="listStyle">
+          <li *ngFor="let c of colourFilters">
+            <mat-checkbox >{{c.value}}</mat-checkbox>
+          </li>
+        </ul>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-    <button mat-stroked-button >Clear Filters</button>
-  <div class="p-2" style="width: 100%"></div>
-</div>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Style
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul class="listStyle">
+          <li *ngFor="let s of styleFilters">
+            <mat-checkbox >{{s.value}}</mat-checkbox>
+          </li>
+        </ul>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-	<div>
+  </mat-sidenav>
 
-		<div *ngIf="loading">
-			<div class="lds-ripple">
-				<div></div>
-				<div></div>
-			</div>
-      <span class="loadingPosition">Loading...</span>
-		</div>
+  <mat-sidenav-content>
 
-		<div *ngIf="!loading">
+    <div>
 
-      <div class="p-2" style="width: 100%"></div>
+      <div *ngIf="loading">
+        <div class="lds-ripple">
+          <div></div>
+          <div></div>
+        </div>
+        <span class="loadingPosition">Loading...</span>
+      </div>
 
-      <div class="row" >
-			<div class="col-xl-4 col-lg-3 col-md-4 col-sm-3" *ngFor="let f of listFurnitures">
-					<figure>
-						<img [src]="f.images[0]" class="img-fluid pointer" (click)="goToDetail(f.id)" />
+      <div *ngIf="!loading">
 
-						<figcaption style="text-align: left;">
-							<span style="font-weight: bold" *ngIf="f.collectionId == ''">STUDIO 85 COLLECTION</span>
-							<span style="font-weight: bold" *ngIf="f.collectionId !== ''">{{f.collectionId}}</span>
-							<br>
-							<span style="font-weight: bold">{{f.name}}</span>
-							<br>
-							<span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId !== ''">DESIGNER MATTEO MUGNAI</span>
-							<span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId == ''"></span>
-							<br>
-							<span style="font-weight: lighter">£ {{f.price}}</span>
-						</figcaption>
-					</figure>
-				</div>
+        <mat-toolbar>
 
+          <button mat-button [matMenuTriggerFor]="menu" style="outline: none;" >Clear all filters <i class="material-icons">
+            delete
+          </i></button>
+
+          <span class="example-spacer"></span>
+
+          <div >
+          <button mat-button [matMenuTriggerFor]="menu" style="outline: none;" >Order by <i class="material-icons">
+            sort
+          </i></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item style="outline: none" (click)="orderByPriceLowToHigh()" >Price - Low to High</button>
+            <button mat-menu-item style="outline: none" (click)="orderByPriceHighToLow()" >Price - High to Low</button>
+          </mat-menu>
+          </div>
+        </mat-toolbar>
+
+
+        <div class="p-2" style="width: 100%"></div>
+
+        <div class="row" >
+          <div class="col-xl-4 col-lg-3 col-md-4 col-sm-3" *ngFor="let f of listFurnitures">
+            <figure>
+              <img [src]="f.images[0]" class="img-fluid pointer" (click)="goToDetail(f.id)" />
+
+              <figcaption style="text-align: center;">
+                <span style="font-weight: bold" *ngIf="f.collectionId == ''">STUDIO 85 COLLECTION</span>
+                <span style="font-weight: bold" *ngIf="f.collectionId !== ''">{{f.collectionId}}</span>
+                <br>
+                <span style="font-weight: bold">{{f.name}}</span>
+                <br>
+                <span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId !== ''">DESIGNER MATTEO MUGNAI</span>
+                <span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId == ''"></span>
+                <br>
+                <span style="font-weight: lighter">£ {{f.price}}</span>
+              </figcaption>
+            </figure>
+          </div>
+
+        </div>
       </div>
     </div>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

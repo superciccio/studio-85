@@ -1,5 +1,7 @@
 import {Item} from '../model/Item';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class FurnitureCacheService {
 
 public furnitureCache = new Map();

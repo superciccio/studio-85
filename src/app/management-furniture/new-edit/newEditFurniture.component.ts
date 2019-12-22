@@ -71,7 +71,8 @@ export class NewEditFurnitureComponent implements OnInit {
       images: [],
       name: '',
       materialId: '',
-      categoryItem: '',
+      smallImages: [],
+      categoryItem: new Filter(),
       combinations: [],
       dimension : {
         depth: 0,

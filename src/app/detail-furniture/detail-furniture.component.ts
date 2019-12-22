@@ -88,7 +88,7 @@ export class DetailFurnitureComponent implements OnInit {
           } else {
             // load similar items
             console.log('fetching from similar furnitures');
-            this.fService.getFurnituresBySameCategory(this.item.categoryItem).then(fC => {
+            this.fService.getFurnituresBySameCategory(this.item.categoryItem.value).then(fC => {
               fC.docs.map(doc => {
                 this.bottomListUnfiltered.push(doc.data() as Item);
                 this.fCache.addInCache(this.item);

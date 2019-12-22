@@ -46,7 +46,6 @@ import {NewEditCollectionComponent} from './management-collection/new-edit/newEd
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
-import {MatCarouselModule} from '@ngmodule/material-carousel';
 import {CurrencyPipe} from '@angular/common';
 import {FurnitureCacheService} from './shared/furniture_cache.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -61,6 +60,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -114,14 +114,14 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatCarouselModule,
     MatSidenavModule,
     MatToolbarModule,
     ScrollingModule,
     MatListModule,
     MatStepperModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatMenuModule
   ],
   providers: [AngularFireAuthGuard, CurrencyPipe, BasketService, CollectionService, FurnitureService, ArtisanService,
     FurnitureCacheService],
