@@ -16,300 +16,370 @@
 		</div>
 
 <div  *ngIf="!loading">
-  <div class="row">
-    <div class="col-xl-6 col-lg-6 col-md-6">
-    <img
-      src="{{selectedImage}}"
-      style="max-height: 650px;  width: 46vw;"
-      alt="Image cover collection" >
 
-      <div class="bottomdiv">
+  <div class="row" >
 
-        <div *ngFor="let i of smallImages; let indexImg = index">
-          <img class="pointer" (click)="setImage(i)" height="96" width="96" [src]="i" >
+    <div class="col-sm-1">
 
-        </div>
-
-
-<!--         <img class="pointer" (click)="selectedImage = 'https://img-fluid.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80'"
-             src="https://img-fluid.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" height="96" width="96"  alt="Image cover collection" >
-
-        <img class="pointer" (click)="selectedImage = 'https://img-fluid.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80'"
-             src="https://img-fluid.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" style="    margin-left: .5rem;
-    margin-right: .5rem;" height="96" width="96"  alt="Image cover collection" >
-
-        <img class="pointer" (click)="selectedImage = 'https://img-fluid.unsplash.com/photo-1519643381401-22c77e60520e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1506&q=80'"
-             src="https://img-fluid.unsplash.com/photo-1519643381401-22c77e60520e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1506&q=80" height="96" width="96" alt="Image cover collection" >
- -->
-      </div>
-
-      <div class="p-2">
-        <div class="row justify-content-md-center">
-          <span>SHARE</span>
-          <div class="p-1" style="width: 100%"></div>
-          <p>
-            <img src="../../assets/pinterest_icon.png" width="36" height="36">
-
-            <img src="../../assets/instagram.webp" width="36" height="36" style="margin-left: .2rem;margin-right: .2rem;">
-            <img src="../../assets/linkedin.webp" width="36" height="36">
-
-          </p>
-
-        </div>
-      </div>
-
-    </div>
-    <div class="col-xl-6 col-lg-6 col-md-6">
-        <div>
-
-          <div class="row">
-            <div class="col-8 noPaddingLeft">
-              <h1 class="titleFurniture noMarginBottom lighterText">{{item.name}}</h1>
-            </div>
-            <div class="row ml-auto align-items-end" style="margin-bottom: .3rem" >
-                 <span class="titleFurniture">WISHLIST</span>
-                  <img height="24" width="24" src="../../assets/corazon.webp" style="margin-left: .5rem" alt="Favourite icon">
-                  <mat-icon style="margin-left: .5rem;" [ngStyle]="{'color':'grey'}">folder</mat-icon>
-            </div>
-
-          </div>
-          <div class="separator"></div>
-
-          <div style="margin-top: 12px">
-            <div class="row">
-              <div class="col noPaddingLeft" style="font-size: 20px;">
-                £ {{item.price}}
-              </div>
-              <div class="align-items-end">
-                DESIGNER MATTEO MUGNAI
-              </div>
-            </div>
-<!--            <div style="font-weight: 100;-->
-<!--    color: grey; font-size: 24px;letter-spacing: 2px;">DESIGNER MATTEO MUGNAI</div>-->
-<!--            <div class="p-1" style="font-size: x-large;">£ {{item.price}}</div>-->
-
-<!--            <span class="dotRed"></span>-->
-<!--            <span class="dotBrown" style="margin-left: .6rem"></span>-->
-          </div>
-
-          <div class="p-2">
-          <button type="button" class="btn btn-secondary removeBorderFromBtn col-xl-6 col-lg-6 col-md-6 " style="position: relative;top: 20px;"
-          (click)="addItem(item)">{{descButton}}</button>
-          <div style="background-color: whitesmoke; height: 13pc;">
-              <div class="float-right row" style="margin-right: 1rem">
-                <div class="col-auto" style="padding-left: 0!important;">
-                <i class="material-icons">
-                  add
-                </i>
-                </div>
-                <div>
-                  REQUEST MORE INFO
-                </div>
-              </div>
-
-            <div class="" style="top: 40px; position: relative;">
-
-              <!--  REQUEST CUSTOMIZATION -->
-
-              <div class="row paddingTopLeft" >
-                <img src="../../assets/ruller.webp" height="24" width="24" style="vertical-align: top">
-                <span style="margin-left: 10px">
-                    REQUEST CUSTOMIZATION
-                  </span>
-              </div>
-
-              <!--  DOWNLOAND PRODUCT TEARSHEET -->
-
-              <div class="row paddingTopLeft" >
-                  <i class="material-icons" style="vertical-align: bottom">
-                    cloud_download
-                  </i>
-                  <span style="margin-left: 10px">
-                    DOWNLOAND PRODUCT TEARSHEET
-                  </span>
-                </div>
-
-              <!--  BUYER PROTECTION -->
-
-              <div class="row paddingTopLeft" >
-                <img src="../../assets/certify.webp" height="24" width="24" style="vertical-align: top">
-                <span style="margin-left: 10px">
-                    BUYER PROTECTION
-                  </span>
-              </div>
-
-              <!-- MADE IN ITALY -->
-
-              <div class="row paddingTopLeft" >
-                <img src="../../assets/flag_it.png" height="24" width="24" style="vertical-align: top">
-                <span style="margin-left: 10px">
-                    MADE IN ITALY
-                  </span>
-              </div>
-
-            </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-          <div class="p-2">
-            <span style="    font-weight: 600;">NEXTING TABLES </span>
-            <span style="font-weight: 100;color: darkgray;">
-              {{item.description}}
-            </span>
-          </div>
-          <div class="p-1" style="width: 100%"></div>
-
-          <div style="    margin-left: 6px;">
-            <div>
-              <span style="    font-weight: 600;">DIMENSIONS</span>
-              <br>
-              <span style="font-weight: 100;color: darkgray;">W 13.78 x D 59.06 x H 33.46 in</span>
-              <br>
-              <span style="font-weight: 100;color: darkgray;">W 35 x D 150 x H 85 cm</span>
-            </div>
-
-          </div>
-          <div class="p-1" style="width: 100%"></div>
-
-          <div style="    margin-left: 6px;">
-            <div >
-              <span style="    font-weight: 600;">MATERIALS</span>
-              <br>
-              <span style="font-weight: 100;color: darkgray;">• Water painted wood top tray, lacquered Mdf case covered inside with
-                customizable wallpaper texture, laquered metal pipe structure.</span>
-            </div>
-          </div>
-
-          <div class="p-1" style="width: 100%"></div>
-
-                <div    style="margin-left: 6px;" >
-                  <span style="    font-weight: 600;">DELIVERY & RETURNS</span>
-                  <br>
-                  <span style="font-weight: 100;color: darkgray;">• Handcrafted for you, ships in 8-9 weeks</span>
-                  <br>
-                  <span style="font-weight: 100;color: darkgray;"> • Shipping to United Kingdom: FREE</span>
-                  <br>
-                  <span style="font-weight: 100;color: darkgray;"> • White glove or special needs? Contact Us </span>
-                  <br>
-                  <span style="font-weight: 100;color: darkgray;">• Changed your mind? Read our return policy</span>
-                </div>
-
-
-        </div>
-    </div>
-  </div>
-
-  <div style="height: 20px; width: 100%"></div>
-
-
-  <h5 mat-subheader>{{titleBottomList}}</h5>
-
-
-  <div>
-
-    <div class="row">
-
-
-      <i class="material-icons" style="    top: 120px;
-    float: left;
-    position: relative;" (click)="backArrow()">
-        arrow_back_ios
+      <i class="material-icons moveArrow" style="margin-top: 40px;">
+        keyboard_arrow_up
+      </i>
+      <ul style="list-style-type:none;    padding-left: 10px; " *ngFor="let sm of smallImages">
+        <li>
+          <img [src]="sm" height="64" width="64">
+        </li>
+      </ul>
+      <i class="material-icons moveArrow">
+        keyboard_arrow_down
       </i>
 
-      <div class="customColumn">
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-6">
+
+      <img class="img-fluid" [src]="selectedImage">
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-5" >
 
 
-        <figure>
+      <div class="float-right" ><img height="24" width="24" src="../../assets/corazon.webp"></div><br>
 
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
+      <div class="p-2" style="padding-left: unset!important;">{{item.name}}</div>
 
-          <figcaption style="text-align: left;">
-            <span style="font-weight: bold">NEXTING TABLES</span>
-            <br>
-            <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-            <br>
-            <span style="font-weight: lighter">£ 2500</span>
-          </figcaption>
+      <div style="font-weight: 400;">£ {{item.price}}</div>
 
+      <div class="p-2"></div>
 
-        </figure>
-              </div>
+      <div style="font-weight: 400;" *ngIf="item.collectionId!==''">{{item.collectionId}}</div>
+      <div style="font-weight: 400;" *ngIf="item.collectionId===''">STUDIO85 collection</div>
 
-      <div class="spaceBetweenColumn"></div>
+      <div class="p-2"></div>
 
-      <div class="customColumn">
+      <div style="    width: 100%;
+        text-align: center; top: 20px;
+        background-color: #5c5c5c;margin-bottom: 30px;
+        ">
 
-        <figure>
+        <span style="text-transform: uppercase;
+        height: 50px;     transition-duration: .3s;
+        color: #fff;     letter-spacing: 2.15px;
+            padding: 0 15px;
+            outline: 0;
+            outline-offset: 0;
+            border-radius: 0;
+        line-height: 50px;
+        font-size: 14px;" (click)="addItem(item)"> {{descButton}}
 
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
+        </span></div>
 
-          <figcaption style="text-align: left;">
-            <span style="font-weight: bold">NEXTING TABLES</span>
-            <br>
-            <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-            <br>
-            <span style="font-weight: lighter">£ 2500</span>
-          </figcaption>
+      <div class="p-2"></div>
 
-        </figure>
-      </div>
+      <div class="col-12">
 
-      <div class="spaceBetweenColumn"></div>
+        <div class="d-flex justify-content-around">
 
-
-      <div class="customColumn">
+                <span>
+                   DOWNLOAD PRODUCT TEARSHEET
+                </span>
 
 
-        <figure>
 
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
+          <img height="24" width="24" src="../../assets/pinterest_icon.png">
+          <img src="../../assets/facebook_icon.webp" width="24" height="24">
+          <img height="24" width="24" src="../../assets/linkedin.webp">
 
-          <figcaption style="text-align: left;">
-            <span style="font-weight: bold">NEXTING TABLES</span>
-            <br>
-            <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-            <br>
-            <span style="font-weight: lighter">£ 2500</span>
-          </figcaption>
+        </div>
 
+        <div>
 
-        </figure>
-      </div>
-
-      <div class="spaceBetweenColumn"></div>
-
-      <div class="customColumn">
-
-        <figure>
-
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />
-
-          <figcaption style="text-align: left;">
-            <span style="font-weight: bold">NEXTING TABLES</span>
-            <br>
-            <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>
-            <br>
-            <span style="font-weight: lighter">£ 2500</span>
-          </figcaption>
-
-
-        </figure>
+        </div>
 
 
       </div>
 
-            <i class="material-icons" style="    top: 120px;
-            float: right; left: 10px;
-            position: relative;" (click)="forwardArrow()">
-              arrow_forward_ios
-            </i>
-          </div>
+
+      <div class="col-12">
+
+        <div class="p-2" >
+
+                <span style="padding-left: 18px">
+                   REQUEST CUSTOMIZATION
+                </span>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
   </div>
+
+  <div class="row" style="  padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 40px;">
+
+    <div class="col-12" style="    font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 0; text-transform: uppercase;
+            font-size: 16px;">Description of the product</div>
+
+    <div class="col-12">
+      {{item.description}}
+    </div>
+
+</div>
+
+
+  <div class="row" style="  padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 40px;">
+
+    <div class="col-6" style="    font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 0; text-transform: uppercase;
+            font-size: 16px;">Product information</div>
+
+    <div class="col-6" style="    font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 0; text-transform: uppercase;
+            font-size: 16px;">
+      SHIPPING & RETURNS
+    </div>
+
+    <div class="col-6" style="padding: 15px">
+
+               <span style="    font-weight: 600;     color: #5c5c5c;
+               text-transform: uppercase;"> available colours </span>
+      <br>
+      <span style="font-size: small;">Yello, Red</span>
+    </div>
+
+    <div class="col-6" style="padding-top: 15px;">
+
+                <span style="    font-weight: 600;     color: #5c5c5c;
+                text-transform: uppercase;"> RETURNS</span>
+      <br>
+      <span style="font-size: small;">
+                    This item is returnable within 30 days of delivery. Restocking and return shipping fees may apply. <br>See our Return Policy for details.
+                </span>
+    </div>
+
+    <div class="col-12" style="padding: 15px 20px;">
+
+                <span style="    font-weight: 600;     color: #5c5c5c;
+                text-transform: uppercase;"> Dimension </span>
+      <br>
+      <span style="font-size: small;">32x24x12</span>
+    </div>
+
+    <div class="col-12" style="padding: 15px 20px;">
+
+                <span style="    font-weight: 600;     color: #5c5c5c;
+                text-transform: uppercase;"> Made of </span>
+      <br>
+      <span style="font-size: small;">BLABLABA</span>
+    </div>
+
+    <div class="col-12" style="padding: 15px 20px;">
+
+                <span style="    font-weight: 600;     color: #5c5c5c;
+                text-transform: uppercase;"> Style </span>
+      <br>
+      <span style="font-size: small;">LOL</span>
+    </div>
+
+  </div>
+
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="More from this collection" *ngIf="item.collectionId!==''">
+      <div style="padding-top: 15px;" >
+
+
+        <div class="d-flex justify-content-between row">
+
+          <img class="col-3"  [src]="f" *ngFor="let f in fromSameCollection" alt="Image from same collection">
+<!--          <img class="col-3" src="/Users/ab/Desktop/pok.png">-->
+<!--          <img class="col-3" src="/Users/ab/Desktop/pok.png">-->
+        </div>
+
+
+<!--        <div class="d-flex justify-content-center p-4">-->
+<!--          <button type="button" class="btn btn-light ">Show more</button>-->
+<!--        </div>-->
+
+      </div>
+    </mat-tab>
+    <mat-tab label="Similar to this product">
+
+      <div class="row">
+        <div class="col-4"  *ngFor="let f of fromSameCategory">
+        <figure >
+          <img src="{{f.images[0]}}"  alt="Image from same category" class="img-fluid pointer" (click)="openDetailFurniture(f.id)" />
+          <figcaption style="text-align: center">
+            {{f.name}}
+          </figcaption>
+        </figure>
+        </div>
+      </div>
+
+    </mat-tab>
+    <mat-tab label="People also bought"> People also bought </mat-tab>
+  </mat-tab-group>
+
+
+
+
+
+
+
+<!--          <div style="    margin-left: 6px;">-->
+<!--            <div>-->
+<!--              <span style="    font-weight: 600;">DIMENSIONS</span>-->
+<!--              <br>-->
+<!--              <span style="font-weight: 100;color: darkgray;">W 13.78 x D 59.06 x H 33.46 in</span>-->
+<!--              <br>-->
+<!--              <span style="font-weight: 100;color: darkgray;">W 35 x D 150 x H 85 cm</span>-->
+<!--            </div>-->
+
+<!--          </div>-->
+<!--          <div class="p-1" style="width: 100%"></div>-->
+
+<!--          <div style="    margin-left: 6px;">-->
+<!--            <div >-->
+<!--              <span style="    font-weight: 600;">MATERIALS</span>-->
+<!--              <br>-->
+<!--              <span style="font-weight: 100;color: darkgray;">• Water painted wood top tray, lacquered Mdf case covered inside with-->
+<!--                customizable wallpaper texture, laquered metal pipe structure.</span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="p-1" style="width: 100%"></div>-->
+
+<!--                <div    style="margin-left: 6px;" >-->
+<!--                  <span style="    font-weight: 600;">DELIVERY & RETURNS</span>-->
+<!--                  <br>-->
+<!--                  <span style="font-weight: 100;color: darkgray;">• Handcrafted for you, ships in 8-9 weeks</span>-->
+<!--                  <br>-->
+<!--                  <span style="font-weight: 100;color: darkgray;"> • Shipping to United Kingdom: FREE</span>-->
+<!--                  <br>-->
+<!--                  <span style="font-weight: 100;color: darkgray;"> • White glove or special needs? Contact Us </span>-->
+<!--                  <br>-->
+<!--                  <span style="font-weight: 100;color: darkgray;">• Changed your mind? Read our return policy</span>-->
+<!--                </div>-->
+
+
+<!--        </div>-->
+<!--    </div>-->
+  </div>
+
+<!--  <div style="height: 20px; width: 100%"></div>-->
+
+
+<!--  <h5 mat-subheader>{{titleBottomList}}</h5>-->
+
+
+<!--  <div>-->
+
+<!--    <div class="row">-->
+
+
+<!--      <i class="material-icons" style="    top: 120px;-->
+<!--    float: left;-->
+<!--    position: relative;" (click)="backArrow()">-->
+<!--        arrow_back_ios-->
+<!--      </i>-->
+
+<!--      <div class="customColumn">-->
+
+
+<!--        <figure>-->
+
+<!--          <img-->
+<!--            src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />-->
+
+<!--          <figcaption style="text-align: left;">-->
+<!--            <span style="font-weight: bold">NEXTING TABLES</span>-->
+<!--            <br>-->
+<!--            <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>-->
+<!--            <br>-->
+<!--            <span style="font-weight: lighter">£ 2500</span>-->
+<!--          </figcaption>-->
+
+
+<!--        </figure>-->
+<!--              </div>-->
+
+<!--      <div class="spaceBetweenColumn"></div>-->
+
+<!--      <div class="customColumn">-->
+
+<!--        <figure>-->
+
+<!--          <img-->
+<!--            src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />-->
+
+<!--          <figcaption style="text-align: left;">-->
+<!--            <span style="font-weight: bold">NEXTING TABLES</span>-->
+<!--            <br>-->
+<!--            <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>-->
+<!--            <br>-->
+<!--            <span style="font-weight: lighter">£ 2500</span>-->
+<!--          </figcaption>-->
+
+<!--        </figure>-->
+<!--      </div>-->
+
+<!--      <div class="spaceBetweenColumn"></div>-->
+
+
+<!--      <div class="customColumn">-->
+
+
+<!--        <figure>-->
+
+<!--          <img-->
+<!--            src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />-->
+
+<!--          <figcaption style="text-align: left;">-->
+<!--            <span style="font-weight: bold">NEXTING TABLES</span>-->
+<!--            <br>-->
+<!--            <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>-->
+<!--            <br>-->
+<!--            <span style="font-weight: lighter">£ 2500</span>-->
+<!--          </figcaption>-->
+
+
+<!--        </figure>-->
+<!--      </div>-->
+
+<!--      <div class="spaceBetweenColumn"></div>-->
+
+<!--      <div class="customColumn">-->
+
+<!--        <figure>-->
+
+<!--          <img-->
+<!--            src="https://firebasestorage.googleapis.com/v0/b/studio85.appspot.com/o/sideboard_front.jpg?alt=media&token=26c93306-d189-4b17-badc-d6c6971fa0d5" class="img-fluid" />-->
+
+<!--          <figcaption style="text-align: left;">-->
+<!--            <span style="font-weight: bold">NEXTING TABLES</span>-->
+<!--            <br>-->
+<!--            <span style="font-weight: lighter">DESIGNER MATTEO MUGNAI</span>-->
+<!--            <br>-->
+<!--            <span style="font-weight: lighter">£ 2500</span>-->
+<!--          </figcaption>-->
+
+
+<!--        </figure>-->
+
+
+<!--      </div>-->
+
+<!--            <i class="material-icons" style="    top: 120px;-->
+<!--            float: right; left: 10px;-->
+<!--            position: relative;" (click)="forwardArrow()">-->
+<!--              arrow_forward_ios-->
+<!--            </i>-->
+<!--          </div>-->

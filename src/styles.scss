@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 //@import "~bootstrap/dist/css/bootstrap.min.css";
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+//@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "custom-theme.css";
 //@import "./assets/font";
 
 body, html {
@@ -215,3 +216,5 @@ a:hover {
   font-weight:100;
   letter-spacing:2px
 }
+
+

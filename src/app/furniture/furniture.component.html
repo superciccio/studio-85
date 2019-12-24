@@ -1,4 +1,21 @@
+<mat-toolbar>
 
+  <button mat-button [matMenuTriggerFor]="menu" style="outline: none;" >Clear all filters <i class="material-icons">
+    delete
+  </i></button>
+
+  <span class="example-spacer"></span>
+
+  <div >
+    <button mat-button [matMenuTriggerFor]="menu" style="outline: none;" >Order by <i class="material-icons">
+      sort
+    </i></button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item style="outline: none" (click)="orderByPriceLowToHigh()" >Price - Low to High</button>
+      <button mat-menu-item style="outline: none" (click)="orderByPriceHighToLow()" >Price - High to Low</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
 <mat-sidenav-container>
 
   <mat-sidenav #sidenav mode="side" opened class="example-sidenav">
@@ -78,25 +95,6 @@
       </div>
 
       <div *ngIf="!loading">
-
-        <mat-toolbar>
-
-          <button mat-button [matMenuTriggerFor]="menu" style="outline: none;" >Clear all filters <i class="material-icons">
-            delete
-          </i></button>
-
-          <span class="example-spacer"></span>
-
-          <div >
-          <button mat-button [matMenuTriggerFor]="menu" style="outline: none;" >Order by <i class="material-icons">
-            sort
-          </i></button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item style="outline: none" (click)="orderByPriceLowToHigh()" >Price - Low to High</button>
-            <button mat-menu-item style="outline: none" (click)="orderByPriceHighToLow()" >Price - High to Low</button>
-          </mat-menu>
-          </div>
-        </mat-toolbar>
 
 
         <div class="p-2" style="width: 100%"></div>

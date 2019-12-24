@@ -45,6 +45,8 @@ export class DetailFurnitureComponent implements OnInit {
   indexStart = 0;
   indexEnd = 4;
   listAvailableColor = [];
+  fromSameCategory: Item[] = [];
+  fromSameCollection: Item[] = [];
 
   constructor(private aRoute: ActivatedRoute, private router: Router, private basket: BasketService, public dialog: MatDialog,
               private snackBar: MatSnackBar, private fService: FurnitureService, private fCache: FurnitureCacheService,
@@ -88,20 +90,21 @@ export class DetailFurnitureComponent implements OnInit {
             this.bottomList = [];
             this.fService.getFurnituresByCollectionId(this.item.collectionId).then(fC => {
               fC.docs.map(doc => {
-                this.bottomListUnfiltered.push(doc.data() as Item);
-                this.sliceList(this.indexStart, this.indexEnd);
+                this.fromSameCollection.push(doc.data() as Item);
                 this.fCache.addInCache(this.item);
               });
             });
           } else {
             // load similar items
-            console.log('fetching from similar furnitures');
-            this.fService.getFurnituresBySameCategory(this.item.categoryItem.value).then(fC => {
-              fC.docs.map(doc => {
-                this.bottomListUnfiltered.push(doc.data() as Item);
-                this.fCache.addInCache(this.item);
+            if (this.item.categoryItem != null) {
+              console.log('fetching from similar furnitures');
+              this.fService.getFurnituresBySameCategory(this.item.categoryItem).then(fC => {
+                fC.docs.map(doc => {
+                  this.fromSameCategory.push(doc.data() as Item);
+                  this.fCache.addInCache(this.item);
+                });
               });
-            });
+            }
           }
         });
       } else {

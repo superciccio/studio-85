@@ -3,6 +3,7 @@ import {Collection} from '../model/collection';
 import {Observable} from 'rxjs';
 import { Item } from '../model/Item';
 import {AngularFirestore, DocumentSnapshot, QuerySnapshot} from '@angular/fire/firestore';
+import {Filter} from '../model/filter';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,12 @@ export class FurnitureService {
   }
 
   getFurnituresByCollectionId(idCollection: string): Promise<QuerySnapshot<any>> {
-    return this.db.collection<Item>('furnitures').ref.where('collectionId', '==', idCollection).get();
+    return this.db.collection<Item>('furnitures').ref.where('collectionId', '==', idCollection).orderBy('name', 'asc').get();
   }
-  
-    getFurnituresBySameCategory(categoryItem: string): Promise<QuerySnapshot<any>> {
-    return this.db.collection<Item>('furnitures').ref.where('categoryItem', '==', categoryItem).get();
+
+    getFurnituresBySameCategory(categoryItem: Filter): Promise<QuerySnapshot<any>> {
+    return this.db.collection<Item>('furnitures').ref.where('categoryItem', '==', categoryItem)
+      .orderBy('name', 'asc').get();
   }
 
   // @ts-ignore
