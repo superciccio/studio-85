@@ -1,6 +1,6 @@
 <div *ngIf="furniture !== null">
   <mat-toolbar style="background-color: #f8f9fa!important;">
-    <span class="pointer lighterText" routerLink="furniture">All Furnitures</span>
+    <span class="pointer lighterText" routerLink="/furnitures">All Furnitures</span>
     <i class="material-icons" style="margin-left: 10px; margin-right: 10px">arrow_forward
   </i>
     <span class="pointer lighterText" (click)="goToSearchWithFilter(furniture.categoryItem.value)">{{furniture.categoryItem.value}}</span>

@@ -1,4 +1,7 @@
-<div *ngIf="empty">
+<div *ngIf="!empty">
+  <mat-toolbar style="background-color: #f8f9fa!important;">
+    <span class="pointer lighterText" routerLink="furniture">Current in the basket</span>
+  </mat-toolbar>
   <div class="row shadow0sn p-3 bg-white rounded" *ngFor="let item of order.furnitures.values()">
     <div ><img height="256" width="256" [src]="item.images[0]"></div>
     <div class="col align-self-center">{{item.name}}</div>
@@ -6,15 +9,21 @@
     <div class="col align-self-center">REMOVE</div>
   </div>
   <div>
-    <h3>Total: £ 124.34</h3>
+    <h3>Total: £ {{total}}</h3>
   </div>
-  <div>
+  <div style="float: right">
       <button mat-stroked-button>CHECKOUT</button>
   </div>
 </div>
-<div *ngIf="!empty">
-  Nothing in the basket
-  <a> See collections </a>
-  <a> See furnitures </a>
-  
+<div *ngIf="empty" style="text-align: center;    margin-top: 40px;
+    margin-bottom: 100px;" >
+  <h2>Nothing in the basket</h2>
+  <br>
+  <div style="margin-top: 30px;
+    margin-bottom: 30px;">
+  <a class="lead pointer collectionStyleTileLink" routerLink="/collections" >SEE ALL COLLECTIONS</a>
+  </div>
+  <br>
+  <a class="lead pointer collectionStyleTileLink" routerLink="/furnitures">SEE ALL FURNITURES</a>
+
 </div>

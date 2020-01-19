@@ -16,6 +16,7 @@ export class NavBarComponent implements OnInit {
 
   navbarOpen = false;
   collections: Collection[] = [];
+  total = 0.0;
 
   constructor(private basket: BasketService, public dialog: MatDialog, private collectionService: CollectionService,
               private router: Router) {
@@ -27,6 +28,15 @@ export class NavBarComponent implements OnInit {
         this.collections.push(doc.data() as Collection);
       }
     });
+
+    const order = this.basket.order;
+
+    const items = order.furnitures.values();
+    for (const i of items) {
+      if (typeof i.price === 'string') {
+        this.total += Number.parseInt(i.price, 0);
+      }
+    }
   }
 
   toggleNavbar() {

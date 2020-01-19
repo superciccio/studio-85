@@ -30,8 +30,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
 
   {path: 'ourvision', component: OurvisionComponent},
-  {path: 'furniture', component: FurnitureComponent},
-  {path: 'furniture/:filter', component: FurnitureComponent},
+  {path: 'furnitures', component: FurnitureComponent},
+  {path: 'furnitures/:filter', component: FurnitureComponent},
 
   {path: 'neweditfurniture', component: NewEditFurnitureComponent},
   {path: 'neweditfurniture/:id', component: NewEditFurnitureComponent},

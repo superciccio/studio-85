@@ -18,7 +18,7 @@ import {Title} from '@angular/platform-browser';
 export class DetailFurnitureComponent implements OnInit {
 
   id = '';
-  loading: boolean;
+  loading = true;
   item: Item;
   selectedImage = '';
   section = [];
@@ -51,7 +51,6 @@ export class DetailFurnitureComponent implements OnInit {
   constructor(private aRoute: ActivatedRoute, private router: Router, private basket: BasketService, public dialog: MatDialog,
               private snackBar: MatSnackBar, private fService: FurnitureService, private fCache: FurnitureCacheService,
               private titleService: Title ) {
-    this.id = this.aRoute.snapshot.params.id;
   }
 
   ngOnInit() {
@@ -108,24 +107,22 @@ export class DetailFurnitureComponent implements OnInit {
           }
         });
       } else {
+        this.item = this.fCache.furnitureCache.get(this.id);
+        this.selectedImage = this.item.images[0];
+        this.item.price = this.item.price.toString().substring(1);
+        this.item.combinations.map(comb => {
+          this.listAvailableColor.push(comb.colour);
+        });
+        this.setTitleBottomList();
+        this.item.images.map(s => {
+          if (s.includes('s.jpg')) {
+            console.log(s);
+            this.smallImages.push(s);
+          }
+        });
+        // this.selectedImage = this.item.images[0];
         this.loading = false;
       }
-    } else {
-      this.item = this.fCache.furnitureCache.get(this.id);
-      this.selectedImage = this.item.images[0];
-      this.item.price = this.item.price.toString().substring(1);
-      this.item.combinations.map(comb => {
-            this.listAvailableColor.push(comb.colour);
-          });
-      this.setTitleBottomList();
-      this.item.images.map(s => {
-        if (s.includes('s.jpg')) {
-          console.log(s);
-          this.smallImages.push(s);
-        }
-      });
-      // this.selectedImage = this.item.images[0];
-      this.loading = false;
     }
     this.imgShown = this.images.slice(0, 4);
     this.indexLastImg = 4;
@@ -135,6 +132,11 @@ export class DetailFurnitureComponent implements OnInit {
   setTitleBottomList() {
     this.titleBottomList = this.item.collectionId === '' ? 'Similar to this' : 'More from this collection';
     this.titleService.setTitle(`Studio 85 - ${this.item.name}`);
+
+    const has = this.basket.order.furnitures.has(this.item.id);
+    if (has) {
+      this.descButton = 'remove from basket'.toLocaleUpperCase();
+    }
   }
 
   addItem(furniture: Item) {
