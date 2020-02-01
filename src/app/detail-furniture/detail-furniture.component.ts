@@ -64,7 +64,6 @@ export class DetailFurnitureComponent implements OnInit {
       if (!this.fCache.furnitureCache.has(this.id)) {
         this.fService.getFurniture(this.id).then(resp => {
           this.item = resp.data() as Item;
-          this.item.price = this.item.price.toString().substring(1);
           this.item.combinations.map(comb => {
             this.listAvailableColor.push(comb.colour);
           });
@@ -109,7 +108,6 @@ export class DetailFurnitureComponent implements OnInit {
       } else {
         this.item = this.fCache.furnitureCache.get(this.id);
         this.selectedImage = this.item.images[0];
-        this.item.price = this.item.price.toString().substring(1);
         this.item.combinations.map(comb => {
           this.listAvailableColor.push(comb.colour);
         });

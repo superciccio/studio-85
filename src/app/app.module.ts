@@ -61,6 +61,13 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
+import {CdkTableModule} from '@angular/cdk/table';
+import { CurrencyWithSpacePipe } from './shared/currency-with-space.pipe';
+import { CheckoutComponent } from './checkout/checkout.component';
+import {AgmCoreModule} from '@agm/core';
+import { CreditCardMaskPipe } from './credit-card-mask.pipe';
+import { CreditCardMaskDirective } from './credit-card-mask.directive';
+
 
 @NgModule({
   declarations: [
@@ -86,43 +93,51 @@ import {MatMenuModule} from '@angular/material/menu';
     NewEditFurnitureComponent,
     NewEditCollectionComponent,
     BreadcrumbComponent,
-    RegisterComponent
+    RegisterComponent,
+    CurrencyWithSpacePipe,
+    CheckoutComponent,
+    CreditCardMaskPipe,
+    CreditCardMaskDirective
   ],
-  imports: [
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    MatDialogModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSlideToggleModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatGridListModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatTabsModule,
-    MatIconModule,
-    FormsModule,
-    MatTableModule,
-    MatAutocompleteModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    ScrollingModule,
-    MatListModule,
-    MatStepperModule,
-    MatCardModule,
-    MatExpansionModule,
-    MatMenuModule
-  ],
+    imports: [
+        AngularFireModule.initializeApp(environment.firebase),
+      AgmCoreModule.forRoot({
+        apiKey: 'AIzaSyACyh1apt27sOrGR7xmYX7Hs5WAyKtDU5I',
+        libraries: ['places']
+      }, ),
+        AngularFirestoreModule,
+        AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+        AngularFireStorageModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        MatDialogModule,
+        MatInputModule,
+        MatButtonModule,
+        MatSlideToggleModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatGridListModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatTabsModule,
+        MatIconModule,
+        FormsModule,
+        MatTableModule,
+        MatAutocompleteModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        ScrollingModule,
+        MatListModule,
+        MatStepperModule,
+        MatCardModule,
+        MatExpansionModule,
+        MatMenuModule,
+        CdkTableModule],
   providers: [AngularFireAuthGuard, CurrencyPipe, BasketService, CollectionService, FurnitureService, ArtisanService,
     FurnitureCacheService],
   bootstrap: [AppComponent, NavBarComponent],

@@ -31,7 +31,6 @@
           <i class="material-icons">
             shopping_cart
           </i>
-         <span> £ {{total}} </span>
         </a>
       </li>
       <li class="nav-item">
@@ -67,13 +66,13 @@
   <div class="collapse navbar-collapse " [ngClass]="{ 'show': navbarOpen }" id="navbarNav">
     <ul class="navbar-nav ml-auto mx-auto">
       <li class="nav-item dropdown">
-        <a class="nav-link" routerLink="collections" id="collectionDropdown" style="color: black; font-size: x-large">Collections</a>
+        <a class="nav-link titeling" routerLink="collections" id="collectionDropdown">Collections</a>
         <div class="dropdown-menu mt-0" aria-labelledby="collectionDropdown">
           <a class="dropdown-item pointer"  *ngFor="let c of collections" (click)="goToCollection(c.id)">{{c.name}}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" routerLink="furnitures" id="furnitureDropdown" style="color: black; font-size: x-large">Furniture
+        <a class="nav-link titeling" routerLink="furnitures" id="furnitureDropdown" >Furniture
 <!--          <div class="dropdown-menu mt-0" aria-labelledby="furnitureDropdown">-->
 <!--            <a class="dropdown-item" href="#">Action</a>-->
 <!--            <a class="dropdown-item" href="#">Another action</a>-->
@@ -83,10 +82,10 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " routerLink="ourvision" style="color: black; font-size: x-large">Our vision</a>
+        <a class="nav-link titeling" routerLink="ourvision">Our vision</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " routerLink="artisan" style="font-size: x-large">Artisan </a>
+        <a class="nav-link titeling" routerLink="artisan" >Artisan </a>
       </li>
 
     </ul>

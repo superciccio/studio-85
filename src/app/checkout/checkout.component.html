@@ -1,0 +1,130 @@
+<div>
+  <h3>Already have an account ? Click <a>here</a> </h3>
+  <p> or checkout as a guest, using the form below</p>
+</div>
+
+
+  <mat-horizontal-stepper #stepper>
+    <mat-step >
+      <form >
+        <ng-template matStepLabel>Delivery</ng-template>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" name="email"  autocomplete="email" [formControl]="emailCtrl">
+        </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Full Name" name="name"  autocomplete="name" [formControl]="nameCtrl">
+  </mat-form-field>
+
+
+        <mat-form-field class="example-full-width">
+          <input type="text" matInput placeholder="Phone number(include country code)" autocomplete="tel" [formControl]="phoneCtrl">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Start typing to find the adddress or place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"  #search [formControl]="searchControl">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Note for the courrier" [formControl]="noteCtrl"></textarea>
+        </mat-form-field>
+      </form>
+      <div>
+        <button mat-raised-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+
+    <mat-step >
+      <form >
+        <ng-template matStepLabel>Payment Details</ng-template>
+
+        <h3 *ngIf="total > 0">Total to be paid {{total | currencywithspace:'GBP'}}</h3>
+
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Pay by Card </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>Supported cards are: VISA, MASTERCARD, AMERICAN EXPRESS (AMEX), Maestro</p>
+
+            <mat-form-field class="example-full-width">
+                <input matInput name="ccname" id="frmNameCC" required placeholder="Card Holder Name" autocomplete="cc-name">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Card numbers" required autocomplete="cc-number" name="cardnumber"  type="text" appCreditCardMask>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="CVC" name="cvc" id="frmCCCVC" required autocomplete="cc-csc" maxlength="4">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" autocomplete="cc-exp">
+              </mat-form-field>
+          </mat-expansion-panel>
+
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>Pay with Klarna (via installments, not available in all regions)</mat-expansion-panel-header>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>Pay with Paypal</mat-expansion-panel-header>
+          </mat-expansion-panel>
+
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>Pay via Bank transfer (preferable for order greater than {{3000 |currency:'GBP'}})</mat-expansion-panel-header>
+          </mat-expansion-panel>
+
+        </mat-accordion>
+
+      </form>
+      <div>
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+
+    <mat-step >
+      <form >
+        <ng-template matStepLabel>Order Confirmation</ng-template>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" readonly value="{{emailCtrl.value}}" >
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Full Name" name="Full name" value="{{nameCtrl.value}}" readonly>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Address" name="Address" value="{{search.value}}" readonly>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Note " name="Note" value="{{noteCtrl.value}}" readonly>
+        </mat-form-field>
+
+        <h3>Paying via card a total amount of {{34343 | currencywithspace: 'GBP'}}</h3>
+<!--        <h3 *ngIf="total> 0">Paying via card a total amount of {{34343 | currencywithspace: 'GBP'}}</h3>-->
+
+        <div class="jumbotron" style="padding: 1rem;">
+          <div class="container text-center">
+
+            If you have paid via bank transfer we will send a confirmation email, with the status of the transaction.
+            This may vary between 2-3 working days. <br>
+            It does not dependent on us, if you have further question please contact
+            <a href="mailto:webmaster@example.com"><b>Sales team</b></a>
+          </div>
+        </div>
+
+      </form>
+
+      <div>
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button (click)="stepper.reset()">Reset</button>
+        <button mat-raised-button >Confirm</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+

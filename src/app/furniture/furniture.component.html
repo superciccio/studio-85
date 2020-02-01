@@ -113,7 +113,7 @@
                 <span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId !== ''">DESIGNER MATTEO MUGNAI</span>
                 <span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId == ''"></span>
                 <br>
-                <span style="font-weight: lighter">£ {{f.price}}</span>
+                <span style="font-weight: lighter" >{{f.price | currencywithspace:'GBP'}}</span>
               </figcaption>
             </figure>
           </div>

@@ -70,7 +70,6 @@ export class FurnitureComponent implements OnInit {
     this.fService.getFurnitures().toPromise().then(resp => {
        resp.docs.map(qs => {
          const item =  qs.data() as Item;
-         item.price = item.price.toString().substring(1);
          this.listFurnitures.push(item);
          this.originalListFurnitures.push(item);
        });

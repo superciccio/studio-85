@@ -3,7 +3,7 @@ import {Filter} from './filter';
 
 export class Item {
     id = '';
-    price: number | string;
+    price: number;
     name = '';
     description = '';
     images: Array<string> = []; // link images

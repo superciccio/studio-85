@@ -2,17 +2,52 @@
   <mat-toolbar style="background-color: #f8f9fa!important;">
     <span class="pointer lighterText" routerLink="furniture">Current in the basket</span>
   </mat-toolbar>
-  <div class="row shadow0sn p-3 bg-white rounded" *ngFor="let item of order.furnitures.values()">
-    <div ><img height="256" width="256" [src]="item.images[0]"></div>
-    <div class="col align-self-center">{{item.name}}</div>
-    <div class="col align-self-center">£ {{item.price}}</div>
-    <div class="col align-self-center">REMOVE</div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="img">
+      <th mat-header-cell *matHeaderCellDef> Furniture </th>
+      <td mat-cell *matCellDef="let element"> <img width="128" height="128" [src]="element.images[0]" alt="Furniture image">  </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price</th>
+      <td mat-cell class="price" *matCellDef="let element"> {{element.price | currencywithspace:'GBP'}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon class="pointer" aria-hidden="false" aria-label="Example home icon" (click)="removeFurniture(element.id)">delete</mat-icon>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+<!--  <div class="row shadow0sn p-3 bg-white rounded" *ngFor="let item of order.furnitures.values()">-->
+<!--    <div ><img height="200" width="200" [src]="item.images[0]"></div>-->
+<!--    <div class="col align-self-center">{{item.name}}</div>-->
+<!--    <div class="col align-self-center">£ {{item.price}}</div>-->
+<!--    <div class="col align-self-center"><button mat-raised-button>REMOVE</button></div>-->
+<!--  </div>-->
+  <div style="    margin-top: 40px;
+    margin-left: 20px;
+">
+    <h3 >Total: {{total | currencywithspace:'GBP'}}</h3>
   </div>
-  <div>
-    <h3>Total: £ {{total}}</h3>
-  </div>
-  <div style="float: right">
-      <button mat-stroked-button>CHECKOUT</button>
+  <div style="float: right; padding-bottom: 4rem;">
+      <button mat-stroked-button >CHECKOUT</button>
   </div>
 </div>
 <div *ngIf="empty" style="text-align: center;    margin-top: 40px;

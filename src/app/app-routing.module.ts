@@ -13,6 +13,7 @@ import {map} from 'rxjs/operators';
 import {pipe} from 'rxjs';
 import {NewEditCollectionComponent} from './management-collection/new-edit/newEditCollection.component';
 import {BasketComponent} from './basket/basket.component';
+import {CheckoutComponent} from './checkout/checkout.component';
 
 const adminOnly = () => pipe(customClaims, map(claims => {
   // return claims.admin === true ? claims.admin : ['/'];
@@ -45,6 +46,7 @@ const routes: Routes = [
   {path: 'detail', component: DetailFurnitureComponent},
   {path: 'artisan', component: ArtisanComponent},
   {path: 'basket', component: BasketComponent},
+  {path: 'checkout', component: CheckoutComponent},
   //{path: 'me', component: ManagementComponent, canActivate: [AngularFireAuthGuard], data : {authGuardPipe : onlyAllowSelf}},
   {path: 'management', component: ManagementComponent, canActivate: [AngularFireAuthGuard], data : {authGuardPipe : adminOnly}},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
