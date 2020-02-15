@@ -1,28 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="navbar-collapse collapse w-100 ">
-    <ul class="navbar-nav mr-auto">
-      <!--
-          <span style="font-size: smaller;">Shipping to: </span>
-          <select style="font-size: smaller; margin-left: 1rem;">
-            <option class="dropdown-item">United Kingdom, £ GBP</option>
-            <option class="dropdown-item">United Kingdom, £ GBP</option>
-            <option class="dropdown-item">United Kingdom, £ GBP</option>
-          </select>
-         <a class="nav-link" href="#">Shipping to: <b>United Kingdom, £ GBP</b></a> -->
 
-    </ul>
+  </div>
+  <div class="d-flex w-100 order-0">
+    <div class="w-100">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" (click)="toggleNavbar()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <a class="navbar-brand text-center w-100" href="#">
+      <img src="../../assets/logo_1.svg" style="max-height: 50px">
+    </a>
+    <span class="w-100"></span>
   </div>
   <div class="">
-    <a class="navbar-brand align-content-center" href="#">
-      <img src="../../assets/logo_1.svg" class="logoSize">
-    </a>
-    <button class="navbar-toggler pull-left" type="button" (click)="toggleNavbar()" aria-expanded="false"
-            aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" *ngIf="!navbarOpen"></span>
-      <i class="material-icons" *ngIf="navbarOpen">
-        clear
-      </i>
-    </button>
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">

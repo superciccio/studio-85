@@ -11,9 +11,6 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {SharedVariableService} from '../../shared/shared-variable.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {CurrencyPipe} from '@angular/common';
-// @ts-ignore
-import {functions} from 'firebase/app';
-import 'firebase/functions';
 import {Filter} from '../../model/filter';
 import {Dimension} from '../../model/dimension';
 
@@ -23,29 +20,6 @@ import {Dimension} from '../../model/dimension';
   styleUrls: ['./newEditFurniture.component.scss']
 })
 export class NewEditFurnitureComponent implements OnInit {
-
-  isConverting: boolean;
-  myControl = new FormControl();
-  options: Collection[] = [];
-  filteredOptions: Observable<Collection[]>;
-
-  collections: Array<Collection> = [];
-
-  item: Item;
-  loading = false;
-
-  fd = new FormData();
-  files: Array<File> = [];
-  conversionDone = false;
-  id = '';
-  formattedAmount;
-  materialFilters: Filter[] = [];
-  colourFilters: Filter[] = [];
-  styleFilters: Filter[] = [];
-  furnitureFilters: Filter[] = [];
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  combinations: Combination[] = [];
 
   constructor(private aRoute: ActivatedRoute, private router: Router, private cService: CollectionService,
               private fService: FurnitureService,
@@ -82,6 +56,33 @@ export class NewEditFurnitureComponent implements OnInit {
     };
   }
 
+  isConverting: boolean;
+  myControl = new FormControl();
+  options: Collection[] = [];
+  filteredOptions: Observable<Collection[]>;
+
+  collections: Array<Collection> = [];
+
+  item: Item;
+  loading = false;
+
+  fd = new FormData();
+  files: Array<File> = [];
+  conversionDone = false;
+  id = '';
+  formattedAmount;
+  materialFilters: Filter[] = [];
+  colourFilters: Filter[] = [];
+  styleFilters: Filter[] = [];
+  furnitureFilters: Filter[] = [];
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  combinations: Combination[] = [];
+
+  static sortList(source: any[] ) {
+    source.sort((a, b) => a.value.localeCompare(b.value));
+  }
+
   ngOnInit() {
     this.collections = [];
     this.loading = true;
@@ -105,10 +106,10 @@ export class NewEditFurnitureComponent implements OnInit {
           this.furnitureFilters.push(element);
         }
       }
-      this.materialFilters.sort((a, b) => a.value.localeCompare(b.value));
-      this.colourFilters.sort((a, b) => a.value.localeCompare(b.value));
-      this.styleFilters.sort((a, b) => a.value.localeCompare(b.value));
-      this.furnitureFilters.sort((a, b) => a.value.localeCompare(b.value));
+      NewEditFurnitureComponent.sortList(this.materialFilters);
+      NewEditFurnitureComponent.sortList(this.colourFilters);
+      NewEditFurnitureComponent.sortList(this.styleFilters);
+      NewEditFurnitureComponent.sortList(this.furnitureFilters);
     });
     this.cService.getCollections().toPromise().then(resp => {
       resp.docs.map(doc => this.options.push(doc.data() as Collection));
@@ -125,9 +126,8 @@ export class NewEditFurnitureComponent implements OnInit {
         this.item = resp.data() as Item;
         this.formattedAmount = this.item.price;
         (resp.data().combinations).map((obj: Combination) => {
-          console.log('loading: ', obj);
           this.combinations.push(obj);
-         return Object.assign([], obj);
+          return Object.assign([], obj);
         });
         this.item.combinations = this.combinations;
         if (this.item.dimension == null) {
@@ -187,9 +187,9 @@ export class NewEditFurnitureComponent implements OnInit {
         this.isConverting  = true;
         await this.fstorage.ref(`/${this.firstFormGroup.controls.nameCtrl.value}/${f.name}`).put(f).then((resp) => {
           resp.ref.getDownloadURL().then(dwn => {
-            if(dwn.toString().includes('s.')) {
+            if (dwn.toString().includes('s.')) {
               this.item.smallImages.push(dwn);
-            } else{
+            } else {
               this.item.images.push(dwn);
             }
             this.combinations[indexList].images.push(dwn);
@@ -218,7 +218,7 @@ export class NewEditFurnitureComponent implements OnInit {
     this.snackBar.open('saving, do not close the page. Please wait', '', {duration: 250});
 
     this.fService.save(this.item).then(() => {
-        this.snackBar.open('Furniture saved.', '',{duration: 200});
+        this.snackBar.open('Furniture saved.', '', {duration: 200});
       });
     }
 
@@ -232,7 +232,7 @@ export class NewEditFurnitureComponent implements OnInit {
     combination.colour = '';
     combination.images = [];
     combination.material = new Material();
-    combination.style = new Style();
+    combination.style = new Filter();
     combination.dimension = new Dimension();
     this.combinations.push(combination);
   }
