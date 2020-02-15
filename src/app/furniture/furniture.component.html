@@ -1,6 +1,6 @@
 <mat-toolbar>
 
-  <button mat-button [matMenuTriggerFor]="menu" style="outline: none;" >Clear all filters <i class="material-icons">
+  <button mat-button style="outline: none;"(click)="resetFilters()" >Clear all filters <i class="material-icons">
     delete
   </i></button>
 
@@ -13,6 +13,8 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item style="outline: none" (click)="orderByPriceLowToHigh()" >Price - Low to High</button>
       <button mat-menu-item style="outline: none" (click)="orderByPriceHighToLow()" >Price - High to Low</button>
+      <button mat-menu-item style="outline: none" (click)="orderByZToA()" >Alphabetical order - A to Z</button>
+      <button mat-menu-item style="outline: none" (click)="orderByAToZ()" >Alphabetical order - Z to A</button>
     </mat-menu>
   </div>
 </mat-toolbar>
@@ -29,7 +31,7 @@
         </mat-expansion-panel-header>
         <ul class="listStyle">
           <li *ngFor="let f of furnitureFilters;">
-            <mat-checkbox >{{f.value}}</mat-checkbox>
+            <mat-checkbox (click)="applyFilter(f)">{{f.value}}</mat-checkbox>
           </li>
         </ul>
       </mat-expansion-panel>
@@ -44,7 +46,7 @@
         </mat-expansion-panel-header>
         <ul class="listStyle">
           <li *ngFor="let m of materialFilters">
-            <mat-checkbox >{{m.value}}</mat-checkbox>
+            <mat-checkbox (click)="applyFilter(m)">{{m.value}}</mat-checkbox>
           </li>
         </ul>
       </mat-expansion-panel>
@@ -59,7 +61,7 @@
         </mat-expansion-panel-header>
         <ul class="listStyle">
           <li *ngFor="let c of colourFilters">
-            <mat-checkbox >{{c.value}}</mat-checkbox>
+            <mat-checkbox (click)="applyFilter(c)">{{c.value}}</mat-checkbox>
           </li>
         </ul>
       </mat-expansion-panel>
@@ -102,7 +104,7 @@
         <div class="row" >
           <div class="col-xl-4 col-lg-3 col-md-4 col-sm-3" *ngFor="let f of listFurnitures">
             <figure>
-              <img [src]="f.images[0]" class="img-fluid pointer" (click)="goToDetail(f.id)" />
+              <img *ngIf="f.combinations.length>0" [src]="f.combinations[0].images[0]" class="img-fluid pointer" (click)="goToDetail(f.id)" />
 
               <figcaption style="text-align: center;">
                 <span style="font-weight: bold" *ngIf="f.collectionId == ''">STUDIO 85 COLLECTION</span>

@@ -18,10 +18,10 @@ export class Item {
 export class Combination {
     id: string;
     colour: string | HexColor | null;
-    style: Style | null | string;
+    style: Filter | null ;
     material: Material | null | string;
     images: Array<string> = []; // link images
-    dimension: Dimension | string;
+    dimension: Dimension;
 }
 
 export class HexColor {

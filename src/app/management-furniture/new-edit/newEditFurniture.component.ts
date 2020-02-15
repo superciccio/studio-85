@@ -153,7 +153,6 @@ export class NewEditFurnitureComponent implements OnInit {
     this.formattedAmount = this.currencyPipe.transform(Number.parseInt(this.firstFormGroup.controls.priceCtrl.value, 0), '£');
 
     element.target.value = this.formattedAmount;
-    this.firstFormGroup.controls.priceCtrl.setValue(this.formattedAmount);
   }
 
   compareCategoryObjects(object1: string, object2: string) {
@@ -219,7 +218,7 @@ export class NewEditFurnitureComponent implements OnInit {
     this.snackBar.open('saving, do not close the page. Please wait', '', {duration: 250});
 
     this.fService.save(this.item).then(() => {
-        this.snackBar.open('Furniture saved.');
+        this.snackBar.open('Furniture saved.', '',{duration: 200});
       });
     }
 

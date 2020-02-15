@@ -67,17 +67,20 @@ export class DetailFurnitureComponent implements OnInit {
           this.item.combinations.map(comb => {
             this.listAvailableColor.push(comb.colour);
           });
-          this.selectedImage = this.item.images[0];
+          this.selectedImage = this.item.combinations[0].images[0];
           this.fCache.addInCache(this.item);
           if (this.item.dimension === undefined) {
             this.item.dimension = null;
           }
-          this.item.images.map(s => {
-            if (s.includes('s.jpg')) {
-              console.log(s);
-              this.smallImages.push(s);
+          for (const combination of this.item.combinations) {
+            for (const image of combination.images) {
+              if (image.includes('s.jpg')) {
+                this.smallImages.push(image);
+              } else {
+                console.log(image);
+              }
             }
-          });
+          }
           this.setTitleBottomList();
           this.sliceList(this.indexStart, this.indexEnd);
           this.loading = false;
@@ -107,17 +110,20 @@ export class DetailFurnitureComponent implements OnInit {
         });
       } else {
         this.item = this.fCache.furnitureCache.get(this.id);
-        this.selectedImage = this.item.images[0];
+        this.selectedImage = this.item.combinations[0].images[0];
         this.item.combinations.map(comb => {
           this.listAvailableColor.push(comb.colour);
         });
         this.setTitleBottomList();
-        this.item.images.map(s => {
-          if (s.includes('s.jpg')) {
-            console.log(s);
-            this.smallImages.push(s);
+        for (const combination of this.item.combinations) {
+          for (const image of combination.images) {
+            if (image.includes('s.jpg')) {
+              this.smallImages.push(image);
+            } else {
+              console.log(image);
+            }
           }
-        });
+        }
         // this.selectedImage = this.item.images[0];
         this.loading = false;
       }

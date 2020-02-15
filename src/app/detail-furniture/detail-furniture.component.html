@@ -154,7 +154,9 @@
                <span style="    font-weight: 600;     color: #5c5c5c;
                text-transform: uppercase;"> available colours </span>
       <br>
-      <span style="font-size: small;">Yello, Red</span>
+      <div *ngFor="let c of item.combinations">
+      <span style="font-size: small;">{{c.colour.value}}</span>
+      </div>
     </div>
 
     <div class="col-6" style="padding-top: 15px;">
@@ -172,7 +174,9 @@
                 <span style="    font-weight: 600;     color: #5c5c5c;
                 text-transform: uppercase;"> Dimension </span>
       <br>
-      <span style="font-size: small;">32x24x12</span>
+      <div *ngFor="let c of item.combinations">
+      <span style="font-size: small;">{{c.dimension.height}}X{{c.dimension.width}}X{{c.dimension.depth}}</span>
+      </div>
     </div>
 
     <div class="col-12" style="padding: 15px 20px;">
@@ -188,7 +192,10 @@
                 <span style="    font-weight: 600;     color: #5c5c5c;
                 text-transform: uppercase;"> Style </span>
       <br>
-      <span style="font-size: small;">LOL</span>
+      <div *ngFor="let c of item.combinations">
+        <span style="font-size: small;">{{c.style.value}}</span>
+
+      </div>
     </div>
 
   </div>

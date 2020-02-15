@@ -27,6 +27,7 @@ export class FurnitureComponent implements OnInit {
   materialFilterCtrl = new FormControl();
 
   filterToApply: Filter[] = [];
+  filterToRemove: Filter[] = [];
 
   show = 5;
 
@@ -83,11 +84,13 @@ export class FurnitureComponent implements OnInit {
     this.router.navigate(['/detailfurniture/' + id]);
   }
 
-  applyFurnitureFilter(values: Filter[]) {
-    if (values.length === 0) {
-      this.listFurnitures = this.originalListFurnitures;
+  applyFilter(values: Filter) {
+    const filter = this.filterToApply.find(i => i.id === values.id);
+    if (filter === undefined) {
+      this.filterToApply.push(values);
     } else {
-      this.filterToApply.push(...values.values());
+      const index = this.filterToApply.indexOf(filter);
+      this.filterToApply = this.filterToApply.splice(index, 0);
     }
     this.applyAllFilters();
 
@@ -98,32 +101,16 @@ export class FurnitureComponent implements OnInit {
     for (const x of this.originalListFurnitures) {
       for (const lol of this.filterToApply) {
         if (x.categoryItem. value === lol.value) {
-          this.listFurnitures.push(x);
+          const item = this.listFurnitures.find(i => i.id === x.id);
+          if (item === undefined) {
+            this.listFurnitures.push(x);
+          }
         }
       }
     }
-  }
-
-  applyMaterialFilter(values: Filter[]) {
-
-    if (values.length === 0) {
-      this.listFurnitures = this.originalListFurnitures;
-    } else {
-      this.filterToApply.push(...values.values());
+    if (this.listFurnitures.length === 0) {
+      this.resetFilters();
     }
-    this.applyAllFilters();
-
-  }
-
-  applyColourFilter(values: Filter[]) {
-
-    if (values.length === 0) {
-      this.listFurnitures = this.originalListFurnitures;
-    } else {
-      this.filterToApply.push(...values.values());
-    }
-    this.applyAllFilters();
-
   }
 
   openDesignerDetail(id: string) {
@@ -136,5 +123,18 @@ export class FurnitureComponent implements OnInit {
 
   orderByPriceLowToHigh() {
     this.listFurnitures.sort((a, b) => (a.price as number) - (b.price as number));
+  }
+
+  orderByAToZ() {
+    this.listFurnitures.sort((a, b) => b.name.localeCompare(a.name) );
+  }
+
+  orderByZToA() {
+    this.listFurnitures.sort((a, b) => a.name.localeCompare(b.name) );
+  }
+
+  resetFilters() {
+    this.listFurnitures = [];
+    this.listFurnitures = [...this.originalListFurnitures];
   }
 }
