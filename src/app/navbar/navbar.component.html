@@ -57,13 +57,13 @@
   <div class="collapse navbar-collapse " [ngClass]="{ 'show': navbarOpen }" id="navbarNav">
     <ul class="navbar-nav ml-auto mx-auto">
       <li class="nav-item dropdown">
-        <a class="nav-link titeling" routerLink="collections" id="collectionDropdown">Collections</a>
+        <a class="nav-link titeling" (click)="goToCollections()"  id="collectionDropdown">Collections</a>
         <div class="dropdown-menu mt-0" aria-labelledby="collectionDropdown">
           <a class="dropdown-item pointer"  *ngFor="let c of collections" (click)="goToCollection(c.id)">{{c.name}}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link titeling" routerLink="furnitures" id="furnitureDropdown" >Furniture
+        <a class="nav-link titeling" (click)="goToFurniture()"  id="furnitureDropdown" >Furniture
 <!--          <div class="dropdown-menu mt-0" aria-labelledby="furnitureDropdown">-->
 <!--            <a class="dropdown-item" href="#">Action</a>-->
 <!--            <a class="dropdown-item" href="#">Another action</a>-->

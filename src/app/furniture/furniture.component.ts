@@ -38,7 +38,7 @@ export class FurnitureComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private service: SharedVariableService, private fService: FurnitureService,
               changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(min-width: 769px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this.mobileQueryListener);
   }

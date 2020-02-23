@@ -18,7 +18,7 @@
     </mat-menu>
   </div>
 </mat-toolbar>
-<mat-sidenav-container class="example-sidenav-container">
+<mat-sidenav-container class="example-sidenav-container" *ngIf="mobileQuery.matches">
 
   <mat-sidenav mode="side" opened class="example-sidenav">
 
@@ -129,4 +129,62 @@
 
   </mat-sidenav-content>
 </mat-sidenav-container>
+<mat-toolbar style="background-color: #f8f9fa!important;"  *ngIf="!mobileQuery.matches">
+      <mat-form-field style="width: 50%">
+        <mat-label>Furnitures</mat-label>
+        <mat-select multiple>
+          <mat-option *ngFor="let op of furnitureFilters" (click)="applyFilter(op)">{{ op.value }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  <mat-form-field style="width: 50%; margin-left: 25px">
+        <mat-label>Material</mat-label>
+        <mat-select multiple>
+          <mat-option *ngFor="let op of materialFilters" (click)="applyFilter(op)">{{ op.value }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+</mat-toolbar>
+<mat-toolbar style="background-color: #f8f9fa!important;" *ngIf="!mobileQuery.matches">
+  <mat-form-field style="width: 50%">
+
+    <mat-label>Colour</mat-label>
+  <mat-select multiple>
+    <mat-option *ngFor="let op of colourFilters" (click)="applyFilter(op)">{{ op.value }}</mat-option>
+  </mat-select>
+  </mat-form-field>
+  <mat-form-field style="width: 50%; margin-left: 25px">
+
+    <mat-label>Styles</mat-label>
+    <mat-select multiple>
+      <mat-option *ngFor="let op of styleFilters" (click)="applyFilter(op)">{{ op.value }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-toolbar>
+<div *ngIf="!loading">
+
+
+  <div class="p-2" style="width: 100%"></div>
+
+  <mat-grid-list  rowHeight="320px" [cols]="breakpoint" (window:resize)="onResize($event)"  *ngIf="!mobileQuery.matches">
+    <mat-grid-tile
+      *ngFor="let f of listFurnitures"
+      [rowspan]="1"
+      [colspan]="1">
+      <figure>
+        <img *ngIf="f.combinations.length>0" [src]="f.combinations[0].images[0]" class="img-fluid pointer" (click)="goToDetail(f.id)"
+             alt="{{f.name}}"/>
+
+        <figcaption style="text-align: center;">
+          <span style="font-weight: bold" *ngIf="f.collectionId == ''">STUDIO 85 COLLECTION</span>
+          <span style="font-weight: bold" *ngIf="f.collectionId !== ''">{{f.collectionId}}</span>
+          <br>
+          <span style="font-weight: bold">{{f.name}}</span>
+          <br>
+          <span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId !== ''">DESIGNER MATTEO MUGNAI</span>
+          <span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId == ''"></span>
+          <span style="font-weight: lighter" >{{f.price | currencywithspace:'GBP'}}</span>
+        </figcaption>
+      </figure>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
 

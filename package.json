@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "~9.0.0-rc.7",
     "@angular/pwa": "^0.801.1",
     "@angular/router": "~9.0.0-rc.7",
+    "@ngmodule/material-carousel": "^0.6.0",
     "animate.css": "^3.7.2",
     "bcrypt": "^3.0.6",
     "body-parser": "*",

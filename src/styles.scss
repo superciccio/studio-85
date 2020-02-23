@@ -170,9 +170,9 @@ a:hover {
    }
 
 .loadingPosition{
-  left: 45%;
-  top: 10px;
-  position: relative;
+  position: fixed;
+  top: 55%;
+  left: 50%;
 }
 
 .lds-ripple {
@@ -181,7 +181,7 @@ a:hover {
   width: 80px;
   height: 80px;
   left: 50%;
-  margin-top: 50px;
+  top: 20px;
 }
 .lds-ripple div {
   position: absolute;
@@ -212,7 +212,15 @@ a:hover {
 
 .lighterText {
   color:grey;
-  font-size:24px;
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: 425px) {
+    font-size: 14px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 22px;
+  }
   font-weight:100;
   letter-spacing:2px
 }

@@ -11,6 +11,7 @@ const firebaseConfig = {
 
 export const environment = {
   production: true,
-  firebase: firebaseConfig
+  firebase: firebaseConfig,
+  mapsApiKey: 'AIzaSyACyh1apt27sOrGR7xmYX7Hs5WAyKtDU5I'
 
 };

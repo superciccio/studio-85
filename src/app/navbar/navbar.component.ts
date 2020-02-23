@@ -57,10 +57,22 @@ export class NavBarComponent implements OnInit {
 
   openBasket() {
     this.router.navigate(['/basket/']);
+    this.toggleNavbar();
   }
 
   goToCollection(idCollection: string) {
     this.router.navigate(['/collections/' + idCollection]);
+    this.toggleNavbar();
+  }
+
+  goToFurniture(){
+    this.router.navigate(['/furnitures/']);
+    this.toggleNavbar();
+  }
+
+  goToCollections(){
+    this.router.navigate(['/collections/']);
+    this.toggleNavbar();
   }
 
 }

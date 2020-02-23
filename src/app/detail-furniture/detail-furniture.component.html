@@ -19,7 +19,7 @@
 
   <div class="row" >
 
-    <div class="col-sm-1">
+    <div class="col-sm-1" *ngIf="!mobileQuery.matches">
 
       <i class="material-icons moveArrow" style="margin-top: 40px;">
         keyboard_arrow_up
@@ -35,7 +35,32 @@
 
     </div>
 
-    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-6">
+    <div class="col-sm-12 col-md-12" *ngIf="mobileQuery.matches">
+
+      <mat-carousel
+        timings="250ms ease-in"
+        [autoplay]="true"
+        interval="5000"
+        maxWidth="auto"
+        proportion="80"
+        slides="{{largeImages.length}}"
+        [loop]="true"
+        [hideArrows]="true"
+        [hideIndicators]="true"
+        [useKeyboard]="false"
+        [useMouseWheel]="false"
+        orientation="ltr">
+        <mat-carousel-slide
+          #matCarouselSlide
+          *ngFor="let slide of largeImages; let i = index"
+          [image]="slide"
+          [hideOverlay]="true"
+        ></mat-carousel-slide>
+      </mat-carousel>
+
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-6" *ngIf="!mobileQuery.matches">
 
       <img class="img-fluid" [src]="selectedImage">
     </div>
@@ -224,7 +249,7 @@
       <div class="row">
         <div class="col-4"  *ngFor="let f of fromSameCategory">
         <figure >
-          <img src="{{f.images[0]}}"  alt="Image from same category" class="img-fluid pointer" (click)="openDetailFurniture(f.id)" />
+          <img src="{{f.combinations[0].images[0]}}"  alt="Image from same category" class="img-fluid pointer" (click)="openDetailFurniture(f.id)" />
           <figcaption style="text-align: center">
             {{f.name}}
           </figcaption>

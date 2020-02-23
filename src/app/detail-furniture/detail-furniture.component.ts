@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {BasketService} from '../shared/basket.service';
 import {Item} from '../model/Item';
 import {ImageZoomContentModalComponent} from '../shared/image-zoom-content-modal.component';
@@ -8,6 +8,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FurnitureService} from '../shared/furniture.service';
 import {FurnitureCacheService} from '../shared/furniture_cache.service';
 import {Title} from '@angular/platform-browser';
+import {MediaMatcher} from '@angular/cdk/layout';
 
 
 @Component({
@@ -15,7 +16,7 @@ import {Title} from '@angular/platform-browser';
   templateUrl: './detail-furniture.component.html',
   styleUrls: ['./detail-furniture.component.scss'],
 })
-export class DetailFurnitureComponent implements OnInit {
+export class DetailFurnitureComponent implements OnInit, OnDestroy {
 
   id = '';
   loading = true;
@@ -42,15 +43,22 @@ export class DetailFurnitureComponent implements OnInit {
   bottomList: Item[] = [];
   bottomListUnfiltered: Item[] = [];
   smallImages: string[] = [];
+  largeImages: string[] = [];
   indexStart = 0;
   indexEnd = 4;
   listAvailableColor = [];
   fromSameCategory: Item[] = [];
   fromSameCollection: Item[] = [];
 
+  mobileQuery: MediaQueryList;
+  private mobileQueryListener: () => void;
+
   constructor(private aRoute: ActivatedRoute, private router: Router, private basket: BasketService, public dialog: MatDialog,
               private snackBar: MatSnackBar, private fService: FurnitureService, private fCache: FurnitureCacheService,
-              private titleService: Title ) {
+              private titleService: Title, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher ) {
+    this.mobileQuery = media.matchMedia('(max-width: 768px)');
+    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this.mobileQueryListener);
   }
 
   ngOnInit() {
@@ -77,7 +85,7 @@ export class DetailFurnitureComponent implements OnInit {
               if (image.includes('s.jpg')) {
                 this.smallImages.push(image);
               } else {
-                console.log(image);
+                this.largeImages.push(image);
               }
             }
           }
@@ -120,7 +128,7 @@ export class DetailFurnitureComponent implements OnInit {
             if (image.includes('s.jpg')) {
               this.smallImages.push(image);
             } else {
-              console.log(image);
+              this.largeImages.push(image);
             }
           }
         }
@@ -199,6 +207,11 @@ export class DetailFurnitureComponent implements OnInit {
          this.selectedImage = image;
       }
     }
+  }
+
+
+    ngOnDestroy(): void {
+      this.mobileQuery.removeListener(this.mobileQueryListener);
   }
 }
 

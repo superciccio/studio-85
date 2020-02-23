@@ -16,7 +16,8 @@ const firebaseConfig = {
 export const environment = {
   production: false,
   path: 'http://localhost:8080',
-  firebase: firebaseConfig
+  firebase: firebaseConfig,
+  mapsApiKey: 'AIzaSyACyh1apt27sOrGR7xmYX7Hs5WAyKtDU5I'
 };
 
 /*

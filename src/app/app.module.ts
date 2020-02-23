@@ -67,6 +67,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import {AgmCoreModule} from '@agm/core';
 import { CreditCardMaskPipe } from './credit-card-mask.pipe';
 import { CreditCardMaskDirective } from './credit-card-mask.directive';
+import {MatCarouselModule} from '@ngmodule/material-carousel';
 
 
 @NgModule({
@@ -102,7 +103,7 @@ import { CreditCardMaskDirective } from './credit-card-mask.directive';
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
       AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyACyh1apt27sOrGR7xmYX7Hs5WAyKtDU5I',
+        apiKey: environment.mapsApiKey,
         libraries: ['places']
       }, ),
         AngularFirestoreModule,
@@ -110,6 +111,7 @@ import { CreditCardMaskDirective } from './credit-card-mask.directive';
         AngularFireStorageModule,
         BrowserModule,
         BrowserAnimationsModule,
+      MatCarouselModule.forRoot(),
         HttpClientModule,
         AppRoutingModule,
         MatDialogModule,
