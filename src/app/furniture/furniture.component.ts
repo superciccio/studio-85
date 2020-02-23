@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {SharedVariableService} from '../shared/shared-variable.service';
 import {FurnitureService} from '../shared/furniture.service';
 import {Filter} from '../model/filter';
 import {Router} from '@angular/router';
 import { Item } from '../model/Item';
 import { FormControl } from '@angular/forms';
+import {MediaMatcher} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-furniture',
   templateUrl: './furniture.component.html',
   styleUrls: ['./furniture.component.scss']
 })
-export class FurnitureComponent implements OnInit {
+export class FurnitureComponent implements OnInit, OnDestroy {
 
   loading = false;
   listFurnitures: Item[] = [];
@@ -31,11 +32,20 @@ export class FurnitureComponent implements OnInit {
 
   show = 5;
 
-  constructor(private router: Router, private service: SharedVariableService, private fService: FurnitureService) {
+  mobileQuery: MediaQueryList;
+  private mobileQueryListener: () => void;
+  breakpoint: number;
 
+  constructor(private router: Router, private service: SharedVariableService, private fService: FurnitureService,
+              changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this.mobileQueryListener);
   }
 
   ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 600) ? 1 : 4;
+
     this.loading = true;
     this.service.getFilters().toPromise().then(resp => {
 
@@ -136,5 +146,21 @@ export class FurnitureComponent implements OnInit {
   resetFilters() {
     this.listFurnitures = [];
     this.listFurnitures = [...this.originalListFurnitures];
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this.mobileQueryListener);
+  }
+
+  onResize(event) {
+    if (event.target.innerWidth === 768) {
+      this.breakpoint = 3;
+    } else if (event.target.innerWidth <= 768 && event.target.innerWidth >= 608) {
+      this.breakpoint = 2;
+    } else if (event.target.innerWidth <= 608) {
+      this.breakpoint = 1;
+    } else {
+      this.breakpoint = 4;
+    }
   }
 }

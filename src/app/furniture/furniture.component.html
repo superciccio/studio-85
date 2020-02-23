@@ -1,6 +1,6 @@
 <mat-toolbar>
 
-  <button mat-button style="outline: none;"(click)="resetFilters()" >Clear all filters <i class="material-icons">
+  <button mat-button style="outline: none;" (click)="resetFilters()" >Clear all filters <i class="material-icons">
     delete
   </i></button>
 
@@ -18,9 +18,9 @@
     </mat-menu>
   </div>
 </mat-toolbar>
-<mat-sidenav-container>
+<mat-sidenav-container class="example-sidenav-container">
 
-  <mat-sidenav #sidenav mode="side" opened class="example-sidenav">
+  <mat-sidenav mode="side" opened class="example-sidenav">
 
     <mat-accordion>
       <mat-expansion-panel>
@@ -84,7 +84,7 @@
 
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content >
 
     <div>
 
@@ -101,10 +101,14 @@
 
         <div class="p-2" style="width: 100%"></div>
 
-        <div class="row" >
-          <div class="col-xl-4 col-lg-3 col-md-4 col-sm-3" *ngFor="let f of listFurnitures">
+        <mat-grid-list  rowHeight="320px" [cols]="breakpoint" (window:resize)="onResize($event)" >
+          <mat-grid-tile
+            *ngFor="let f of listFurnitures"
+            [rowspan]="1"
+            [colspan]="1">
             <figure>
-              <img *ngIf="f.combinations.length>0" [src]="f.combinations[0].images[0]" class="img-fluid pointer" (click)="goToDetail(f.id)" />
+              <img *ngIf="f.combinations.length>0" [src]="f.combinations[0].images[0]" class="img-fluid pointer" (click)="goToDetail(f.id)"
+              alt="{{f.name}}"/>
 
               <figcaption style="text-align: center;">
                 <span style="font-weight: bold" *ngIf="f.collectionId == ''">STUDIO 85 COLLECTION</span>
@@ -114,13 +118,11 @@
                 <br>
                 <span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId !== ''">DESIGNER MATTEO MUGNAI</span>
                 <span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId == ''"></span>
-                <br>
                 <span style="font-weight: lighter" >{{f.price | currencywithspace:'GBP'}}</span>
               </figcaption>
             </figure>
-          </div>
-
-        </div>
+          </mat-grid-tile>
+        </mat-grid-list>
       </div>
     </div>
 
