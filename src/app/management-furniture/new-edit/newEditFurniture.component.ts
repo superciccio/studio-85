@@ -87,25 +87,25 @@ export class NewEditFurnitureComponent implements OnInit {
     this.collections = [];
     this.loading = true;
     this.service.getFilters().toPromise().then(resp => {
-      for (const doc of resp.docs) {
-        const element = doc.data() as Filter;
-
-        if (element.type === 'MATERIALS') {
-          this.materialFilters.push(element);
-        }
-
-        if (element.type === 'COLOURS') {
-          this.colourFilters.push(element);
-        }
-
-        if (element.type === 'STYLES') {
-          this.styleFilters.push(element);
-        }
-
-        if (element.type === 'FURNITURES') {
-          this.furnitureFilters.push(element);
-        }
-      }
+      // for (const doc of resp.docs) {
+      //   const element = doc.data() as Filter;
+      //
+      //   if (element.type === 'MATERIALS') {
+      //     this.materialFilters.push(element);
+      //   }
+      //
+      //   if (element.type === 'COLOURS') {
+      //     this.colourFilters.push(element);
+      //   }
+      //
+      //   if (element.type === 'STYLES') {
+      //     this.styleFilters.push(element);
+      //   }
+      //
+      //   if (element.type === 'FURNITURES') {
+      //     this.furnitureFilters.push(element);
+      //   }
+      // }
       NewEditFurnitureComponent.sortList(this.materialFilters);
       NewEditFurnitureComponent.sortList(this.colourFilters);
       NewEditFurnitureComponent.sortList(this.styleFilters);

@@ -1,62 +1,47 @@
-<div class="container">
-  <section class="sub-header">
-    <div class="cta-header">
-      <div class="image-wrapper"
-           style="background: url('https://artemest-spree-production-cdn.s3.amazonaws.com/artemest_online_destination_for_handmade_decor_furniture_lighting-d1644b98-f5c2-4c68-a007-0813a73cae84.jpeg')">
-        <div class="header-sub ">
-          <div class="centered ">
-            <h5>Italian Furniture</h5>
-            <h1>Welcome to the World of Luxury Craftsmanship</h1>
-            <p>Discover unique handmade furniture &amp; décor</p>
-            <a class="cta" href="/categories/furniture">Explore Now</a>
-          </div>
+<img src="https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=4020&q=80" class="fullScreenImg">
+
+<div class="row" style="padding-bottom: .1rem;">
+    <div class="col-8">
+        <div class="jumbotron">
+            <h1 class="display-6 text-uppercase">Interior design service</h1>
+            <hr class="my-4">
+            <p style="word-spacing: .2rem; color: rgba(40,26,23,.6);">Concept Design, Design Development, Technical Design, and more. We design bespoke living spaces, we always look for the balance between the colours and texture to bring the uniqueness inside your house.
+                <br>
+                <br> Inspiration comes in within our design approach. Using different materials, we will play with texture and the natural pattern to create unique pieces to be lived in your house. Design is a way to elegantly enhance our perceptions,
+                giving an exceptional feeling to our soul. </p>
         </div>
-      </div>
     </div>
-  </section>
+    <div class="rightSizeDiv">
+        <div class="jumbotron">
+            <h1 class="display-6 text-uppercase instagramTitle">A GOOD DESIGN IS A KEY OF A WELL - BEING</h1>
+
+            <div class="row" style="width: 100%; margin-top: 24px;">
+                <img class="col-4 img-fluid pointer" [alt]="item['altText']" [title]="item['titleText']" [src]="item['img']" *ngFor="let item of instgramFeeds, let i = index;" [ngClass]="{padLR: i == 1 || i == 4 || i == 7}" (click)="generateInstagramLink(item)" decoding="async">
+
+
+            </div>
+        </div>
+    </div>
 </div>
-<div>
 
-  <section class="homepage">
+<div class="row">
+    <div class="col-7">
+        <div class="jumbotron" style="padding-top: 0px">
+            <h1 class="display-6 text-uppercase">Artisan</h1>
+            <hr class="my-4">
+            <p style="word-spacing: .2rem; color: rgba(40,26,23,.6);">Concept Design, Design Development, Technical Design, and more. We design bespoke living spaces, we always look for the balance between the colours and texture to bring the uniqueness inside your house.
+                <br>
+                <br> Inspiration comes in within our design approach. Using different materials, we will play with texture and the natural pattern to create unique pieces to be lived in your house. Design is a way to elegantly enhance our perceptions,
+                giving an exceptional feeling to our soul. </p>
 
-    <h2 class="text-center collectionStyleTileHP">Collections</h2>
 
 
-    <div class="container-fluid">
-
-
-    <div *ngIf="!loading">
-
-      <div class="row">
-
-         <div class="col-sm-auto col-lg-4" *ngFor="let c of collections" >
-
-          <img class="rounded mx-auto d-block grow pointer"
-               style="max-height: 300px;" (click)="goToCollection(c.id)"
-               [src]="c.cover" alt="Walnut Mania">
-
-          <h3 class="mt-3 titleHPBox">
-            <a >
-              {{c.name}}</a>
-          </h3>
-
-          <p class="box__content-text mobile-hidden">{{c.description}}</p>
-
-          <a class=" mt-5 cta" (click)="goToCollection(c.id)" >Shop Now</a>
         </div>
-      </div>
-
-      </div>
+    </div>
+    <div class="col-5">
+        <div class="jumbotron">
+            <img class="img-fluid" height="auto" style="margin-top: 8px;" decoding="async"  src='https://upload.wikimedia.org/wikipedia/commons/c/c9/Ferrari_Portofino_IMG_0795.jpg'>
+        </div>
     </div>
 
-    <div class="pt-5"></div>
-
-    <div class="jumbotron" style="padding: 1rem;">
-      <div class="container text-center">
-
-        <a class="lead pointer collectionStyleTileLink" routerLink="/collections">ALL COLLECTIONS</a>
-      </div>
-    </div>
-
-  </section>
 </div>

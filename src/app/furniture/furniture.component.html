@@ -1,8 +1,12 @@
-<mat-toolbar>
 
-  <button mat-button style="outline: none;" (click)="resetFilters()" >Clear all filters <i class="material-icons">
-    delete
-  </i></button>
+  <div class="row justify-content-center align-self-center" style="height: 48px; margin-top: 1.5rem; margin-bottom: 1.5rem; ">
+   <span style="    font-size: 25px;
+   letter-spacing: 2px;
+   font-weight: 500;
+   color: rgba(0,0,0,0.5);">Furnitures</span>
+  </div>
+
+<mat-toolbar style="background-color: white;">
 
   <span class="example-spacer"></span>
 
@@ -31,7 +35,7 @@
         </mat-expansion-panel-header>
         <ul class="listStyle">
           <li *ngFor="let f of furnitureFilters;">
-            <mat-checkbox (click)="applyFilter(f)">{{f.value}}</mat-checkbox>
+            <mat-checkbox (click)="applyFilter(f)" >{{f.value}}</mat-checkbox>
           </li>
         </ul>
       </mat-expansion-panel>
@@ -101,28 +105,51 @@
 
         <div class="p-2" style="width: 100%"></div>
 
-        <mat-grid-list  rowHeight="320px" [cols]="breakpoint" (window:resize)="onResize($event)" >
+       <div class="row">
+
+        <div class="col-4"  *ngFor="let f of listFurnitures">
+
+          <figure>
+            <img *ngIf="f.combinations.length>0" [src]="f.combinations[0].images[0]" class="img-fluid pointer" (click)="goToDetail(f.id)"
+            alt="{{f.name}}"/>
+
+            <figcaption style="text-align: center;">
+              <span class="text-capitalize" style="font-style: italic;">{{f.name}}</span> <br>
+            
+              <span style="font-weight: 500" *ngIf="f.collectionId == ''">STUDIO 85</span>
+              <span style="font-weight: bold" *ngIf="f.collectionId !== ''">{{f.collectionId}}</span>
+              <br>
+            
+              <span style="font-weight: lighter" >{{f.price | currencywithspace:'GBP'}}</span>
+            </figcaption>
+          </figure>
+
+
+        </div>
+
+        </div>
+
+        <!-- <mat-grid-list  rowHeight="320px" [cols]="breakpoint" (window:resize)="onResize($event)" >
           <mat-grid-tile
             *ngFor="let f of listFurnitures"
             [rowspan]="1"
             [colspan]="1">
             <figure>
-              <img *ngIf="f.combinations.length>0" [src]="f.combinations[0].images[0]" class="img-fluid pointer" (click)="goToDetail(f.id)"
+              <img *ngIf="f.combinations.length>0" [src]="f.combinations[0].images[0]" height="240px" class="img-fluid pointer" (click)="goToDetail(f.id)"
               alt="{{f.name}}"/>
 
               <figcaption style="text-align: center;">
-                <span style="font-weight: bold" *ngIf="f.collectionId == ''">STUDIO 85 COLLECTION</span>
+                <span class="text-capitalize" >{{f.name}}</span> <br>
+              
+                <span style="font-weight: 500" *ngIf="f.collectionId == ''">STUDIO 85 COLLECTION</span>
                 <span style="font-weight: bold" *ngIf="f.collectionId !== ''">{{f.collectionId}}</span>
                 <br>
-                <span style="font-weight: bold">{{f.name}}</span>
-                <br>
-                <span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId !== ''">DESIGNER MATTEO MUGNAI</span>
-                <span style="font-weight: lighter" (click)="openDesignerDetail(f.id)" *ngIf="f.collectionId == ''"></span>
+              
                 <span style="font-weight: lighter" >{{f.price | currencywithspace:'GBP'}}</span>
               </figcaption>
             </figure>
           </mat-grid-tile>
-        </mat-grid-list>
+        </mat-grid-list> -->
       </div>
     </div>
 

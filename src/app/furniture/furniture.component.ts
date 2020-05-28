@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 import { Item } from '../model/Item';
 import { FormControl } from '@angular/forms';
 import {MediaMatcher} from '@angular/cdk/layout';
+import {Observable, Subscription} from "rxjs";
+import {QuerySnapshot} from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-furniture',
@@ -35,6 +37,8 @@ export class FurnitureComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   private mobileQueryListener: () => void;
   breakpoint: number;
+  filters: Subscription;
+  furnitures: Subscription;
 
   constructor(private router: Router, private service: SharedVariableService, private fService: FurnitureService,
               changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
@@ -44,13 +48,14 @@ export class FurnitureComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.breakpoint = (window.innerWidth <= 600) ? 1 : 4;
+    this.breakpoint = (window.innerWidth <= 600) ? 1 : 3;
 
     this.loading = true;
-    this.service.getFilters().toPromise().then(resp => {
+    this.filters = this.service.getFilters().subscribe(resp => {
 
-        for (const doc of resp.docs) {
-          const element = doc.data() as Filter;
+
+        for (const doc of resp) {
+          const element = doc;
 
           if (element.type === 'MATERIALS') {
           this.materialFilters.push(element);
@@ -78,16 +83,16 @@ export class FurnitureComponent implements OnInit, OnDestroy {
 
     });
 
-    this.fService.getFurnitures().toPromise().then(resp => {
-       resp.docs.map(qs => {
-         const item =  qs.data() as Item;
-         this.listFurnitures.push(item);
-         this.originalListFurnitures.push(item);
-       });
-   }).then(() => {
-     this.listFurnitures.sort((a, b) => a.name.localeCompare(b.name));
-     this.originalListFurnitures.sort((a, b) => a.name.localeCompare(b.name));
-    });
+    this.furnitures = this.fService.getFurnitures().subscribe(resp => {
+      this.listFurnitures = resp;
+      this.originalListFurnitures = resp;
+      this.loading = false;
+   });
+
+  // .then(() => {
+  //     this.listFurnitures.sort((a, b) => a.name.localeCompare(b.name));
+  //     this.originalListFurnitures.sort((a, b) => a.name.localeCompare(b.name));
+  //   });
   }
 
   goToDetail(id: string) {
@@ -150,6 +155,9 @@ export class FurnitureComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this.mobileQueryListener);
+    this.filters.unsubscribe();
+    this.furnitures.unsubscribe();
+    console.log('destroy');
   }
 
   onResize(event) {
@@ -160,7 +168,7 @@ export class FurnitureComponent implements OnInit, OnDestroy {
     } else if (event.target.innerWidth <= 608) {
       this.breakpoint = 1;
     } else {
-      this.breakpoint = 4;
+      this.breakpoint = 3;
     }
   }
 }

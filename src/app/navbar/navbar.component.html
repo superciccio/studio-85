@@ -1,84 +1,62 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="navbar-collapse collapse w-100 ">
+    <div class="navbar-collapse collapse w-100 ">
 
-  </div>
-  <div class="d-flex w-100 order-0">
-    <div class="w-100">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" (click)="toggleNavbar()">
+    </div>
+    <div class="d-flex w-100 order-0">
+        <div class="w-100">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" (click)="toggleNavbar()">
         <span class="navbar-toggler-icon"></span>
       </button>
+        </div>
+        <a class="navbar-brand text-center w-100" href="#">
+            <img src="../../assets/logo_1.svg" style="max-height: 50px">
+        </a>
+        <span class="w-100"></span>
     </div>
-    <a class="navbar-brand text-center w-100" href="#">
-      <img src="../../assets/logo_1.svg" style="max-height: 50px">
-    </a>
-    <span class="w-100"></span>
-  </div>
-  <div class="">
-  </div>
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link pointer" (click)="openBasket()">
-          <i class="material-icons">
+    <div class="">
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link pointer" (click)="openBasket()">
+                    <i class="material-icons">
             shopping_cart
           </i>
-        </a>
-      </li>
-      <li class="nav-item">
+                </a>
+            </li>
+            <li class="nav-item">
 
-        <!-- if not signed -->
+                <!-- if not signed -->
 
-        <span class="nav-link pointer" (click)="openDialog()">SIGN IN</span>
-          <!--
-        <button mat-button [matMenuTriggerFor]="menu">
-  <mat-icon>account_circle</mat-icon></button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>My Profile</button>
-  <button mat-menu-item>Track order</button>
-  <button mat-menu-item>Signout</button>
-</mat-menu> -->
-
-        <!--
-        <mat-menu #matMenuComp #childMenu="matMenu" [overlapTrigger]="false" [hasBackdrop]="false">
-          <button></button>
-          </mat-menu>
-        <a class="nav-link pointer" (click)="openDialog()">
-          <i class="material-icons">
-            account_circle
-          </i>
-        </a>
--->
-      </li>
-    </ul>
-  </div>
+                <span class="nav-link pointer" (click)="openDialog()">SIGN IN</span>
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light text-center bottomBar">
-  <div class="collapse navbar-collapse " [ngClass]="{ 'show': navbarOpen }" id="navbarNav">
-    <ul class="navbar-nav ml-auto mx-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link titeling" (click)="goToCollections()"  id="collectionDropdown">Collections</a>
-        <div class="dropdown-menu mt-0" aria-labelledby="collectionDropdown">
-          <a class="dropdown-item pointer"  *ngFor="let c of collections" (click)="goToCollection(c.id)">{{c.name}}</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link titeling" (click)="goToFurniture()"  id="furnitureDropdown" >Furniture
-<!--          <div class="dropdown-menu mt-0" aria-labelledby="furnitureDropdown">-->
-<!--            <a class="dropdown-item" href="#">Action</a>-->
-<!--            <a class="dropdown-item" href="#">Another action</a>-->
-<!--            <div class="dropdown-divider"></div>-->
-<!--            <a class="dropdown-item" href="#">Something else here</a>-->
-<!--          </div>-->
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link titeling" routerLink="ourvision">Our vision</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link titeling" routerLink="artisan" >Artisan </a>
-      </li>
+    <div class="collapse navbar-collapse " [ngClass]="{ 'show': navbarOpen }" id="navbarNav">
+        <ul class="navbar-nav ml-auto mx-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link titeling" routerLink="home">HOME</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link titeling" routerLink="furnitures">PRODUCTS</a>
+            </li>
 
-    </ul>
-  </div>
+            <li class="nav-item">
+                <a class="nav-link titeling" routerLink="#">INTERIOR DESIGN</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link titeling" routerLink="#">ARTISAN </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link titeling" routerLink="ourstory">OUR STORY </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link titeling" routerLink="#">CONTACT </a>
+            </li>
+
+        </ul>
+    </div>
 </nav>

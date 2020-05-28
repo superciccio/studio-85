@@ -21,8 +21,8 @@ export class SharedVariableService {
     this.isLogged.next(logged);
   }
 
-  getFilters(): Observable<QuerySnapshot<any>> {
-    return this.db.collection<Filter>('filters').get();
+  getFilters(): Observable<Filter[]> {
+    return this.db.collection<Filter>('filters').valueChanges();
   }
 
   colorName = [

@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.email !== '' && this.password !== '') {
-        this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).then((resp) => {
+        this.afAuth.signInWithEmailAndPassword(this.email, this.password).then((resp) => {
       this.dialogRef.close();
       this.router.navigate(['/management']);
     }).catch((err) => {

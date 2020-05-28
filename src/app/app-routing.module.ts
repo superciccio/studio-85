@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {ArtisanComponent} from './artisan/artisan.component';
 import {FurnitureComponent} from './furniture/furniture.component';
 import {CollectionsComponent} from './collections/collections.component';
-import {OurvisionComponent} from './ourvision/ourvision.component';
+import {OurStoryComponent} from './our_story/ourvision.component';
 import {HomeComponent} from './home/home.component';
 import {DetailFurnitureComponent} from './detail-furniture/detail-furniture.component';
 import {ManagementComponent} from './management/management.component';
@@ -30,7 +30,7 @@ const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['login']);
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
 
-  {path: 'ourvision', component: OurvisionComponent},
+  {path: 'ourstory', component: OurStoryComponent},
   {path: 'furnitures', component: FurnitureComponent},
   {path: 'furnitures/:filter', component: FurnitureComponent},
 

@@ -13,8 +13,8 @@ export class FurnitureService {
   constructor(private db: AngularFirestore) {
   }
 
-  getFurnitures(): Observable<QuerySnapshot<any>> {
-    return this.db.collection<Item>('furnitures').get();
+  getFurnitures(): Observable<Item[]> {
+    return this.db.collection<Item>('furnitures', ref => ref.orderBy('name', "asc")).valueChanges();
   }
 
   getFurnituresByCollectionId(idCollection: string): Promise<QuerySnapshot<any>> {

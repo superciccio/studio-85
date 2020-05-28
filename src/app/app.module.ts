@@ -7,7 +7,7 @@ import {NavBarComponent} from './navbar/navbar.component';
 import {CollectionsComponent} from './collections/collections.component';
 import {FurnitureComponent} from './furniture/furniture.component';
 import {ArtisanComponent} from './artisan/artisan.component';
-import {OurvisionComponent} from './ourvision/ourvision.component';
+import {OurStoryComponent} from './our_story/ourvision.component';
 import {HomeComponent} from './home/home.component';
 import {CarouselComponent, CarouselItemElement} from './shared/carousel.component';
 import {CarouselItemDirective} from './shared/carousel-item.directive';
@@ -69,7 +69,6 @@ import { CreditCardMaskPipe } from './credit-card-mask.pipe';
 import { CreditCardMaskDirective } from './credit-card-mask.directive';
 import {MatCarouselModule} from '@ngmodule/material-carousel';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +79,7 @@ import {MatCarouselModule} from '@ngmodule/material-carousel';
     CollectionsComponent,
     FurnitureComponent,
     ArtisanComponent,
-    OurvisionComponent,
+    OurStoryComponent,
     HomeComponent,
     DetailFurnitureComponent,
     BasketComponent,
@@ -102,6 +101,7 @@ import {MatCarouselModule} from '@ngmodule/material-carousel';
   ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
+      AngularFirestoreModule.enablePersistence(),
       AgmCoreModule.forRoot({
         apiKey: environment.mapsApiKey,
         libraries: ['places']

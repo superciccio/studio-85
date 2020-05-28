@@ -39,9 +39,9 @@ export class ManagementFurnitureComponent implements OnInit {
     this.furnitures = [];
     this.fService.getFurnitures().toPromise().then(resp => {
       this.furnitures = [];
-      for (const doc of resp.docs) {
-        this.furnitures.push(doc.data() as Item);
-      }
+      // for (const doc of resp.docs) {
+      //   this.furnitures.push(doc.data() as Item);
+      // }
       this.dataSource = new MatTableDataSource(this.furnitures);
       this.loading = false;
     });
