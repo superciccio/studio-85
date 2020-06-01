@@ -24,8 +24,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.collections = [];
-    const convert = firebase.functions().httpsCallable('instagramFeeds');
-    convert().then((resp)=>this.instgramFeeds=resp.data);
+    this.http.get('https://instagram.com/studio85ltd/?__a=1').subscribe((data: any)=>{
+      this.instgramFeeds = data.graphql.user.edge_owner_to_timeline_media.edges.slice(0,9);
+    });
   }
 
   generateInstagramLink(item:any){

@@ -54,8 +54,8 @@ export class FurnitureComponent implements OnInit, OnDestroy {
     this.filters = this.service.getFilters().subscribe(resp => {
 
 
-        for (const doc of resp) {
-          const element = doc;
+        for (const doc of resp.docs) {
+          const element = doc.data() as Filter;
 
           if (element.type === 'MATERIALS') {
           this.materialFilters.push(element);
@@ -84,8 +84,8 @@ export class FurnitureComponent implements OnInit, OnDestroy {
     });
 
     this.furnitures = this.fService.getFurnitures().subscribe(resp => {
-      this.listFurnitures = resp;
-      this.originalListFurnitures = resp;
+      resp.docs.map((doc)=>this.listFurnitures.push(doc.data() as Item));
+      this.originalListFurnitures = [...this.listFurnitures];
       this.loading = false;
    });
 

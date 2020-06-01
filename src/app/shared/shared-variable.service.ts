@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import { Filter } from '../model/filter';
-import {AngularFirestore, QuerySnapshot} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
+import * as firebase from "firebase";
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,8 @@ export class SharedVariableService {
     this.isLogged.next(logged);
   }
 
-  getFilters(): Observable<Filter[]> {
-    return this.db.collection<Filter>('filters').valueChanges();
+  getFilters(): Observable<firebase.firestore.QuerySnapshot> {
+    return this.db.collection<Filter>('filters').get();
   }
 
   colorName = [

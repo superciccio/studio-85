@@ -1,183 +1,33 @@
-.alignDescToImage {
-  display: flex;
-  align-items: center;
-}
-
-.spaceBetween {
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-}
-
-.spaceDescImage {
-  margin-left: .8rem;
-}
-
-.titleBolder {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
-}
-
-.titleFurniture{
-  font-weight: 400;
-  letter-spacing: .1rem;
-
-  @media screen and (max-width: 1024px){
-    letter-spacing: unset;
-  }
-}
-
-
-
-.separator {
-  width: 100%;
-  height: 1px;
-  content: "";
-  position: relative;
-  display: block;
-  background-color: #212529;
-}
-
-.scrollbar
-{
-  overflow-x: scroll;
-  margin-bottom: 25px;
-  cursor: pointer;
-}
-
-
-#style-1::-webkit-scrollbar-track
-{
-  -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.1);
-  //border-radius: 8px;
-  background-color: whitesmoke;
-}
-
-#style-1::-webkit-scrollbar
-{
-  //width: 6px;
-  width: 8px;
-  height: 8px;
-  background-color: #F5F5F5;
-}
-
-#style-1::-webkit-scrollbar-thumb
-{
-  border-radius: 8px;
-  -webkit-box-shadow: inset 0 0 1px rgba(192,192,192,.6);
-  background-color: #555;
-}
-
-.force-overflow
-{
-  height: 220px;
+::ng-deep .carousel-control-prev-icon {
   display: inline-block;
-  width: 240px;
-  white-space: nowrap;
+  width: 36px;
+  height: 36px;
+  background: transparent no-repeat center center;
+  background-size: 100% 100%;
+  transform: rotate(180deg);
 }
 
-.force-overflow > img {
-  margin-right: 4px;
-}
-
-
-.bottomdiv {
-  margin-top: 20px;
-  width: 100%;
-  position: relative;
-  left: 0;
-  bottom: 0;
-  padding-left: 15px;
-}
-
-.dotRed {
-  height: 25px;
-  width: 25px;
-  background-color: red;
-  border-radius: 50%;
+::ng-deep .carousel-control-next-icon {
   display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: transparent no-repeat center center;
+  background-size: 100% 100%;
 }
 
-.dotBrown {
-  height: 25px;
-  width: 25px;
-  background-color: saddlebrown;
-  border-radius: 50%;
-  display: inline-block;
+::ng-deep .carousel-control-prev-icon {
+  background-image: url("../../assets/arrow_carousel.svg");
 }
 
-@media screen and (max-width: 880px){
-  img {
-    max-width: 240px;
-  }
+::ng-deep .carousel-control-next-icon {
+  background-image: url("../../assets/arrow_carousel.svg");
 }
 
-.wrapper {
-  position: relative;
+.spaceLR {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
 }
 
-/*
-*  The .navi properties are for styling only
-*  These properties can be changed or removed
-*/
-.navi {
-  background-color: #eeeeee;
-  height: 150px;
-}
-
-
-/*
-*  Position the #infoi element in the top-right
-*  of the .wrapper element
-*/
-#infoi {
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  /*
-  *  Styling only, the below can be changed or removed
-  *  depending on your use case
-  */
-  height: 20px;
-  padding: 10px 10px;
-}
-
-.images {
-  display: inline;
-  margin: 0;
-  padding: 0;
-  vertical-align:middle;
-  width:340px;
-}
-#con {
-  position: relative;
-  height: auto;
-  max-width: 100%;
-  overflow-y: hidden;
-  overflow-x: auto;
-  word-wrap: normal;
-  white-space: nowrap;
-}
-
-.customColumn {
-  flex: 0 0 23.7%;
-  max-width: 23.7%;
-}
-
-.spaceBetweenColumn{
-  flex: 0 0 0.6%;
-  max-width: 0.6%; background-color: transparent
-}
-
-.paddingTopLeft {
-  padding-top:10px;
-  margin-left: 16px;
-}
-
-.moveArrow{
-  padding-left: 30px;
-}
-
-li{
-  margin-bottom: 8px;
+.measureFurniture {
+  top: 1rem; width: 311px; height: 50%; float: right;
 }

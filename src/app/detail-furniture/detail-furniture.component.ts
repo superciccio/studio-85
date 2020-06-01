@@ -9,12 +9,16 @@ import {FurnitureService} from '../shared/furniture.service';
 import {FurnitureCacheService} from '../shared/furniture_cache.service';
 import {Title} from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
+import {CarouselConfig} from "ngx-bootstrap/carousel";
 
 
 @Component({
   selector: 'app-detail-furniture',
   templateUrl: './detail-furniture.component.html',
   styleUrls: ['./detail-furniture.component.scss'],
+  providers: [
+    { provide: CarouselConfig, useValue: {  showIndicators: true, } }
+  ]
 })
 export class DetailFurnitureComponent implements OnInit, OnDestroy {
 
@@ -69,13 +73,12 @@ export class DetailFurnitureComponent implements OnInit, OnDestroy {
     });
     if (this.id !== undefined && this.id.length > 0) {
       this.loading = true;
-      if (!this.fCache.furnitureCache.has(this.id)) {
         this.fService.getFurniture(this.id).then(resp => {
           this.item = resp.data() as Item;
           this.item.combinations.map(comb => {
             this.listAvailableColor.push(comb.colour);
           });
-          this.selectedImage = this.item.combinations[0].images[0];
+
           this.fCache.addInCache(this.item);
           if (this.item.dimension === undefined) {
             this.item.dimension = null;
@@ -90,52 +93,10 @@ export class DetailFurnitureComponent implements OnInit, OnDestroy {
             }
           }
           this.setTitleBottomList();
-          this.sliceList(this.indexStart, this.indexEnd);
           this.loading = false;
-        }).then(anotherCall => {
-          if (this.item.collectionId !== '') {
-            // load from same collection
-            console.log('fetching from same collection');
-            this.bottomList = [];
-            this.fService.getFurnituresByCollectionId(this.item.collectionId).then(fC => {
-              fC.docs.map(doc => {
-                this.fromSameCollection.push(doc.data() as Item);
-                this.fCache.addInCache(this.item);
-              });
-            });
-          } else {
-            // load similar items
-            if (this.item.categoryItem != null) {
-              console.log('fetching from similar furnitures');
-              this.fService.getFurnituresBySameCategory(this.item.categoryItem).then(fC => {
-                fC.docs.map(doc => {
-                  this.fromSameCategory.push(doc.data() as Item);
-                  this.fCache.addInCache(this.item);
-                });
-              });
-            }
-          }
         });
-      } else {
-        this.item = this.fCache.furnitureCache.get(this.id);
-        this.selectedImage = this.item.combinations[0].images[0];
-        this.item.combinations.map(comb => {
-          this.listAvailableColor.push(comb.colour);
-        });
-        this.setTitleBottomList();
-        for (const combination of this.item.combinations) {
-          for (const image of combination.images) {
-            if (image.includes('s.jpg')) {
-              this.smallImages.push(image);
-            } else {
-              this.largeImages.push(image);
-            }
-          }
-        }
-        // this.selectedImage = this.item.images[0];
-        this.loading = false;
-      }
     }
+    this.selectedImage = this.largeImages[0];
     this.imgShown = this.images.slice(0, 4);
     this.indexLastImg = 4;
 

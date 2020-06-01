@@ -1,10 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "./assets/css/bootstrap.min.css";
+
 @import "./assets/css/material-icons.css";
 //@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "custom-theme.css";
 //@import "./assets/font";
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
 body,
 html {
     font-size: 16px;
@@ -45,7 +49,6 @@ html {
 
 h2 {
     font-size: 2rem;
-    font-family: 'Quicksand', sans-serif;
     font-weight: 300;
     font-style: normal;
 }
@@ -53,22 +56,11 @@ h2 {
 h3 {
     font-weight: 300;
     font-style: normal;
-    font-family: 'Quicksand', sans-serif;
 }
 
 p {
     font-weight: 400;
     font-style: normal;
-}
-
-a {
-    text-decoration: none;
-    color: black
-}
-
-a:hover {
-    text-decoration: none;
-    color: black
 }
 
 .noPaddingLeft {
@@ -218,20 +210,21 @@ body header+.container {
 }
 
 .lighterText {
-    color: grey;
-    @media screen and (max-width: 768px) {
-        font-size: 18px;
-    }
-    @media screen and (max-width: 425px) {
-        font-size: 14px;
-    }
-    @media screen and (min-width: 768px) {
-        font-size: 22px;
-    }
-    font-weight:100;
-    letter-spacing:2px
+  word-spacing: .2rem;
+  color: rgba(40,26,23,.6);
 }
 
 .price::first-letter {
     padding-right: 0.3em;
+}
+
+
+a {
+  text-decoration: none;
+  color: black
+}
+
+a:hover {
+  text-decoration: none;
+  color: black
 }

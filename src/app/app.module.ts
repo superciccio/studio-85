@@ -9,7 +9,6 @@ import {FurnitureComponent} from './furniture/furniture.component';
 import {ArtisanComponent} from './artisan/artisan.component';
 import {OurStoryComponent} from './our_story/ourvision.component';
 import {HomeComponent} from './home/home.component';
-import {CarouselComponent, CarouselItemElement} from './shared/carousel.component';
 import {CarouselItemDirective} from './shared/carousel-item.directive';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DetailFurnitureComponent} from './detail-furniture/detail-furniture.component';
@@ -68,14 +67,13 @@ import {AgmCoreModule} from '@agm/core';
 import { CreditCardMaskPipe } from './credit-card-mask.pipe';
 import { CreditCardMaskDirective } from './credit-card-mask.directive';
 import {MatCarouselModule} from '@ngmodule/material-carousel';
+import {CarouselModule} from "ngx-bootstrap/carousel";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    CarouselComponent,
     CarouselItemDirective,
-    CarouselItemElement,
     CollectionsComponent,
     FurnitureComponent,
     ArtisanComponent,
@@ -139,7 +137,8 @@ import {MatCarouselModule} from '@ngmodule/material-carousel';
         MatCardModule,
         MatExpansionModule,
         MatMenuModule,
-        CdkTableModule],
+        CdkTableModule,
+      CarouselModule.forRoot()],
   providers: [AngularFireAuthGuard, CurrencyPipe, BasketService, CollectionService, FurnitureService, ArtisanService,
     FurnitureCacheService],
   bootstrap: [AppComponent, NavBarComponent],

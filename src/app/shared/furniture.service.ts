@@ -13,8 +13,8 @@ export class FurnitureService {
   constructor(private db: AngularFirestore) {
   }
 
-  getFurnitures(): Observable<Item[]> {
-    return this.db.collection<Item>('furnitures', ref => ref.orderBy('name', "asc")).valueChanges();
+  getFurnitures(): Observable<firebase.firestore.QuerySnapshot> {
+    return this.db.collection<Item>('furnitures', ref => ref.orderBy('name', "asc")).get();
   }
 
   getFurnituresByCollectionId(idCollection: string): Promise<QuerySnapshot<any>> {
@@ -28,7 +28,8 @@ export class FurnitureService {
 
   // @ts-ignore
   getFurniture(idFurniture: string): Promise<DocumentSnapshot> {
-    return this.db.collection<Item>('furnitures').ref.doc(idFurniture).get();
+    console.log('getFurniture');
+     return this.db.collection<Item>('furnitures').ref.doc(idFurniture).get({source: 'cache'});
   }
   save(item: Item) {
     if (item.id === '') {

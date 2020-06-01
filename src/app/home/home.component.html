@@ -16,7 +16,8 @@
             <h1 class="display-6 text-uppercase instagramTitle">A GOOD DESIGN IS A KEY OF A WELL - BEING</h1>
 
             <div class="row" style="width: 100%; margin-top: 24px;">
-                <img class="col-4 img-fluid pointer" [alt]="item['altText']" [title]="item['titleText']" [src]="item['img']" *ngFor="let item of instgramFeeds, let i = index;" [ngClass]="{padLR: i == 1 || i == 4 || i == 7}" (click)="generateInstagramLink(item)" decoding="async">
+              <img class="col-4 img-fluid pointer" [alt]="item['node']['edge_media_to_caption']['edges'][0]['node']['text']" [title]="item['node']['edge_media_to_caption']['edges'][0]['node']['text']" [src]="item['node']['thumbnail_resources'][1]['src']" style="padding: unset;"
+                   *ngFor="let item of instgramFeeds, let i = index;" [ngClass]="{padLR: i == 1 || i == 4 || i == 7}" (click)="generateInstagramLink(item)" decoding="async" >
 
 
             </div>
@@ -29,7 +30,7 @@
         <div class="jumbotron" style="padding-top: 0px">
             <h1 class="display-6 text-uppercase">Artisan</h1>
             <hr class="my-4">
-            <p style="word-spacing: .2rem; color: rgba(40,26,23,.6);">Concept Design, Design Development, Technical Design, and more. We design bespoke living spaces, we always look for the balance between the colours and texture to bring the uniqueness inside your house.
+            <p class="lighterText">Concept Design, Design Development, Technical Design, and more. We design bespoke living spaces, we always look for the balance between the colours and texture to bring the uniqueness inside your house.
                 <br>
                 <br> Inspiration comes in within our design approach. Using different materials, we will play with texture and the natural pattern to create unique pieces to be lived in your house. Design is a way to elegantly enhance our perceptions,
                 giving an exceptional feeling to our soul. </p>
